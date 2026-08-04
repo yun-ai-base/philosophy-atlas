@@ -257,6 +257,85 @@ body{
   display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 .concept-card .c-more{margin-top:8px;font-size:10px;color:var(--gold2);letter-spacing:2px}
 
+/* --- 相变时刻（范式革命） --- */
+.phase-band{margin:60px 0 30px;padding-left:88px}
+.phase-band .ph-title{
+  font-size:15px;letter-spacing:5px;color:var(--gold);margin-bottom:6px;
+  display:flex;align-items:center;gap:14px;
+}
+.phase-band .ph-title::before{content:"";flex:0 0 34px;height:1px;background:var(--gold2)}
+.phase-band .ph-sub{font-size:11px;color:var(--ink3);letter-spacing:1px;margin-bottom:22px;padding-left:48px}
+.phase-list{position:relative;padding-left:0}
+.phase-item{
+  position:relative;background:var(--panel);border:1px solid var(--line);
+  padding:20px 24px;margin-bottom:16px;cursor:pointer;transition:.2s;
+  border-left:3px solid transparent;
+}
+.phase-item:hover,.phase-item.active{
+  background:var(--panel2);border-color:var(--gold);border-left-color:var(--gold);
+}
+.phase-item .ph-no{
+  position:absolute;top:16px;right:22px;font-size:28px;color:var(--line2);font-weight:600;letter-spacing:1px;
+}
+.phase-item:hover .ph-no{color:rgba(201,162,39,.3)}
+.phase-item .ph-name{font-size:19px;letter-spacing:3px;color:var(--ink);display:flex;align-items:baseline;gap:14px}
+.phase-item .ph-years{font-size:11px;color:var(--ink3);letter-spacing:1px}
+.phase-item .ph-meta{margin-top:6px;font-size:11px;color:var(--gold2);font-style:italic;letter-spacing:1px}
+.phase-item .ph-shift{
+  margin-top:12px;display:flex;align-items:center;gap:12px;font-size:12px;flex-wrap:wrap;
+}
+.phase-item .ph-shift .po{color:var(--ink3)}
+.phase-item .ph-shift .pn{color:var(--gold);font-weight:400}
+.phase-item .ph-shift .ph-arrow{color:var(--gold2)}
+.phase-item .ph-birth{margin-top:10px;display:flex;gap:6px;flex-wrap:wrap}
+.phase-item .ph-birth .pb{
+  font-size:10px;letter-spacing:1px;padding:2px 9px;border:1px solid var(--line2);border-radius:10px;cursor:pointer;transition:.2s;
+}
+.phase-item .ph-birth .pb:hover{border-color:var(--gold);color:var(--gold)}
+.phase-item .ph-birth .pb-l{font-size:10px;color:var(--ink3);letter-spacing:1px;align-self:center;margin-right:4px}
+
+/* 相变弹层：贝纳德对流可视化 */
+.phase-visual{
+  position:relative;height:150px;border:1px solid var(--line2);border-radius:4px;margin-bottom:18px;overflow:hidden;
+  background:linear-gradient(180deg,#1a1814 0%,#14120f 100%);
+}
+.phase-visual .pv-old{
+  position:absolute;left:0;right:0;bottom:0;height:50%;padding:8px 16px;
+  font-size:11px;color:var(--ink3);display:flex;flex-direction:column;justify-content:flex-start;gap:4px;
+  border-top:1px dashed rgba(176,80,64,.6);
+}
+.phase-visual .pv-new{
+  position:absolute;left:0;right:0;top:0;height:50%;padding:8px 16px;
+  font-size:11px;color:var(--ink);display:flex;flex-direction:column;justify-content:flex-end;gap:4px;
+}
+.phase-visual .pv-lb{font-size:9px;letter-spacing:2px;color:var(--gold)}
+.phase-visual .pv-val{line-height:1.6}
+.phase-visual .pv-old .pv-val{color:#b08070}
+.phase-visual .pv-new .pv-val{color:#c9a84a}
+.phase-visual .pv-flip{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:64px;height:64px;border-radius:50%;
+  background:radial-gradient(circle, rgba(201,162,39,.35), transparent 70%);
+  display:flex;align-items:center;justify-content:center;
+}
+.phase-visual .pv-flip .pv-flip-ic{font-size:26px;color:var(--gold)}
+.phase-visual .pv-heat{
+  position:absolute;left:0;right:0;bottom:0;height:4px;
+  background:linear-gradient(90deg,transparent,var(--copper),transparent);
+  opacity:.6;
+}
+.phase-desc{margin-bottom:16px;font-size:13px;color:var(--ink2);line-height:1.9;border-left:2px solid var(--gold2);padding-left:14px}
+.phase-cond{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.phase-cond .pc{display:flex;gap:12px;align-items:baseline;font-size:13px;color:var(--ink2)}
+.phase-cond .pc .pc-ic{flex:0 0 52px;font-size:10px;letter-spacing:1px;padding:1px 6px;text-align:center;border:1px solid var(--line2);border-radius:2px}
+.phase-cond .pc .pc-n{font-size:11px;color:var(--gold2);letter-spacing:1px;flex:0 0 130px}
+.phase-cond .pc .pc-d{flex:1;line-height:1.7}
+.phase-trigger{
+  margin-bottom:16px;border:1px solid var(--line);background:var(--panel);padding:12px 16px;font-size:13px;color:var(--ink2);line-height:1.8;
+}
+.phase-trigger .pt-lb{font-size:10px;letter-spacing:3px;color:var(--copper);display:block;margin-bottom:4px}
+.phase-trigger .pt-ic{color:var(--gold);font-style:italic}
+
 /* ============ 深览弹层 ============ */
 .modal-mask{
   position:fixed;inset:0;z-index:100;background:rgba(8,7,6,.82);
@@ -389,6 +468,7 @@ body{
   .era-schools{padding-left:0}
   .confluence-band{padding-left:0}
   .concept-band{padding-left:0}
+  .phase-band{padding-left:0}
   .school-year{flex:0 0 52px;font-size:11px}
   .axis{left:26px}
   .m-disc{grid-template-columns:1fr}
@@ -454,6 +534,11 @@ body{
 <!-- 概念弹层 -->
 <div class="modal-mask" id="conceptModal">
   <div class="modal c-modal" id="conceptModalBox"></div>
+</div>
+
+<!-- 相变弹层 -->
+<div class="modal-mask" id="phaseModal">
+  <div class="modal" id="phaseModalBox"></div>
 </div>
 
 <script src="data/schools-east.js"></script>
@@ -891,7 +976,7 @@ schoolModal.addEventListener('click', e => {
   if(e.target === schoolModal) closeSchool();
 });
 document.addEventListener('keydown', e => {
-  if(e.key === 'Escape'){ closeSchool(); closeConcept(); }
+  if(e.key === 'Escape'){ closeSchool(); closeConcept(); closePhase(); }
 });
 
 /* ============================================================
@@ -970,6 +1055,135 @@ conceptModal.addEventListener('click', e => {
 });
 
 /* ============================================================
+   相变时刻 —— 范式革命
+   ============================================================ */
+const phaseModal = document.getElementById('phaseModal');
+const phaseModalBox = document.getElementById('phaseModalBox');
+
+function renderPhases(){
+  const band = document.createElement('div');
+  band.className = 'phase-band';
+  band.innerHTML = `
+    <div class="ph-title">相变时刻</div>
+    <div class="ph-sub">思想的旧秩序像被加热的液体，在时代压力下整体翻转成新范式——点击展开每一次范式革命</div>
+    <div class="phase-list"></div>`;
+  const list = band.querySelector('.phase-list');
+  PHASE_SHIFTS.forEach(ph => {
+    const item = document.createElement('div');
+    item.className = 'phase-item';
+    item.innerHTML = `
+      <div class="ph-no">${ph.no}</div>
+      <div class="ph-name">${ph.name}<span class="ph-years">${ph.years}</span></div>
+      <div class="ph-meta">${ph.metaphor}</div>
+      <div class="ph-shift">
+        <span class="po">${ph.old}</span>
+        <span class="ph-arrow">⟶</span>
+        <span class="pn">${ph.new}</span>
+      </div>
+      <div class="ph-birth"><span class="pb-l">逼出的学派</span>${ph.birth.map(b=>{
+        const s = SCHOOL_MAP[b];
+        return s ? `<span class="pb" data-school="${b}">${s.name}</span>` : '';
+      }).join('')}</div>`;
+    item.onclick = (ev) => {
+      if(ev.target.closest('.pb')) return; /* 学派徽章点击走深览 */
+      openPhase(ph.id);
+    };
+    item.querySelectorAll('.pb').forEach(pb => {
+      pb.onclick = (ev) => {
+        ev.stopPropagation();
+        const to = pb.dataset.school;
+        if(SCHOOL_MAP[to]) openSchool(to);
+      };
+    });
+    list.appendChild(item);
+  });
+  erasBox.appendChild(band);
+}
+
+function openPhase(id){
+  const ph = PHASE_SHIFTS.find(x => x.id === id);
+  if(!ph) return;
+  const condHtml = (ph.pressures || []).map(c => {
+    const ct = CONDTYPE[c.t] || {label:c.t, color:'var(--line2)'};
+    return `<div class="pc">
+      <span class="pc-ic" style="color:${ct.color};border-color:${ct.color}">${ct.label}</span>
+      <span class="pc-n">${c.n}</span>
+      <span class="pc-d">${c.d}</span>
+    </div>`;
+  }).join('');
+  const birthHtml = ph.birth.map(b => {
+    const s = SCHOOL_MAP[b];
+    return s ? `<span class="pb" data-school="${b}">${s.name}</span>` : '';
+  }).join('');
+  phaseModalBox.innerHTML = `
+    <button class="m-close" onclick="closePhase()">✕</button>
+    <div class="m-head">
+      <div class="m-civ">相 变 时 刻 · ${ph.no}</div>
+      <div class="m-name">${ph.name}</div>
+      <div class="m-en">${ph.years} · ${ph.metaphor}</div>
+    </div>
+    <div class="m-body">
+      <div class="m-sec">
+        <div class="m-sec-title">范式的整体翻转</div>
+        <div class="phase-visual">
+          <div class="pv-heat"></div>
+          <div class="pv-new">
+            <span class="pv-lb">新范式</span>
+            <span class="pv-val">${ph.new}</span>
+          </div>
+          <div class="pv-flip"><span class="pv-flip-ic">⇅</span></div>
+          <div class="pv-old">
+            <span class="pv-lb">旧范式</span>
+            <span class="pv-val">${ph.old}</span>
+          </div>
+        </div>
+        <div class="phase-desc">${ph.description}</div>
+      </div>
+      <div class="m-sec">
+        <div class="m-sec-title">底部加热 — 时代压力积累</div>
+        <div class="phase-cond">${condHtml}</div>
+      </div>
+      <div class="m-sec">
+        <div class="m-sec-title">临界触发</div>
+        <div class="phase-trigger">
+          <span class="pt-lb">临界点</span>
+          <span class="pt-ic">${ph.trigger}</span>
+        </div>
+      </div>
+      <div class="m-sec">
+        <div class="m-sec-title">翻转之后</div>
+        <div class="phase-trigger" style="border-color:rgba(201,162,39,.4);background:rgba(201,162,39,.05)">
+          <span class="pt-lb" style="color:var(--gold)">新秩序的确立</span>
+          <span style="color:var(--ink2)">${ph.after}</span>
+        </div>
+      </div>
+      <div class="m-sec">
+        <div class="m-sec-title">逼出的学派</div>
+        <div class="ph-birth" style="padding:6px 0">${birthHtml}</div>
+      </div>
+    </div>`;
+  phaseModal.classList.add('show');
+  document.body.style.overflow = 'hidden';
+  phaseModalBox.querySelectorAll('.pb').forEach(pb => {
+    pb.onclick = (ev) => {
+      ev.stopPropagation();
+      const to = pb.dataset.school;
+      if(SCHOOL_MAP[to]){
+        closePhase();
+        openSchool(to);
+      }
+    };
+  });
+}
+function closePhase(){
+  phaseModal.classList.remove('show');
+  document.body.style.overflow = '';
+}
+phaseModal.addEventListener('click', e => {
+  if(e.target === phaseModal) closePhase();
+});
+
+/* ============================================================
    交互绑定
    ============================================================ */
 function bindInteractions(){
@@ -988,6 +1202,7 @@ function init(){
   renderEraNav();
   ERAS.forEach(renderEra);
   renderConcepts();
+  renderPhases();
   bindInteractions();
   requestAnimationFrame(() => {
     drawLinks();
