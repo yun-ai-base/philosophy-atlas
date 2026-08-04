@@ -3,3247 +3,1006 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>脉络 · 思想之河 — 儒家思想卡原型</title>
-<meta name="description" content="脉络·思想之河——人类哲学之河。儒家思想卡原型：时代之问、多元阐释、分歧争议、接受史、四轴发散。">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>思想史长卷 · 人类哲学的演化地图</title>
 <style>
-/* ───────────── 设计系统（思想之河 v7） ───────────── */
-:root {
-  --bg: #0B0E14;
-  --bg-2: #0E1219;
-  --panel: #121826;
-  --panel-2: #161E2E;
-  --line: rgba(201,160,99,0.16);
-  --line-soft: rgba(255,255,255,0.06);
-  --gold: #C9A063;
-  --gold-bright: #E8D8B8;
-  --ivory: #EFE9DC;
-  --text: #EFE9DC;
-  --text-dim: #A9A295;
-  --text-mute: #8A857A;
+/* ============================================================
+   思想史长卷 · 视觉系统
+   基调：深纸感 + 金铜脉络 + 四学科色。克制，每元素承载信息。
+   ============================================================ */
+:root{
+  --bg:#0e0d0b;
+  --bg2:#14120f;
+  --panel:#1a1814;
+  --panel2:#201d17;
+  --line:#2a261e;
+  --line2:#3a342a;
+  --ink:#e8e2d5;
+  --ink2:#b8b0a0;
+  --ink3:#8a8274;
+  --gold:#c9a227;
+  --gold2:#b08d3e;
+  --copper:#c98a4a;
+  --blue:#7a92b8;
+  --east:#c98a4a;   /* 东方 · 铜 */
+  --west:#7a92b8;   /* 西方 · 灰蓝 */
+  /* 时代条件色 */
+  --c-war:#a04030;
+  --c-science:#4a90d9;
+  --c-culture:#7a9e7e;
+  --c-religion:#8a6fb0;
+  /* 关系线色 */
+  --r-inherit:#c9a227;
+  --r-transcend:#c9a227;
+  --r-reject:#b05040;
+  --r-dialogue:#7a92b8;
+  --r-resonance:#6a8a6e;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Songti SC","STSong","Noto Serif SC","Source Han Serif SC",serif;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+/* 细金铜滚动条 */
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:#3a342a;border-radius:5px}
+::-webkit-scrollbar-thumb:hover{background:var(--gold2)}
+::selection{background:rgba(201,162,39,.25)}
 
-  /* 文明/支流色 */
-  --c-eastern: #C9A063;
-  --c-western: #7FA8D9;
-  --c-greek: #4FB3A8;
-  --c-indian: #C05A4A;
-  --c-islamic: #3E9E8A;
-  --c-europe: #7FA8D9;
-  --c-modern: #8B7EC8;
+/* ============ 顶部 ============ */
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;align-items:center;gap:24px;
+  padding:12px 28px;
+  background:rgba(14,13,11,.92);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.topbar .brand{display:flex;align-items:baseline;gap:12px;white-space:nowrap}
+.topbar .brand .zh{font-size:17px;letter-spacing:4px;color:var(--ink)}
+.topbar .brand .sub{font-size:11px;color:var(--ink3);letter-spacing:2px}
+.topbar .era-nav{display:flex;gap:6px;flex-wrap:wrap}
+.topbar .era-nav button{
+  background:transparent;border:1px solid var(--line2);color:var(--ink2);
+  padding:3px 12px;font-size:12px;font-family:inherit;cursor:pointer;
+  letter-spacing:1px;border-radius:2px;transition:.2s;
+}
+.topbar .era-nav button:hover{color:var(--gold);border-color:var(--gold2)}
+.topbar .era-nav button.active{color:var(--gold);border-color:var(--gold)}
+.topbar .meta{flex:1;text-align:right;font-size:11px;color:var(--ink3);letter-spacing:1px;white-space:nowrap}
 
-  /* 学科色 */
-  --d-religion: #B05A7A;
-  --d-science: #4FB3A8;
-  --d-literature: #E8A33D;
-  --d-art: #8B7EC8;
+/* ============ 序章 ============ */
+.hero{
+  padding:130px 8vw 60px;max-width:1200px;margin:0 auto;
+}
+.hero .kicker{font-size:12px;letter-spacing:6px;color:var(--gold);margin-bottom:22px}
+.hero h1{
+  font-size:clamp(30px,5vw,52px);font-weight:600;letter-spacing:8px;
+  line-height:1.3;margin-bottom:26px;
+}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero .lede{
+  font-size:clamp(14px,1.7vw,17px);color:var(--ink2);max-width:760px;
+  border-left:2px solid var(--gold2);padding-left:22px;
+}
+.hero .legend{
+  margin-top:34px;display:flex;gap:28px;flex-wrap:wrap;
+  font-size:11px;color:var(--ink3);letter-spacing:1px;
+}
+.hero .legend .leg{display:flex;align-items:center;gap:8px}
+.legend .sw{width:22px;height:3px;display:inline-block}
+.legend .dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.legend .east{background:var(--east)} .legend .west{background:var(--west)}
+.legend .inh{background:var(--r-inherit)} .legend .rej{background:var(--r-reject)}
+.legend .dia{background:var(--r-dialogue)} .legend .res{background:var(--r-resonance)}
 
-  /* 关系色 */
-  --r-source: #C9A063;
-  --r-inherit: #E8D8B8;
-  --r-transcend: #8B7EC8;
-  --r-reject: #E05D5D;
-  --r-dialogue: #E8A33D;
-  --r-resonance: #4FB3A8;
+/* ============ 长卷 ============ */
+#longscroll{position:relative;max-width:1200px;margin:0 auto;padding:0 8vw 80px}
+#linksvg{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1}
 
-  --radius: 14px;
-  --font-serif: 'Noto Serif SC', 'Georgia', serif;
-  --font-wenkai: 'LXGW WenKai', 'Kaiti SC', 'STKaiti', 'KaiTi', serif;
-  --font-sans: 'Inter', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
-  --font-mono: 'DM Mono', 'SF Mono', monospace;
+/* --- 时代节 --- */
+.era-section{position:relative;padding:60px 0 40px;border-top:1px solid var(--line)}
+.era-section:first-of-type{border-top:none}
+.era-head{display:flex;gap:30px;align-items:flex-start;margin-bottom:34px}
+.era-no{
+  flex:0 0 58px;height:58px;border:1px solid var(--gold2);color:var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;font-weight:600;letter-spacing:2px;border-radius:50%;
 }
+.era-title{flex:1}
+.era-title .name{font-size:26px;letter-spacing:6px;color:var(--ink);display:flex;align-items:baseline;gap:18px}
+.era-title .range{font-size:13px;color:var(--ink3);letter-spacing:2px}
+.era-title .q{
+  margin-top:14px;font-size:clamp(14px,1.9vw,18px);color:var(--ink2);
+  font-style:italic;border-left:2px solid var(--gold2);padding-left:16px;line-height:1.8;
+}
+.era-title .q::before{content:"时代之问　";font-style:normal;font-size:11px;color:var(--gold);letter-spacing:3px;vertical-align:2px}
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-sans);
-  line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+/* --- 时代背景层（时代的天气） --- */
+.era-weather{
+  display:flex;gap:10px;flex-wrap:wrap;margin:26px 0 30px;
+  padding-left:88px;
 }
+.weather-item{
+  position:relative;padding:8px 14px;border:1px solid var(--line2);
+  border-radius:2px;cursor:default;min-width:110px;
+  border-top-width:3px;transition:transform .15s,box-shadow .2s;
+}
+.weather-item:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.5)}
+.weather-item .wt{font-size:10px;letter-spacing:2px;color:var(--ink3);display:block}
+.weather-item .wn{font-size:13px;color:var(--ink);display:block;margin-top:2px}
+.weather-item .wd{
+  display:none;position:absolute;top:calc(100% + 10px);left:0;z-index:30;
+  width:280px;background:var(--panel2);border:1px solid var(--line2);
+  padding:12px 14px;font-size:12px;color:var(--ink2);line-height:1.7;
+  box-shadow:0 12px 30px rgba(0,0,0,.6);
+}
+.weather-item:hover .wd{display:block}
 
-/* 背景：网格纸 + 双色光晕 */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(50% 40% at 30% 0%, rgba(201,160,99,0.07), transparent 60%),
-    radial-gradient(45% 35% at 80% 80%, rgba(127,168,217,0.06), transparent 60%);
-  pointer-events: none;
-  z-index: 0;
+/* --- 学派演进层 --- */
+.era-schools{position:relative;padding-left:88px}
+.axis{
+  position:absolute;left:44px;top:0;bottom:0;width:1px;background:var(--line2);z-index:0;
 }
-.grid-paper {
-  position: fixed;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-  background-size: 48px 48px;
-  pointer-events: none;
-  z-index: 0;
+.axis::after{
+  content:"▼";position:absolute;bottom:-2px;left:50%;transform:translateX(-50%);
+  color:var(--gold2);font-size:10px;
 }
-main { position: relative; z-index: 1; }
+.school-row{display:flex;align-items:stretch;gap:0;margin-bottom:26px;position:relative;z-index:2}
+.school-year{
+  flex:0 0 60px;text-align:right;padding-right:16px;font-size:12px;
+  color:var(--ink3);letter-spacing:1px;display:flex;align-items:center;justify-content:flex-end;
+}
+.school-year .yr{white-space:nowrap}
+.school-card{
+  flex:1;max-width:720px;background:var(--panel);border:1px solid var(--line);
+  border-left:3px solid var(--gold2);padding:16px 20px 14px;cursor:pointer;
+  transition:border-color .2s,background .2s,box-shadow .2s;position:relative;
+}
+.school-card:hover,.school-card.active{
+  background:var(--panel2);border-color:var(--gold);
+  box-shadow:0 8px 26px rgba(0,0,0,.55);
+}
+.school-card.east{border-left-color:var(--east)}
+.school-card.west{border-left-color:var(--west)}
+.school-card .s-top{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.school-card .s-name{font-size:19px;letter-spacing:3px;color:var(--ink)}
+.school-card .s-en{font-size:11px;color:var(--ink3);letter-spacing:1px}
+.school-card .s-kw{margin-left:auto;font-size:11px;color:var(--gold2);letter-spacing:2px}
+.school-card .s-q{
+  margin-top:8px;font-size:13px;color:var(--ink2);font-style:italic;
+  border-left:1px solid var(--line2);padding-left:12px;
+}
+.school-card .s-lineage{
+  margin-top:10px;font-size:11px;color:var(--ink3);
+  display:flex;align-items:center;gap:6px;flex-wrap:wrap;letter-spacing:.5px;
+}
+.school-card .s-lineage .ln{display:flex;align-items:center;gap:6px}
+.school-card .s-lineage .ln .arrow{color:var(--gold2);font-size:9px}
+.school-card .s-lineage .ln .who{color:var(--ink2)}
+.school-card .s-lineage .ln .rol{color:var(--ink3);font-size:9px;letter-spacing:1px}
+.school-card .s-disc{
+  margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;
+  border-top:1px dashed var(--line);padding-top:10px;
+}
+.school-card .s-disc .di{
+  font-size:10px;letter-spacing:1px;padding:2px 8px;border:1px solid var(--line2);
+  border-radius:10px;display:flex;align-items:center;gap:4px;cursor:default;
+}
+.school-card .s-disc .di.up{color:#a8c8e8;border-color:rgba(74,144,217,.5)}
+.school-card .s-disc .di.dn{color:#c8b088;border-color:rgba(201,162,39,.4)}
+.school-card .s-count{
+  position:absolute;top:-9px;right:14px;font-size:10px;color:var(--ink3);
+  background:var(--bg);padding:0 8px;border:1px solid var(--line);border-radius:10px;
+}
+.school-card .s-count b{color:var(--gold)}
 
-/* ───────────── 顶栏 ───────────── */
-.topbar {
-  position: sticky;
-  top: 0;
-  z-index: 60;
-  background: rgba(11,14,20,0.92);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--line);
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 0 28px;
-  height: 54px;
+/* --- 汇流点 --- */
+.confluence-band{margin:50px 0 20px;padding-left:88px}
+.confluence-band .cf-title{
+  font-size:15px;letter-spacing:5px;color:var(--gold);margin-bottom:20px;
+  display:flex;align-items:center;gap:14px;
 }
-.brand {
-  font-family: var(--font-serif);
-  font-size: 17px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: var(--gold-bright);
-  white-space: nowrap;
+.confluence-band .cf-title::before{content:"";flex:0 0 34px;height:1px;background:var(--gold2)}
+.confluence-card{
+  position:relative;background:linear-gradient(135deg,var(--panel2),var(--panel));
+  border:1px solid var(--line2);border-radius:4px;padding:22px 26px;margin-bottom:18px;
+  overflow:hidden;
 }
-.brand .en {
-  font-family: var(--font-sans);
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 0.2em;
-  color: var(--text-mute);
-  margin-left: 10px;
+.confluence-card::before{
+  content:"";position:absolute;inset:0 0 auto 0;height:2px;
+  background:linear-gradient(90deg,var(--east),var(--gold),var(--west));
+  opacity:.7;
 }
-.brand-mark { color: var(--gold); margin-right: 2px; }
-.topbar-hint {
-  margin-left: auto;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--text-mute);
-  letter-spacing: 0.06em;
-  white-space: nowrap;
+.confluence-card .cf-head{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
+.confluence-card .cf-name{font-size:19px;letter-spacing:3px;color:var(--ink)}
+.confluence-card .cf-years{font-size:11px;color:var(--ink3);letter-spacing:1px}
+.confluence-card .cf-route{
+  margin-left:auto;font-size:12px;color:var(--gold2);letter-spacing:1px;
 }
+.confluence-card .cf-story{margin-top:12px;font-size:13px;color:var(--ink2);line-height:1.9}
+.confluence-card .cf-exchange{
+  margin-top:12px;display:flex;gap:20px;flex-wrap:wrap;font-size:12px;color:var(--ink2);
+}
+.confluence-card .cf-exchange .ex{flex:1;min-width:220px}
+.confluence-card .cf-exchange .ex .exh{font-size:10px;letter-spacing:2px;color:var(--gold);display:block;margin-bottom:4px}
+.confluence-card .cf-links{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
+.confluence-card .cf-links .cf-link{
+  font-size:11px;padding:2px 10px;border:1px solid var(--line2);border-radius:12px;
+  cursor:pointer;transition:.2s;
+}
+.confluence-card .cf-links .cf-link:hover{border-color:var(--gold);color:var(--gold)}
 
-/* 顶栏搜索 */
-.search-box { position: relative; margin-left: 20px; }
-.search-box input {
-  width: 200px;
-  padding: 6px 14px;
-  border: 1px solid var(--line);
-  border-radius: 100px;
-  background: rgba(11,14,20,0.6);
-  color: var(--text);
-  font-size: 12.5px;
-  font-family: var(--font-sans);
-  outline: none;
-  transition: border-color 0.2s;
+/* --- 概念暗流 --- */
+.concept-band{margin:60px 0 30px;padding-left:88px}
+.concept-band .cp-title{
+  font-size:15px;letter-spacing:5px;color:var(--gold);margin-bottom:6px;
+  display:flex;align-items:center;gap:14px;
 }
-.search-box input:focus { border-color: var(--gold); }
-.search-results {
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 0;
-  right: 0;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-  z-index: 80;
-  display: none;
-  max-height: min(360px, calc(100vh - 120px));
-  overflow-y: auto;
+.concept-band .cp-title::before{content:"";flex:0 0 34px;height:1px;background:var(--gold2)}
+.concept-band .cp-sub{font-size:11px;color:var(--ink3);letter-spacing:1px;margin-bottom:20px;padding-left:48px}
+.concept-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.concept-card{
+  background:var(--panel);border:1px solid var(--line);padding:18px 20px;cursor:pointer;
+  transition:.2s;
 }
-.search-results.open { display: block; }
-.search-results .sr-item {
-  padding: 9px 14px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 13px;
-  color: var(--text);
-  border-bottom: 1px solid var(--line-soft);
-}
-.search-results .sr-item:last-child { border-bottom: none; }
-.search-results .sr-item:hover { background: rgba(201,160,99,0.08); }
-.search-results .sr-item .sr-dot { width: 8px; height: 8px; border-radius: 50%; flex: 0 0 auto; }
-.search-results .sr-item .sr-type { font-size: 10px; color: var(--text-mute); margin-left: auto; font-family: var(--font-mono); }
-.search-results .sr-empty { padding: 12px 14px; font-size: 12px; color: var(--text-mute); }
+.concept-card:hover{border-color:var(--gold);background:var(--panel2)}
+.concept-card .c-name{font-size:17px;letter-spacing:3px;color:var(--ink)}
+.concept-card .c-en{font-size:10px;color:var(--ink3);letter-spacing:2px;margin-top:2px}
+.concept-card .c-path{margin-top:10px;font-size:11px;color:var(--ink3);line-height:1.9;
+  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.concept-card .c-more{margin-top:8px;font-size:10px;color:var(--gold2);letter-spacing:2px}
 
-/* 航行按钮 */
-.nav-btn {
-  padding: 6px 14px;
-  border: 1px solid var(--gold);
-  border-radius: 100px;
-  background: color-mix(in srgb, var(--gold) 14%, transparent);
-  color: var(--gold-bright);
-  font-size: 12px;
-  cursor: pointer;
-  transition: all 0.2s;
-  white-space: nowrap;
-  margin-left: 10px;
+/* ============ 深览弹层 ============ */
+.modal-mask{
+  position:fixed;inset:0;z-index:100;background:rgba(8,7,6,.82);
+  backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;
+  overflow-y:auto;padding:40px 20px;
 }
-.nav-btn:hover { background: color-mix(in srgb, var(--gold) 24%, transparent); }
-.nav-btn.running { background: color-mix(in srgb, var(--gold) 30%, transparent); }
+.modal-mask.show{display:flex}
+.modal{
+  background:var(--bg2);border:1px solid var(--line2);max-width:880px;width:100%;
+  max-height:88vh;overflow-y:auto;position:relative;
+  box-shadow:0 30px 80px rgba(0,0,0,.7);
+}
+.modal::-webkit-scrollbar{width:8px}
+.modal .m-close{
+  position:sticky;top:0;z-index:5;float:right;margin:14px;width:32px;height:32px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--panel2);border:1px solid var(--line2);color:var(--ink2);
+  font-size:16px;cursor:pointer;border-radius:50%;transition:.2s;
+}
+.modal .m-close:hover{color:var(--gold);border-color:var(--gold)}
+.m-head{border-bottom:1px solid var(--line);padding:30px 36px 22px}
+.m-head .m-civ{font-size:10px;letter-spacing:3px;color:var(--ink3);margin-bottom:8px}
+.m-head .m-name{font-size:30px;letter-spacing:5px;color:var(--ink)}
+.m-head .m-en{font-size:12px;color:var(--ink3);letter-spacing:2px;margin-top:4px}
+.m-head .m-meta{display:flex;gap:20px;flex-wrap:wrap;margin-top:16px;font-size:12px;color:var(--ink2)}
+.m-head .m-meta .mm b{color:var(--gold);font-weight:400;margin-right:6px;letter-spacing:1px}
+.m-head .m-quote{margin-top:16px;font-size:15px;color:var(--gold2);font-style:italic;line-height:1.8}
+.m-body{padding:26px 36px 40px}
+.m-sec{margin-bottom:30px}
+.m-sec-title{
+  font-size:13px;letter-spacing:4px;color:var(--gold);margin-bottom:14px;
+  display:flex;align-items:center;gap:12px;
+}
+.m-sec-title::after{content:"";flex:1;height:1px;background:var(--line)}
+.m-sec .m-ask{
+  font-size:16px;color:var(--ink2);font-style:italic;border-left:2px solid var(--gold2);
+  padding-left:14px;margin-bottom:8px;
+}
+/* 时代因果 */
+.m-conds{display:flex;flex-direction:column;gap:8px}
+.m-cond{display:flex;gap:12px;align-items:baseline;font-size:13px;color:var(--ink2)}
+.m-cond .cond-ic{flex:0 0 52px;font-size:10px;letter-spacing:1px;padding:1px 6px;text-align:center;border:1px solid var(--line2);border-radius:2px}
+.m-cond .cond-h{font-size:11px;color:var(--gold2);letter-spacing:1px;flex:0 0 150px}
+.m-cond .cond-d{flex:1;line-height:1.8}
+/* 学说 */
+.m-doc{border:1px solid var(--line);background:var(--panel);margin-bottom:10px;padding:14px 18px}
+.m-doc .dt{font-size:15px;letter-spacing:2px;color:var(--ink)}
+.m-doc .dc{margin-top:4px;font-size:13px;color:var(--ink2)}
+.m-doc .da{margin-top:8px;display:flex;flex-wrap:wrap;gap:8px}
+.m-doc .da .arg{
+  font-size:11px;color:var(--ink2);background:var(--panel2);border:1px solid var(--line2);
+  padding:2px 10px;border-radius:12px;
+}
+.m-doc .da .arg::before{content:"·";color:var(--gold);margin-right:5px}
+.m-doc .di{margin-top:8px;font-size:11px;color:var(--ink3)}
+.m-doc .di b{color:var(--gold2);font-weight:400;letter-spacing:1px}
+/* 师承 */
+.m-lin{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px}
+.m-lin .lin-item{display:flex;align-items:center;gap:8px}
+.m-lin .lin-role{font-size:9px;color:var(--ink3);letter-spacing:2px;border:1px solid var(--line2);padding:1px 6px;border-radius:2px}
+.m-lin .lin-who{color:var(--ink)}
+.m-lin .lin-note{font-size:11px;color:var(--ink3)}
+.m-lin .lin-arrow{color:var(--gold2)}
+/* 学科双向 */
+.m-disc{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.m-disc .disc-col{border:1px solid var(--line);background:var(--panel);padding:14px 16px}
+.m-disc .disc-col.ab{background:rgba(74,144,217,.05);border-color:rgba(74,144,217,.25)}
+.m-disc .disc-col.gi{background:rgba(201,162,39,.05);border-color:rgba(201,162,39,.25)}
+.m-disc .disc-col h4{font-size:11px;letter-spacing:3px;margin-bottom:10px;font-weight:400}
+.m-disc .disc-col.ab h4{color:#8ab4d8}
+.m-disc .disc-col.gi h4{color:var(--gold)}
+.m-disc .disc-item{font-size:12px;color:var(--ink2);margin-bottom:8px;line-height:1.7}
+.m-disc .disc-item b{color:var(--ink);font-weight:400}
+/* 关系 */
+.m-rel{display:flex;flex-direction:column;gap:7px}
+.m-rel-item{display:flex;gap:10px;align-items:baseline;font-size:13px;color:var(--ink2)}
+.m-rel-item .rel-t{flex:0 0 52px;font-size:10px;letter-spacing:1px;padding:1px 6px;text-align:center;border:1px solid var(--line2);border-radius:2px}
+.m-rel-item .rel-note{flex:1;line-height:1.7}
+.m-rel-item .rel-to{color:var(--gold);cursor:pointer;font-weight:400}
+.m-rel-item .rel-to:hover{text-decoration:underline}
+/* 多元解读 */
+.m-int{display:flex;flex-direction:column;gap:8px}
+.m-int-item{border-left:1px solid var(--gold2);padding-left:12px}
+.m-int-item .from{font-size:11px;color:var(--gold);letter-spacing:1px}
+.m-int-item .view{font-size:13px;color:var(--ink2);margin-top:2px;line-height:1.7}
+/* 原典 */
+.m-quotes{display:flex;flex-direction:column;gap:10px}
+.m-quote-item{border:1px solid var(--line);background:var(--panel);padding:12px 16px}
+.m-quote-item .qtext{font-size:14px;color:var(--ink);font-style:italic;line-height:1.9}
+.m-quote-item .qsrc{margin-top:4px;font-size:11px;color:var(--gold2);letter-spacing:1px}
+/* 接受史与沉船 */
+.m-rec,.m-ship{border:1px solid var(--line);padding:12px 16px;font-size:13px;color:var(--ink2);line-height:1.8;margin-bottom:10px}
+.m-rec{background:rgba(201,162,39,.04)}
+.m-rec .rh{font-size:10px;letter-spacing:3px;color:var(--gold);margin-bottom:4px}
+.m-ship{background:rgba(74,144,217,.04);border-color:rgba(74,144,217,.25)}
+.m-ship .sh{font-size:10px;letter-spacing:3px;color:#8ab4d8;margin-bottom:6px}
+.m-ship .sk,.m-ship .sa{font-size:12px;margin-bottom:4px}
+.m-ship .sk b,.m-ship .sa b{font-weight:400;letter-spacing:1px}
+.m-ship .sk{color:#c08a7a}
+.m-ship .sa{color:#9ab88a}
+.m-ship .sk b{color:#d07a60}
+.m-ship .sa b{color:#a8c88a}
 
-/* 读者入口（逆流寻源） */
-.reader-entry {
-  margin-top: 20px;
-  display: flex;
-  gap: 8px;
-  max-width: 460px;
+/* ============ 概念弹层 ============ */
+.c-modal .m-body{display:flex;flex-direction:column;gap:0}
+.c-path-steps{position:relative;padding-left:22px}
+.c-path-steps::before{
+  content:"";position:absolute;left:5px;top:6px;bottom:6px;width:1px;
+  background:linear-gradient(var(--gold2),var(--west));
 }
-.reader-entry input {
-  flex: 1;
-  padding: 10px 16px;
-  border: 1px solid var(--line);
-  border-radius: 100px;
-  background: rgba(11,14,20,0.6);
-  color: var(--text);
-  font-size: 13.5px;
-  font-family: var(--font-sans);
-  outline: none;
+.c-step{position:relative;margin-bottom:14px;padding-left:16px}
+.c-step::before{
+  content:"";position:absolute;left:-20px;top:8px;width:9px;height:9px;border-radius:50%;
+  background:var(--bg2);border:1.5px solid var(--gold2);
 }
-.reader-entry input:focus { border-color: var(--gold); }
-.reader-entry button {
-  padding: 10px 18px;
-  border: 1px solid var(--gold);
-  border-radius: 100px;
-  background: var(--gold);
-  color: #0B0E14;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.2s;
-}
-.reader-entry button:hover { background: var(--gold-bright); }
+.c-step .cs-school{font-size:11px;color:var(--gold);letter-spacing:1px;cursor:pointer}
+.c-step .cs-school:hover{text-decoration:underline}
+.c-step .cs-text{font-size:13px;color:var(--ink2);line-height:1.8}
 
-/* 序章（贝纳德相变） */
-.prologue {
-  position: fixed;
-  inset: 0;
-  z-index: 200;
-  background: radial-gradient(ellipse at center, #1a2233 0%, #0B0E14 70%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  transition: opacity 0.8s ease;
+/* ============ 页脚 ============ */
+.foot{
+  border-top:1px solid var(--line);padding:36px 8vw 60px;text-align:center;
+  color:var(--ink3);font-size:12px;letter-spacing:2px;max-width:1200px;margin:0 auto;
 }
-.prologue.hidden { opacity: 0; pointer-events: none; }
-.prologue-stage {
-  width: min(560px, 90vw);
-  height: 420px;
-  position: relative;
-}
-.prologue-stage canvas {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-.prologue-caption {
-  margin-top: 16px;
-  font-family: var(--font-wenkai);
-  font-size: 20px;
-  color: var(--gold-bright);
-  letter-spacing: 0.08em;
-  text-align: center;
-  min-height: 36px;
-}
-.prologue-caption .sub {
-  display: block;
-  font-family: var(--font-sans);
-  font-size: 12px;
-  color: var(--text-mute);
-  margin-top: 6px;
-  letter-spacing: 0.04em;
-}
-.prologue-skip {
-  position: absolute;
-  top: 20px;
-  right: 24px;
-  padding: 6px 14px;
-  border: 1px solid var(--line);
-  border-radius: 100px;
-  background: rgba(11,14,20,0.6);
-  color: var(--text-dim);
-  font-size: 12px;
-  cursor: pointer;
-  z-index: 205;
-  transition: all 0.2s;
-}
-.prologue-skip:hover { color: var(--text); border-color: var(--gold); }
+.foot .fp{color:var(--gold2);letter-spacing:4px;margin-bottom:8px}
 
-/* 河段导航 */
-.reach-nav {
-  display: flex;
-  gap: 6px;
-  padding: 10px 16px;
-  border-top: 1px solid var(--line-soft);
-  flex-wrap: wrap;
+/* ============ 响应式 ============ */
+@media(max-width:900px){
+  .era-weather{padding-left:0}
+  .era-schools{padding-left:0}
+  .confluence-band{padding-left:0}
+  .concept-band{padding-left:0}
+  .school-year{flex:0 0 52px;font-size:11px}
+  .axis{left:26px}
+  .m-disc{grid-template-columns:1fr}
+  .hero{padding:110px 6vw 40px}
 }
-.reach-btn {
-  padding: 4px 12px;
-  border: 1px solid var(--line-soft);
-  border-radius: 100px;
-  font-size: 11.5px;
-  color: var(--text-dim);
-  background: transparent;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.reach-btn:hover { border-color: var(--gold); color: var(--text); }
-.reach-btn.active { background: color-mix(in srgb, var(--gold) 14%, transparent); border-color: var(--gold); color: var(--gold-bright); }
-
-/* 时代事件（能量流上轨） */
-.event-pin { cursor: pointer; }
-.event-pin text { font-size: 9.5px; }
-.event-pin:hover text { fill: #EFE9DC; }
-.event-pulse { cursor: pointer; }
-.event-pulse:hover { opacity: 1 !important; }
-
-/* ───────────── Hero ───────────── */
-.hero {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 56px 28px 12px;
-}
-.hero-kicker {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.28em;
-  color: var(--gold);
-  text-transform: uppercase;
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.hero-kicker::before { content: ''; width: 24px; height: 1px; background: var(--gold); opacity: 0.6; }
-.hero h1 {
-  font-family: var(--font-serif);
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
-  font-weight: 900;
-  letter-spacing: 0.04em;
-  color: var(--text);
-  line-height: 1.3;
-}
-.hero h1 .cn { color: var(--gold); }
-.hero-sub {
-  margin-top: 14px;
-  font-size: 14px;
-  color: var(--text-dim);
-  max-width: 44em;
-  line-height: 1.8;
-}
-.hero-sub b { color: var(--gold-bright); font-weight: 600; }
-
-/* ───────────── 学派卡片区 ───────────── */
-.schools-section {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 30px 28px 0;
-}
-.schools-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 18px;
-}
-.schools-title { font-family: var(--font-serif); font-size: 20px; font-weight: 700; color: var(--text); }
-.schools-sub { font-size: 12.5px; color: var(--text-mute); }
-
-.school-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 14px;
-}
-.school-card {
-  border: 1px solid var(--line-soft);
-  border-radius: var(--radius);
-  padding: 20px;
-  background: linear-gradient(180deg, rgba(18,24,38,0.6), rgba(11,14,20,0.5));
-  cursor: pointer;
-  transition: all 0.25s ease;
-  position: relative;
-  overflow: hidden;
-}
-.school-card::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 3px;
-  background: var(--sc, var(--gold));
-  opacity: 0;
-  transition: opacity 0.25s;
-}
-.school-card:hover {
-  border-color: var(--line);
-  transform: translateY(-2px);
-  background: rgba(22,30,46,0.8);
-}
-.school-card:hover::before { opacity: 1; }
-.school-card .sc-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  color: var(--text-mute);
-  font-family: var(--font-mono);
-  letter-spacing: 0.06em;
-  margin-bottom: 10px;
-}
-.school-card .sc-tag .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--sc, var(--gold)); }
-.school-card h3 { font-family: var(--font-serif); font-size: 19px; font-weight: 700; color: var(--text); }
-.school-card .sc-era { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
-.school-card .sc-quote {
-  margin-top: 12px;
-  font-family: var(--font-wenkai);
-  font-size: 13px;
-  color: var(--gold-bright);
-  font-style: italic;
-  line-height: 1.7;
-  border-left: 2px solid var(--sc, var(--gold));
-  padding-left: 12px;
-}
-.school-card .sc-concepts { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 5px; }
-.school-card .sc-c {
-  font-size: 10.5px;
-  padding: 1px 8px;
-  border-radius: 4px;
-  background: color-mix(in srgb, var(--sc, var(--gold)) 12%, transparent);
-  color: var(--text-dim);
-}
-
-/* ───────────── 河流主干视图 ───────────── */
-.river-section {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 40px 28px 0;
-}
-.river-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-.river-title { font-family: var(--font-serif); font-size: 20px; font-weight: 700; color: var(--text); }
-.river-sub { font-size: 12.5px; color: var(--text-mute); }
-
-/* 视角切换器 */
-.view-toggle { display: flex; gap: 6px; }
-.view-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 5px 12px;
-  border: 1px solid var(--line-soft);
-  border-radius: 100px;
-  font-size: 12px;
-  color: var(--text-dim);
-  background: transparent;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.view-btn:hover { border-color: var(--gold); color: var(--text); }
-.view-btn.active {
-  background: color-mix(in srgb, var(--gold) 16%, transparent);
-  border-color: var(--gold);
-  color: var(--gold-bright);
-}
-.view-btn .vb-icon { font-size: 11px; }
-
-.river-stage {
-  position: relative;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background:
-    radial-gradient(40% 60% at 50% 0%, rgba(201,160,99,0.05), transparent 70%),
-    linear-gradient(180deg, rgba(18,24,38,0.7), rgba(11,14,20,0.9));
-  overflow: hidden;
-}
-.river-svg { display: block; width: 100%; height: auto; }
-
-/* 河流上的学派之舟（SVG 内可点击） */
-.river-boat { cursor: pointer; }
-.river-boat circle { transition: all 0.25s ease; }
-.river-boat:hover circle { stroke: #EFE9DC; stroke-width: 2.5; }
-.river-boat .boat-label {
-  font-family: var(--font-serif);
-  font-size: 11px;
-  fill: rgba(239,233,220,0.85);
-  text-anchor: middle;
-}
-.river-boat:hover .boat-label { fill: #EFE9DC; }
-
-/* 支流汇入动画 */
-@keyframes tributaryFlow { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -60; } }
-.tributary-flow { stroke-dasharray: 6 6; animation: tributaryFlow 3s linear infinite; }
-
-/* 河流图例 */
-.river-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  padding: 12px 16px;
-  border-top: 1px solid var(--line-soft);
-  font-size: 11.5px;
-  color: var(--text-dim);
-}
-.river-legend .rl-item { display: inline-flex; align-items: center; gap: 6px; }
-.river-legend .rl-dot { width: 10px; height: 10px; border-radius: 50%; }
-.river-legend .rl-line { width: 22px; height: 2px; border-radius: 2px; }
-
-/* ───────────── 思想卡弹层 ───────────── */
-.detail-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(5,8,15,0.74);
-  backdrop-filter: blur(8px);
-  z-index: 90;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-}
-.detail-overlay.open { display: flex; animation: fadeIn 0.25s ease; }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-.detail-panel {
-  width: min(700px, 100%);
-  max-height: 88vh;
-  overflow-y: auto;
-  background: linear-gradient(180deg, var(--panel-2), var(--panel));
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  position: relative;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(201,160,99,0.08);
-  animation: panelUp 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.2);
-}
-@keyframes panelUp { from { opacity: 0; transform: translateY(24px) scale(0.98); } to { opacity: 1; transform: none; } }
-.detail-close {
-  position: sticky;
-  top: 12px;
-  float: right;
-  margin: 12px;
-  width: 34px; height: 34px;
-  border-radius: 50%;
-  border: 1px solid var(--line);
-  background: rgba(11,14,20,0.8);
-  color: var(--text-dim);
-  font-size: 18px;
-  cursor: pointer;
-  z-index: 5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s;
-}
-.detail-close:hover { color: var(--text); border-color: var(--gold); }
-
-/* hero */
-.detail-hero {
-  padding: 30px 30px 20px;
-  border-bottom: 1px solid var(--line-soft);
-  position: relative;
-}
-.detail-hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(60% 80% at 20% 0%, color-mix(in srgb, var(--sc, var(--gold)) 13%, transparent), transparent 70%);
-  pointer-events: none;
-}
-.detail-hero-top { display: flex; gap: 18px; align-items: flex-start; position: relative; }
-.avatar-block {
-  width: 72px; height: 72px;
-  flex: 0 0 72px;
-  border-radius: 16px;
-  background:
-    radial-gradient(60% 60% at 30% 25%, rgba(255,255,255,0.28), transparent 60%),
-    var(--sc, var(--gold));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-serif);
-  font-size: 30px;
-  font-weight: 900;
-  color: rgba(0,0,0,0.72);
-  box-shadow: 0 6px 24px color-mix(in srgb, var(--sc, var(--gold)) 40%, transparent);
-}
-.detail-name h2 { font-family: var(--font-serif); font-size: 24px; font-weight: 700; color: var(--text); line-height: 1.3; }
-.detail-name .en { font-size: 12.5px; color: var(--text-mute); letter-spacing: 0.08em; margin-top: 2px; }
-.detail-meta { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 12px; font-size: 12px; color: var(--text-dim); position: relative; }
-.detail-meta .meta-item { display: flex; align-items: center; gap: 5px; }
-.detail-meta .meta-item b { color: var(--gold-bright); font-weight: 500; }
-
-/* 时代之问 */
-.time-asked {
-  margin: 18px 30px 0;
-  padding: 16px 20px;
-  border-left: 3px solid var(--gold);
-  background: rgba(201,160,99,0.05);
-  border-radius: 0 10px 10px 0;
-  font-family: var(--font-wenkai);
-  font-size: 15.5px;
-  color: var(--gold-bright);
-  line-height: 1.8;
-  position: relative;
-}
-.time-asked .ta-label {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.24em;
-  color: var(--gold);
-  text-transform: uppercase;
-  margin-bottom: 6px;
-}
-
-/* body blocks */
-.detail-body { padding: 20px 30px 34px; }
-.d-block { margin-bottom: 26px; }
-.d-block:last-child { margin-bottom: 0; }
-.d-block-title {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.d-block-title::before { content: ''; width: 18px; height: 1px; background: var(--gold); opacity: 0.5; }
-
-/* 多元阐释 */
-.interp-list { display: grid; gap: 10px; }
-.interp-item {
-  border: 1px solid var(--line-soft);
-  border-radius: 10px;
-  padding: 13px 15px;
-  background: rgba(11,14,20,0.4);
-}
-.interp-item .ip-from {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text);
-  font-family: var(--font-serif);
-}
-.interp-item .ip-stance {
-  font-size: 10.5px;
-  padding: 1px 8px;
-  border-radius: 4px;
-  background: color-mix(in srgb, var(--sc, var(--gold)) 14%, transparent);
-  color: var(--gold-bright);
-  border: 1px solid color-mix(in srgb, var(--sc, var(--gold)) 30%, transparent);
-}
-.interp-item .ip-view { font-size: 13px; color: var(--text-dim); margin-top: 6px; line-height: 1.75; }
-
-/* 争议 */
-.controversy-item {
-  border: 1px solid rgba(224,93,93,0.25);
-  border-radius: 10px;
-  padding: 13px 15px;
-  background: rgba(224,93,93,0.04);
-  margin-bottom: 10px;
-}
-.controversy-item .ct-topic { font-size: 13.5px; font-weight: 600; color: var(--text); font-family: var(--font-serif); }
-.controversy-item .ct-sides { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-.controversy-item .ct-side {
-  font-size: 12px;
-  padding: 3px 10px;
-  border-radius: 100px;
-  border: 1px solid var(--line-soft);
-  color: var(--text-dim);
-  background: rgba(11,14,20,0.4);
-}
-.controversy-item .ct-note { font-size: 12px; color: var(--text-mute); margin-top: 8px; line-height: 1.7; }
-
-/* 接受史时间轴 */
-.reception-track { position: relative; padding-left: 22px; }
-.reception-track::before {
-  content: '';
-  position: absolute;
-  left: 5px;
-  top: 8px;
-  bottom: 8px;
-  width: 2px;
-  background: linear-gradient(180deg, var(--gold), var(--line-soft));
-  opacity: 0.5;
-}
-.reception-item { position: relative; padding: 6px 0 14px; }
-.reception-item::before {
-  content: '';
-  position: absolute;
-  left: -20px;
-  top: 14px;
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  background: var(--bg);
-  border: 2px solid var(--gold);
-}
-.reception-item .rc-era { font-family: var(--font-mono); font-size: 11px; color: var(--gold-bright); letter-spacing: 0.08em; }
-.reception-item .rc-reading { font-size: 13px; color: var(--text-dim); margin-top: 3px; line-height: 1.7; }
-
-/* 关系链 */
-.relation-chips { display: flex; flex-wrap: wrap; gap: 8px; }
-.relation-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 11px;
-  border-radius: 100px;
-  border: 1px solid var(--line-soft);
-  font-size: 12px;
-  color: var(--text-dim);
-  cursor: pointer;
-  transition: all 0.2s;
-  background: rgba(11,14,20,0.4);
-}
-.relation-chip:hover { border-color: var(--gold); color: var(--text); transform: translateY(-1px); }
-.relation-chip .rc-name { color: var(--text); font-weight: 500; }
-.relation-chip .rc-type { font-size: 10px; color: var(--text-mute); padding: 1px 6px; border-radius: 3px; }
-.relation-chip .rc-type.t-source { background: rgba(201,160,99,0.14); color: #C9A063; }
-.relation-chip .rc-type.t-reject { background: rgba(224,93,93,0.14); color: #E05D5D; }
-.relation-chip .rc-type.t-dialogue { background: rgba(232,163,61,0.14); color: #E8A33D; }
-.relation-chip .rc-type.t-transcend { background: rgba(139,126,200,0.14); color: #8B7EC8; }
-
-/* 学科交织 */
-.discipline-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-.discipline-tag {
-  font-size: 12px;
-  padding: 4px 12px;
-  border-radius: 100px;
-  border: 1px solid var(--line-soft);
-  color: var(--text-dim);
-}
-
-/* 概念暗流（跨文明回响） */
-.concept-flows { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
-.concept-flow-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 3px 11px;
-  border-radius: 100px;
-  border: 1px solid var(--line-soft);
-  font-size: 12px;
-  color: var(--text-dim);
-  cursor: pointer;
-  transition: all 0.2s;
-  background: rgba(11,14,20,0.4);
-}
-.concept-flow-chip .cf-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--c, var(--gold)); }
-.concept-flow-chip:hover { border-color: var(--gold); color: var(--text); transform: translateY(-1px); }
-.concept-flow-chip.active { background: color-mix(in srgb, var(--c, var(--gold)) 18%, transparent); border-color: var(--c, var(--gold)); color: var(--text); }
-
-.flow-path {
-  border: 1px solid var(--line-soft);
-  border-radius: 12px;
-  background: rgba(11,14,20,0.5);
-  overflow: hidden;
-  display: none;
-}
-.flow-path.open { display: block; animation: fadeIn 0.3s ease; }
-.flow-path .fp-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 12px 16px;
-  border-bottom: 1px dashed var(--line-soft);
-  font-family: var(--font-wenkai);
-  font-size: 14px;
-  color: var(--gold-bright);
-}
-.flow-path .fp-title b { font-family: var(--font-serif); }
-.flow-path .fp-close {
-  width: 22px; height: 22px;
-  border-radius: 50%;
-  border: 1px solid var(--line);
-  background: transparent;
-  color: var(--text-mute);
-  font-size: 13px;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: all 0.2s;
-}
-.flow-path .fp-close:hover { color: var(--text); border-color: var(--gold); }
-.flow-path .fp-trail { padding: 14px 16px; position: relative; }
-.flow-path .fp-node {
-  position: relative;
-  padding: 8px 0 8px 26px;
-  cursor: pointer;
-  transition: background 0.2s;
-  border-radius: 8px;
-}
-.flow-path .fp-node:hover { background: rgba(201,160,99,0.06); }
-.flow-path .fp-node::before {
-  content: '';
-  position: absolute;
-  left: 8px; top: 18px;
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  border: 2px solid var(--c, var(--gold));
-  background: var(--bg);
-}
-.flow-path .fp-node:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  left: 12px; top: 30px; bottom: 0;
-  width: 2px;
-  background: var(--c, var(--gold));
-  opacity: 0.35;
-}
-.flow-path .fp-node .fp-school {
-  font-family: var(--font-serif);
-  font-size: 13.5px;
-  font-weight: 600;
-  color: var(--text);
-}
-.flow-path .fp-node .fp-school::before { content: '› '; color: var(--c, var(--gold)); }
-.flow-path .fp-node .fp-note { font-size: 12px; color: var(--text-dim); margin-top: 2px; line-height: 1.6; }
-
-/* 滚动条 */
-.detail-panel::-webkit-scrollbar, body::-webkit-scrollbar { width: 10px; height: 10px; }
-.detail-panel::-webkit-scrollbar-track, body::-webkit-scrollbar-track { background: rgba(11,14,20,0.4); }
-.detail-panel::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, rgba(201,160,99,0.5), rgba(150,115,60,0.35));
-  border-radius: 5px;
-}
-.detail-panel, body { scrollbar-width: thin; scrollbar-color: rgba(201,160,99,0.5) rgba(11,14,20,0.4); }
-
-/* 响应式 */
-@media (max-width: 820px) {
-  .hero { padding: 40px 16px 8px; }
-  .schools-section { padding: 24px 16px 0; }
-  .topbar { padding: 0 12px; gap: 8px; flex-wrap: wrap; height: auto; padding-top: 8px; padding-bottom: 8px; }
-  .topbar-hint { display: none; }
-  .search-box { margin-left: 0; order: 3; flex-basis: 100%; }
-  .search-box input { width: 100%; }
-  .nav-btn { margin-left: auto; }
-  .reader-entry { flex-direction: column; }
-  .detail-hero { padding: 24px 20px 16px; }
-  .detail-body { padding: 16px 20px 28px; }
-  .time-asked { margin: 14px 20px 0; }
-  .detail-panel { width: 100%; }
-  .river-head { flex-direction: column; align-items: flex-start; }
-}
-@media (max-width: 480px) {
-  .search-box input { font-size: 12px; }
-  .river-sub { font-size: 11px; }
-  .view-toggle { flex-wrap: wrap; }
+@media(max-width:620px){
+  .topbar .meta{display:none}
+  .topbar{padding:10px 14px;gap:12px;flex-wrap:wrap}
+  .school-year{display:none}
+  .axis{display:none}
+  .era-head{flex-direction:column;gap:12px}
+  .era-no{flex-basis:44px;width:44px;height:44px}
+  .school-card .s-kw{margin-left:0;flex-basis:100%}
 }
 </style>
 </head>
 <body>
-<div class="grid-paper"></div>
 
-<!-- 序章（贝纳德相变开场，可跳过） -->
-<div class="prologue" id="prologue">
-  <div class="prologue-stage" id="prologueStage"></div>
-  <div class="prologue-caption" id="prologueCaption"></div>
-  <button class="prologue-skip" id="prologueSkip">跳过序章 →</button>
-</div>
-
-<!-- 顶栏 -->
 <header class="topbar">
-  <div class="brand"><span class="brand-mark">◆</span>脉络<span class="en">THOUGHT RIVER</span></div>
-  <div class="search-box" id="searchBox">
-    <input id="searchInput" type="text" placeholder="搜索学派、概念…" aria-label="全站搜索">
-    <div class="search-results" id="searchResults"></div>
+  <div class="brand">
+    <span class="zh">思想史长卷</span>
+    <span class="sub">PHILOSOPHY ATLAS</span>
   </div>
-  <button class="nav-btn" id="navBtn" title="顺流而下 · 自动航行">▶ 顺流</button>
-  <div class="topbar-hint">人类哲学之河 · 39 学派</div>
+  <nav class="era-nav" id="eraNav"></nav>
+  <div class="meta">30 学派 · 5 时代 · 一株人类思想之树</div>
 </header>
 
-<main>
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-kicker">脉络 · 思想之河</div>
-    <h1><span class="cn">人类哲学</span> — 一部共同的精神进化史</h1>
-    <p class="hero-sub">一支主干贯穿始终，各文明是汇入主干的支流。你此刻的困惑，两千年前有人也问过——<b>逆流寻源</b>，从你的问题回溯思想的源头。</p>
-    <div class="reader-entry">
-      <input id="readerInput" type="text" placeholder="你此刻困惑什么？如：人为什么痛苦？" aria-label="逆流寻源">
-      <button id="readerBtn">逆流寻源</button>
-    </div>
-  </section>
-
-  <!-- 河流主干 -->
-  <section class="river-section">
-    <div class="river-head">
-      <div>
-        <div class="river-title">思想之河</div>
-        <div class="river-sub">上轨 = 时代能量 · 下轨 = 思想流 · 瀑布 = 范式革命</div>
-      </div>
-      <div class="view-toggle" id="viewToggle">
-        <button class="view-btn active" data-view="river" title="思想之河 · 发展/兴衰/脉络"><span class="vb-icon">◈</span>思想之河</button>
-        <button class="view-btn" data-view="tree" title="倒悬之树 · 从元问题看脉络"><span class="vb-icon">☰</span>倒悬之树</button>
-        <button class="view-btn" data-view="tapestry" title="思想织锦 · 议题分布"><span class="vb-icon">▦</span>思想织锦</button>
-        <button class="view-btn" data-view="gloss" title="注疏之书 · 文献累积"><span class="vb-icon">✎</span>注疏之书</button>
-        <button class="view-btn" data-view="dialogue" title="对话台 · 同题异答"><span class="vb-icon">⚖</span>对话台</button>
-        <button class="view-btn" data-view="theater" title="相变剧场 · 范式革命机制"><span class="vb-icon">◉</span>相变剧场</button>
-      </div>
-    </div>
-    <div class="river-stage">
-      <div id="riverCanvas"></div>
-      <div class="river-legend" id="riverLegend"></div>
-    </div>
-  </section>
-
-  <!-- 五个附加视图容器 -->
-  <section class="river-section view-pane" id="viewTree" style="display:none">
-    <div class="river-head">
-      <div>
-        <div class="river-title">倒悬之树</div>
-        <div class="river-sub">元问题为根 · 学派为枝 · 气生根 = 跨文明呼应</div>
-      </div>
-    </div>
-    <div class="river-stage"><div id="treeCanvas"></div></div>
-  </section>
-
-  <section class="river-section view-pane" id="viewTapestry" style="display:none">
-    <div class="river-head">
-      <div>
-        <div class="river-title">思想织锦</div>
-        <div class="river-sub">横轴时间 · 纵轴议题 · 一格 = 该时代该议题的主导学派</div>
-      </div>
-    </div>
-    <div class="river-stage"><div id="tapestryCanvas"></div></div>
-  </section>
-
-  <section class="river-section view-pane" id="viewGloss" style="display:none">
-    <div class="river-head">
-      <div>
-        <div class="river-title">注疏之书</div>
-        <div class="river-sub">中央命题 · 批注地层 · 朱批 = 反叛</div>
-      </div>
-    </div>
-    <div class="river-stage"><div id="glossCanvas"></div></div>
-  </section>
-
-  <section class="river-section view-pane" id="viewDialogue" style="display:none">
-    <div class="river-head">
-      <div>
-        <div class="river-title">对话台</div>
-        <div class="river-sub">同题异答 · 东暖金 × 西冷银</div>
-      </div>
-    </div>
-    <div class="river-stage"><div id="dialogueCanvas"></div></div>
-  </section>
-
-  <section class="river-section view-pane" id="viewTheater" style="display:none">
-    <div class="river-head">
-      <div>
-        <div class="river-title">相变剧场</div>
-        <div class="river-sub">范式革命的机制 · 能量→僵化→涨落→临界→相变</div>
-      </div>
-    </div>
-    <div class="river-stage"><div id="theaterCanvas"></div></div>
-  </section>
-
-  <!-- 学派卡片 -->
-  <section class="schools-section">
-    <div class="schools-head">
-      <div class="schools-title">学派之舟</div>
-      <div class="schools-sub">点击打开思想卡 · 支流色区分文明</div>
-    </div>
-    <div class="school-grid" id="schoolGrid"></div>
-  </section>
-</main>
-
-<!-- 思想卡弹层 -->
-<div class="detail-overlay" id="detailOverlay">
-  <div class="detail-panel" id="detailPanel">
-    <button class="detail-close" id="detailClose" aria-label="关闭">&times;</button>
-    <div id="detailContent"></div>
+<section class="hero">
+  <div class="kicker">一 部 活 的 · 有 因 果 的 思 想 史</div>
+  <h1>哲学不是一座座孤岛，<br>而是被时代逼出来、<em>代代传承演化</em>的参天大树</h1>
+  <p class="lede">
+    这里的每一个学派，都回答着一个时代逼出来的问题：战争与崩塌逼出孔子与苏格拉底，
+    科学的胜利逼出理性主义与实证主义，两次大战逼出现象学与存在主义。
+    它也吸收着科学、艺术与宗教的养分，又向它们回赠思想——
+    并在师承与反叛中，一代一代生长出今天的我们。
+  </p>
+  <div class="legend">
+    <div class="leg"><span class="dot east"></span>东方·铜</div>
+    <div class="leg"><span class="dot west"></span>西方·蓝</div>
+    <div class="leg"><span class="sw inh"></span>师承 / 超越</div>
+    <div class="leg"><span class="sw rej"></span>反叛</div>
+    <div class="leg"><span class="sw dia"></span>对话</div>
+    <div class="leg"><span class="sw res"></span>共鸣</div>
+    <div class="leg" style="color:var(--gold)">↓ 点击学派卡，进入深览</div>
   </div>
+</section>
+
+<div id="longscroll">
+  <svg id="linksvg"></svg>
+  <div id="eras"></div>
 </div>
 
+<div class="foot">
+  <div class="fp">思 想 史 长 卷</div>
+  人类哲学同出一根主干，文明是其支流与汇流。30 个学派，做深不做浅。
+</div>
+
+<!-- 学派深览弹层 -->
+<div class="modal-mask" id="schoolModal">
+  <div class="modal" id="schoolModalBox"></div>
+</div>
+
+<!-- 概念弹层 -->
+<div class="modal-mask" id="conceptModal">
+  <div class="modal c-modal" id="conceptModalBox"></div>
+</div>
+
+<script src="data/schools-east.js"></script>
+<script src="data/schools-west.js"></script>
+<script src="data/eras.js"></script>
 <script>
-(function () {
-  'use strict';
+/* ============================================================
+   数据整合
+   ============================================================ */
+const SCHOOLS = [...SCHOOLS_EAST, ...SCHOOLS_WEST];
+const SCHOOL_MAP = {};
+SCHOOLS.forEach(s => SCHOOL_MAP[s.id] = s);
 
-  /* ─── 数据（多角度模型） ─── */
-  var TRIBUTARY_COLOR = {
-    china: '#C9A063',
-    greek: '#4FB3A8',
-    europe: '#7FA8D9',
-    modern: '#8B7EC8',
-    indian: '#C05A4A',
-    islamic: '#3E9E8A'
-  };
-  var TRIBUTARY_NAME = {
-    china: '中国', greek: '古希腊', europe: '欧洲', modern: '现代欧美', indian: '印度', islamic: '伊斯兰'
-  };
-  var DISCIPLINE_NAME = {
-    religion: '宗教', science: '自然科学', literature: '文学', art: '艺术'
-  };
-  var RELATION_LABEL = {
-    source: '本源', reject: '论敌', dialogue: '对话', transcend: '传续', inherit: '传承', resonance: '呼应'
-  };
-  var KIND_LABEL = { blend: '融合', inspire: '启发', reject: '拒斥' };
+/* 学科色与标签 */
+const DISC = {
+  science:{label:'科学'}, art:{label:'艺术'}, literature:{label:'文学'},
+  religion:{label:'宗教'}, political:{label:'政治'}, economic:{label:'经济学'},
+  computer:{label:'计算'}, logic:{label:'逻辑'}, linguistics:{label:'语言学'},
+  anthropology:{label:'人类学'}, education:{label:'教育'}, psychology:{label:'心理学'},
+  math:{label:'数学'}, psych:{label:'心理学'}
+};
 
-  var SCHOOLS = {
-    confucianism: {
-      id: 'confucianism', name: '儒家', en: 'Confucianism',
-      tributary: 'china', era: '先秦 · 前551—前479',
-      primaryQuote: '己所不欲，勿施于人。',
-      concepts: ['仁', '礼', '义', '中庸', '性善', '性恶'],
-      timeAsked: '礼崩乐坏、诸侯争霸的乱世，靠什么重建人与人的秩序？',
-      interpretations: [
-        { from: '冯友兰', stance: '以西解中', view: '以西方哲学三分架构（宇宙论/知识论/人生论）解读儒家，儒家是"仁"的人生哲学。' },
-        { from: '劳思光', stance: '反以西解中', view: '儒家是"成德之学"，以"德性我"为基源。孔子的仁是主体自觉的纯粹境界，摄礼归仁、义命分立。' },
-        { from: '张岱年', stance: '以问题为中心', view: '儒家以人生论为中心，重了悟不重论证——这与西方重智传统是根本不同的两种哲学形态。' }
-      ],
-      controversies: [
-        { topic: '人性善恶', sides: ['孟子 · 性善', '荀子 · 性恶'], note: '千年聚讼，无定论。性善论成宋明理学正统，性恶论开启法家的路径。' },
-        { topic: '程朱 vs 陆王', sides: ['性即理（朱熹）', '心即理（陆九渊/王阳明）'], note: '宋明理学内部最大分歧：理在心外还是心内。' },
-        { topic: '劳思光评荀子', sides: ['尊孟贬荀（劳思光）', '孟荀并重（当代学界）'], note: '劳思光以荀子性恶为"歧途"，当代学界认为这有失公允，低估了荀学"明分使群"的深刻。' }
-      ],
-      reception: [
-        { era: '汉代', reading: '独尊儒术，制度化，成为官学。' },
-        { era: '宋明', reading: '理学化，在回应佛道挑战中重构（程朱陆王）。' },
-        { era: '近现代', reading: '被激进批判（五四"打倒孔家店"），又被新儒家重估（牟宗三、唐君毅）。' }
-      ],
-      disciplines: [
-        { d: 'religion', kind: 'blend', note: '汉代谶纬化、与佛道合流成三教' },
-        { d: 'literature', kind: 'inspire', note: '诗经乐教、"文以载道"传统' }
-      ],
-      relations: [
-        { to: 'moism', type: 'reject', note: '墨家非儒：兼爱反礼、非命反天' },
-        { to: 'daoism', type: 'dialogue', note: '儒道互补：入世与出世' },
-        { to: 'legalism', type: 'reject', note: '法家斥儒：仁义无用，以法治国' },
-        { to: 'neoconfucianism', type: 'transcend', note: '程朱陆王在回应佛道中升维' }
-      ]
-    },
-    moism: {
-      id: 'moism', name: '墨家', en: 'Mohism',
-      tributary: 'china', era: '先秦 · 前480—前390',
-      primaryQuote: '兼相爱，交相利。',
-      concepts: ['兼爱', '非攻', '尚贤', '天志'],
-      timeAsked: '战火连年、强者凌弱，能否用"无差别的爱"止息杀伐？',
-      interpretations: [
-        { from: '冯友兰', stance: '以西解中', view: '墨家兼爱近于功利主义与博爱观，是先秦最接近"社会契约"的思想。' },
-        { from: '张岱年', stance: '以问题为中心', view: '墨家以"兴天下之利"为中心，重功利、重论证，是先秦最"科学"的一派。' }
-      ],
-      controversies: [
-        { topic: '兼爱是否可行', sides: ['兼爱可行（墨家）', '爱有差等（儒家）'], note: '儒墨之争的核心：无差别的爱是否违背人性。' }
-      ],
-      reception: [
-        { era: '先秦', reading: '与儒家并称"显学"，影响巨大。' },
-        { era: '秦汉后', reading: '迅速衰落，成绝学，两千余年无人继承。' }
-      ],
-      disciplines: [
-        { d: 'science', kind: 'inspire', note: '后期墨家在逻辑学、光学、数学有开创性贡献' }
-      ],
-      relations: [
-        { to: 'confucianism', type: 'reject', note: '非儒：兼爱反礼' },
-        { to: 'legalism', type: 'dialogue', note: '尚同与法家集权有呼应' }
-      ]
-    },
-    daoism: {
-      id: 'daoism', name: '道家', en: 'Daoism',
-      tributary: 'china', era: '先秦 · 前571—前290',
-      primaryQuote: '道可道，非常道。',
-      concepts: ['道', '无为', '自然', '逍遥'],
-      timeAsked: '礼法日益繁杂、人欲愈演愈烈，人如何回归本真与自然？',
-      interpretations: [
-        { from: '冯友兰', stance: '以西解中', view: '道家以"道"为宇宙本源，近于西方的形而上学。' },
-        { from: '劳思光', stance: '主体性', view: '道家之"逍遥"是情意我的超脱，与儒家德性我形成互补的两种主体境界。' }
-      ],
-      controversies: [
-        { topic: '道家是否消极', sides: ['消极出世（常见误读）', '超脱物累（本义）'], note: '"道家=消极"是常见误读，实为对权力与名利的超越性反思。' }
-      ],
-      reception: [
-        { era: '魏晋', reading: '玄学复兴，成为士人精神依托。' },
-        { era: '西方现代', reading: '被存在主义、生态哲学重新发现。' }
-      ],
-      disciplines: [
-        { d: 'literature', kind: 'inspire', note: '庄子文章汪洋恣肆，开中国文学浪漫一脉' },
-        { d: 'religion', kind: 'blend', note: '后世道教哲学基础' }
-      ],
-      relations: [
-        { to: 'confucianism', type: 'dialogue', note: '儒道互补：入世与出世' },
-        { to: 'legalism', type: 'source', note: '法家韩非有《解老》《喻老》，受道影响' }
-      ]
-    },
-    legalism: {
-      id: 'legalism', name: '法家', en: 'Legalism',
-      tributary: 'china', era: '先秦 · 前390—前230',
-      primaryQuote: '不别亲疏，不殊贵贱，一断于法。',
-      concepts: ['法治', '术', '势', '耕战'],
-      timeAsked: '王侯混战、世卿世禄，如何用一套规则统一并富国强兵？',
-      interpretations: [
-        { from: '冯友兰', stance: '以西解中', view: '法家是先秦最"实证"的政治哲学，近于政治现实主义的极致。' },
-        { from: '劳思光', stance: '主体性', view: '法家以权威主义为归宿，价值根源既不在心、也不在天——是主体性的失落。' }
-      ],
-      controversies: [
-        { topic: '法治还是人治', sides: ['以法治国（法家）', '德主刑辅（儒家）'], note: '儒法之争是先秦最大制度之争。' }
-      ],
-      reception: [
-        { era: '秦', reading: '成国策，助秦统一六国。' },
-        { era: '汉以后', reading: '"外儒内法"，法治融入统治术。' }
-      ],
-      disciplines: [],
-      relations: [
-        { to: 'confucianism', type: 'reject', note: '斥儒：仁义无用' },
-        { to: 'daoism', type: 'source', note: '韩非受道家影响' }
-      ]
-    },
-    neoconfucianism: {
-      id: 'neoconfucianism', name: '宋明理学', en: 'Neo-Confucianism',
-      tributary: 'china', era: '宋明 · 960—1644',
-      primaryQuote: '存天理，灭人欲。',
-      concepts: ['理', '气', '心', '格物致知', '知行合一'],
-      timeAsked: '面对佛道两家精致的心性学说，儒家如何回应，夺回思想主导权？',
-      interpretations: [
-        { from: '冯友兰', stance: '新实在论', view: '程朱理学以"理"为形上实在，是新实在论的东方形态。' },
-        { from: '劳思光', stance: '主体性', view: '陆王心学让主体性在阳明处完全觉醒，是宋明理学的最高成就。' }
-      ],
-      controversies: [
-        { topic: '程朱 vs 陆王', sides: ['性即理（朱熹）', '心即理（陆九渊/王阳明）'], note: '理在心外还是心内——宋明理学最大内部分歧。' }
-      ],
-      reception: [
-        { era: '元明清', reading: '成官方意识形态（程朱正统）。' },
-        { era: '近现代', reading: '被激进批判，又被新儒家重估。' }
-      ],
-      disciplines: [
-        { d: 'religion', kind: 'blend', note: '吸纳佛道心性论，重构儒家形上学' }
-      ],
-      relations: [
-        { to: 'confucianism', type: 'transcend', note: '在回应佛道中升维' },
-        { to: 'daoism', type: 'dialogue', note: '吸收道家宇宙论' }
-      ]
-    },
+/* 时代条件类型 */
+const CONDTYPE = {
+  war:{label:'战争', color:'var(--c-war)'},
+  science:{label:'科学', color:'var(--c-science)'},
+  culture:{label:'文化', color:'var(--c-culture)'},
+  religion:{label:'宗教', color:'var(--c-religion)'}
+};
 
-    /* ── 西方支流（真实密度） ── */
-    presocratics: {
-      id: 'presocratics', name: '前苏格拉底', en: 'Presocratics',
-      tributary: 'greek', era: '前624—前400',
-      primaryQuote: '万物的本原是什么？',
-      concepts: ['本原', '逻各斯', '存在', '原子'],
-      timeAsked: '城邦信仰崩解、神话不再能解释自然，世界究竟由什么构成？',
-      interpretations: [
-        { from: '梯利', stance: '客观中立', view: '从泰勒斯到德谟克利特，哲学从神话中挣脱，追问"自然的本原"。' },
-        { from: '罗素', stance: '逻辑原子主义', view: '米利都学派用"自然解释自然"是世界理性的第一次觉醒。' }
-      ],
-      controversies: [
-        { topic: '本原之争', sides: ['水（泰勒斯）', '气（阿那克西美尼）', '火（赫拉克利特）', '原子（德谟克利特）'], note: '爱奥尼亚与意大利两派关于"万物本原"的对立。' }
-      ],
-      reception: [
-        { era: '古典', reading: '苏格拉底转向人事，自然哲学退潮。' },
-        { era: '现代', reading: '海德格尔重释前苏格拉底，视其为被遮蔽的原初存在之思。' }
-      ],
-      disciplines: [
-        { d: 'science', kind: 'inspire', note: '哲学与科学同源，本原之问即物理学之问' }
-      ],
-      relations: [
-        { to: 'plato', type: 'source', note: '理念论回应"存在"之问' },
-        { to: 'sophists', type: 'source', note: '智者派转向人事，质疑自然哲学' }
-      ]
-    },
-    plato: {
-      id: 'plato', name: '柏拉图', en: 'Plato',
-      tributary: 'greek', era: '古典 · 前427—前347',
-      primaryQuote: '哲学是爱智慧，理想国以正义为基石。',
-      concepts: ['理念论', '理想国', '哲学王', '灵魂三分', '回忆说'],
-      timeAsked: '雅典民主在伯罗奔尼撒战争中溃败、苏格拉底被民主派处死——德性与权力分裂，城邦还能靠什么得救？',
-      interpretations: [
-        { from: '罗素', stance: '逻辑原子主义', view: '推崇理念论，但理想国是"极权主义乌托邦"，哲学王令人不安。' },
-        { from: '梯利', stance: '客观中立', view: '柏拉图以理念论奠定西方形而上学，理想国是"正义的城邦"。' },
-        { from: '波普尔', stance: '开放社会批判', view: '《理想国》是"封闭社会的蓝图"，哲学王是极权主义源头。' }
-      ],
-      controversies: [
-        { topic: '理想国是乌托邦还是极权', sides: ['理想城邦（梯利）', '极权蓝图（波普尔/罗素）'], note: '20世纪最大的一场哲学史争论。' },
-        { topic: '理念论的地位', sides: ['奠定形而上学（主流）', '虚构共相（经验论）'], note: '亚里士多德已批评"第三个人"问题，后世经验论延续质疑。' }
-      ],
-      reception: [
-        { era: '中世纪', reading: '理念论沟通神学。' },
-        { era: '文艺复兴', reading: '柏拉图主义复兴。' },
-        { era: '现代', reading: '怀特海称"全部西方哲学史都是对柏拉图的注脚"。' }
-      ],
-      disciplines: [
-        { d: 'science', kind: 'inspire', note: '学园"不懂几何者勿入"' },
-        { d: 'art', kind: 'reject', note: '理想国驱逐诗人' }
-      ],
-      relations: [
-        { to: 'sophists', type: 'reject', note: '反智者派相对主义' },
-        { to: 'presocratics', type: 'source', note: '回应前苏格拉底的存在之问' }
-      ]
-    },
-    aristotle: {
-      id: 'aristotle', name: '亚里士多德', en: 'Aristotle',
-      tributary: 'greek', era: '古典 · 前384—前322',
-      primaryQuote: '吾爱吾师，吾更爱真理。',
-      concepts: ['实体', '四因', '潜能与现实', '中道', '三段论'],
-      timeAsked: '理念若在事物之外，事物本身如何获得解释？——师徒分道，经验如何进入哲学？',
-      interpretations: [
-        { from: '梯利', stance: '客观中立', view: '亚里士多德使哲学成为分科的科学：逻辑、物理学、形而上学、伦理学各自独立。' },
-        { from: '文德尔班', stance: '问题史', view: '四因说使"变化"第一次获得哲学解释，是西方科学分类的源头。' }
-      ],
-      controversies: [
-        { topic: '对理念论的批评', sides: ['理念论（柏拉图）', '实体论（亚里士多德）'], note: '"第三个人"论证：理念若与个别物同型，则需更高的理念来解释。' }
-      ],
-      reception: [
-        { era: '中世纪', reading: '经阿维森纳、阿奎那成为经院哲学基石。' },
-        { era: '近代', reading: '被伽利略、培根挑战，但仍影响直至康德。' }
-      ],
-      disciplines: [
-        { d: 'science', kind: 'inspire', note: '生物学、物理学、逻辑学皆从亚里士多德分科而出' }
-      ],
-      relations: [
-        { to: 'plato', type: 'transcend', note: '批评理念论，走向经验实体' }
-      ]
-    },
-    stoicism: {
-      id: 'stoicism', name: '斯多葛', en: 'Stoicism',
-      tributary: 'greek', era: '希腊化—罗马 · 前300—200',
-      primaryQuote: '你无法控制外部世界，只能控制如何看待它。',
-      concepts: ['顺应自然', '不动心', '理性', '世界公民'],
-      timeAsked: '帝国崩塌、公民随时可能被抄家流放——一个人如何在一夜失去一切后仍保持内心的平静？',
-      interpretations: [
-        { from: '罗素', stance: '逻辑原子主义', view: '斯多葛的逻辑与物理不足取，但其伦理学在乱世中自有价值。' },
-        { from: '梯利', stance: '客观中立', view: '斯多葛主张顺应宇宙理性，不动心是面对无常的最高智慧。' }
-      ],
-      controversies: [
-        { topic: '斯多葛是否消极', sides: ['消极顺从（批评）', '主动顺应理性（本义）'], note: '常被误读为消极，实为对不可控之事的智慧放手。' }
-      ],
-      reception: [
-        { era: '罗马', reading: '塞内加、马可·奥勒留将其化为帝王与公民的生存智慧。' },
-        { era: '当代', reading: '认知行为疗法（CBT）重拾斯多葛的认知控制。' }
-      ],
-      disciplines: [
-        { d: 'religion', kind: 'blend', note: '与基督教禁欲主义、自然法思想融合' }
-      ],
-      relations: [
-        { to: 'plato', type: 'source', note: '理念论与灵魂论的影响' },
-        { to: 'confucianism', type: 'resonance', note: '德性与自律的跨文明呼应' }
-      ]
-    },
-    mingjia: {
-      id: 'mingjia', name: '名家', en: 'School of Names',
-      tributary: 'china', era: '先秦 · 前380—前260',
-      primaryQuote: '白马非马。',
-      concepts: ['名实', '白马非马', '合同异', '坚白同异'],
-      timeAsked: '名实混乱的战国，语言能否被用来准确描摹世界？',
-      interpretations: [
-        { from: '冯友兰', stance: '以西解中', view: '名家是先秦最接近西方逻辑学的学派，公孙龙的白马论是纯粹的逻辑思辨。' },
-        { from: '张岱年', stance: '以问题为中心', view: '名家以"名实之辨"为中心，重逻辑与辩说，是先秦罕见的认知性哲学。' }
-      ],
-      controversies: [
-        { topic: '名家是否诡辩', sides: ['逻辑先锋（近代重估）', '玩琦辞（荀子批评）'], note: '名家长期被斥为诡辩，近代才被重新评价为中国逻辑学的源头。' }
-      ],
-      reception: [
-        { era: '先秦', reading: '与儒墨并列，公孙龙、惠施辩才无碍。' },
-        { era: '秦汉后', reading: '随百家争鸣结束而绝，逻辑学传统中断。' }
-      ],
-      disciplines: [
-        { d: 'science', kind: 'inspire', note: '名实之辨是古代逻辑学的萌芽' }
-      ],
-      relations: [
-        { to: 'confucianism', type: 'dialogue', note: '荀子批评名家"玩琦辞"' },
-        { to: 'moism', type: 'source', note: '后期墨家逻辑与名家辩术互竞' }
-      ]
-    },
-    bingjia: {
-      id: 'bingjia', name: '兵家', en: 'School of Military Strategy',
-      tributary: 'china', era: '先秦 · 前600—前250',
-      primaryQuote: '不战而屈人之兵，善之善者也。',
-      concepts: ['道天地将法', '知彼知己', '不战而胜'],
-      timeAsked: '诸侯争霸的乱世，如何以最少伤亡赢得战争，甚至免于战争？',
-      interpretations: [
-        { from: '张岱年', stance: '以问题为中心', view: '兵家以"知"为核心，讲究理性计算与形势判断，是先秦最具实践理性的学问。' },
-        { from: '冯友兰', stance: '以西解中', view: '孙子兵法渗透朴素辩证法，是"以弱胜强"的哲学化。' }
-      ],
-      controversies: [],
-      reception: [
-        { era: '历代', reading: '《孙子兵法》两千余年持续影响中外军事。' },
-        { era: '当代', reading: '被应用于商业竞争、企业管理。' }
-      ],
-      disciplines: [
-        { d: 'literature', kind: 'inspire', note: '兵书文学，成语典故（知彼知己等）' }
-      ],
-      relations: [
-        { to: 'legalism', type: 'dialogue', note: '兵家与法家皆重功利与实力' }
-      ]
-    },
-    yinyangjia: {
-      id: 'yinyangjia', name: '阴阳家', en: 'School of Yinyang',
-      tributary: 'china', era: '先秦 · 前350—前250',
-      primaryQuote: '阴阳五行，相生相胜。',
-      concepts: ['阴阳', '五行', '五德终始'],
-      timeAsked: '王朝更迭是否有规律可循？天道如何与人间的兴亡相应？',
-      interpretations: [
-        { from: '冯友兰', stance: '以西解中', view: '阴阳家以五行解释宇宙生成与王朝更替，是先秦的宇宙论。' },
-        { from: '张岱年', stance: '以问题为中心', view: '阴阳五行是中国古代宇宙观的骨架，贯穿医学、历法、政治。' }
-      ],
-      controversies: [],
-      reception: [
-        { era: '汉代', reading: '融入董仲舒天人感应，成为官方宇宙观。' },
-        { era: '后世', reading: '渗透入中医、风水、命理，成民间文化的底层。' }
-      ],
-      disciplines: [
-        { d: 'science', kind: 'blend', note: '五行说与古代医学（黄帝内经）深度交织' }
-      ],
-      relations: [
-        { to: 'daoism', type: 'dialogue', note: '阴阳思想与道家宇宙观相融' },
-        { to: 'neoconfucianism', type: 'source', note: '宋明理学"理气"吸纳阴阳框架' }
-      ]
-    },
-    zaja: {
-      id: 'zaja', name: '杂家', en: 'Eclectics',
-      tributary: 'china', era: '先秦 · 前250—前220',
-      primaryQuote: '兼儒墨，合名法。',
-      concepts: ['兼采', '融合', '吕氏春秋'],
-      timeAsked: '百家争鸣各有短长，能否兼收并蓄成一完备之治道？',
-      interpretations: [
-        { from: '冯友兰', stance: '以西解中', view: '杂家是先秦思想的总汇，《吕氏春秋》集各家之长。' }
-      ],
-      controversies: [],
-      reception: [
-        { era: '秦', reading: '吕不韦集门客编《吕氏春秋》，欲为秦统一做思想准备。' },
-        { era: '汉', reading: '杂家精神融入汉代"罢黜百家后的综合"。' }
-      ],
-      disciplines: [],
-      relations: [
-        { to: 'confucianism', type: 'inherit', note: '兼容儒家德治' },
-        { to: 'legalism', type: 'inherit', note: '兼容法家法治' }
-      ]
-    },
-    hanjing: {
-      id: 'hanjing', name: '两汉经学', en: 'Han Confucian Scholarship',
-      tributary: 'china', era: '两汉 · 前202—220',
-      primaryQuote: '独尊儒术，罢黜百家。',
-      concepts: ['今文经学', '古文经学', '天人感应', '谶纬'],
-      timeAsked: '大一统帝国需要统一的思想根基，儒家经典能否成为帝国的宪法？',
-      interpretations: [
-        { from: '冯友兰', stance: '以西解中', view: '经学使儒家从学说变为制度，是儒学的政治化。' },
-        { from: '劳思光', stance: '主体性', view: '两汉经学偏离孔子的人文精神，董仲舒的天人感应是儒学的歧途。' }
-      ],
-      controversies: [
-        { topic: '今文vs古文', sides: ['今文经学（微言大义）', '古文经学（考据训诂）'], note: '两汉经学的门户之争，实为两种解经路向。' }
-      ],
-      reception: [
-        { era: '汉代', reading: '独尊儒术，儒学制度化。' },
-        { era: '清代', reading: '乾嘉考据学复兴汉学。' }
-      ],
-      disciplines: [
-        { d: 'religion', kind: 'blend', note: '谶纬神学使儒学宗教化' },
-        { d: 'literature', kind: 'inspire', note: '经学章句之学影响中国文章学' }
-      ],
-      relations: [
-        { to: 'confucianism', type: 'inherit', note: '儒学官方化' },
-        { to: 'yinyangjia', type: 'inherit', note: '天人感应吸纳阴阳五行' },
-        { to: 'xuanxue', type: 'transcend', note: '魏晋玄学反经学繁琐而兴' }
-      ]
-    },
-    xuanxue: {
-      id: 'xuanxue', name: '魏晋玄学', en: 'Neo-Daoism (Xuanxue)',
-      tributary: 'china', era: '魏晋 · 220—420',
-      primaryQuote: '得意忘言，得鱼忘筌。',
-      concepts: ['有', '无', '言意之辨', '名教与自然'],
-      timeAsked: '经学僵化、政治黑暗，士人如何在乱世安顿心灵、重新理解"无"？',
-      interpretations: [
-        { from: '冯友兰', stance: '以西解中', view: '玄学以道家"无"为本体，是先秦道家的形上学复兴。' },
-        { from: '劳思光', stance: '主体性', view: '玄学以"情意我"超越名教，王弼、郭象注是道家主体性的展开。' }
-      ],
-      controversies: [
-        { topic: '贵无vs崇有', sides: ['贵无（王弼）', '崇有（裴頠）'], note: '魏晋玄学的核心争论：无与有的本体地位。' }
-      ],
-      reception: [
-        { era: '东晋', reading: '与佛教般若学合流，为佛学中国化铺路。' },
-        { era: '后世', reading: '言意之辨影响中国诗学与美学。' }
-      ],
-      disciplines: [
-        { d: 'literature', kind: 'inspire', note: '言意之辨滋养中国文艺美学' },
-        { d: 'religion', kind: 'blend', note: '与般若学合流，玄佛合流' }
-      ],
-      relations: [
-        { to: 'daoism', type: 'inherit', note: '道家复兴' },
-        { to: 'hanjing', type: 'reject', note: '反经学繁琐' }
-      ]
-    },
-    chan: {
-      id: 'chan', name: '禅宗', en: 'Chan Buddhism',
-      tributary: 'china', era: '唐宋 · 600—1300',
-      primaryQuote: '不立文字，教外别传，直指人心，见性成佛。',
-      concepts: ['明心见性', '顿悟', '无念', '平常心'],
-      timeAsked: '佛学义理日益繁复，普通人能否不经繁琐修行而直悟本心？',
-      interpretations: [
-        { from: '冯友兰', stance: '以西解中', view: '禅宗是佛教中国化的完成，从印度重思辨转向中国重直觉。' },
-        { from: '劳思光', stance: '主体性', view: '禅宗以"心"为本体，是佛教主体性的极致，南宗顿悟最纯粹。' }
-      ],
-      controversies: [
-        { topic: '顿悟vs渐修', sides: ['顿悟（南宗·慧能）', '渐修（北宗·神秀）'], note: '禅宗南北之争，直接影响宋明理学。' }
-      ],
-      reception: [
-        { era: '唐宋', reading: '禅宗大盛，深入士大夫生活。' },
-        { era: '当代', reading: '被西方哲学、心理学重新发现。' }
-      ],
-      disciplines: [
-        { d: 'religion', kind: 'blend', note: '印度佛教中国化的完成形态' },
-        { d: 'art', kind: 'inspire', note: '禅意美学影响水墨、茶道、园林' },
-        { d: 'literature', kind: 'inspire', note: '禅诗、公案影响中国文学' }
-      ],
-      relations: [
-        { to: 'xuanxue', type: 'source', note: '玄佛合流的继承' },
-        { to: 'neoconfucianism', type: 'reject', note: '宋明理学吸收又批判禅宗心学' },
-        { to: 'stoicism', type: 'resonance', note: '不动心与平常心的呼应' }
-      ]
-    },
-    shixue: {
-      id: 'shixue', name: '明清实学', en: 'Practical Learning (Ming-Qing)',
-      tributary: 'china', era: '明清 · 1368—1840',
-      primaryQuote: '经世致用，实事求是。',
-      concepts: ['经世致用', '考据', '事功', '百姓日用'],
-      timeAsked: '理学空谈心性、国势日衰——学问能否回到现实，解决国计民生？',
-      interpretations: [
-        { from: '冯友兰', stance: '以西解中', view: '实学以"致用"纠理学之虚，王阳明"知行合一"已含转向。' },
-        { from: '张岱年', stance: '以问题为中心', view: '实学重实事、重证据，顾炎武、王夫之是早期启蒙的先声。' }
-      ],
-      controversies: [],
-      reception: [
-        { era: '清代', reading: '乾嘉考据达高峰。' },
-        { era: '近代', reading: '被五四视为反理学、近科学的传统资源。' }
-      ],
-      disciplines: [
-        { d: 'science', kind: 'blend', note: '实学与科技、农政、舆地结合' }
-      ],
-      relations: [
-        { to: 'neoconfucianism', type: 'transcend', note: '纠理学之空' },
-        { to: 'chan', type: 'reject', note: '反禅之虚' }
-      ]
-    },
+/* 关系类型标签 */
+const RELTYPE = {
+  inherit:{label:'师承', color:'var(--r-inherit)'},
+  transcend:{label:'超越', color:'var(--r-transcend)'},
+  reject:{label:'反叛', color:'var(--r-reject)'},
+  dialogue:{label:'对话', color:'var(--r-dialogue)'},
+  resonance:{label:'共鸣', color:'var(--r-resonance)'}
+};
 
-    kant: {
-      id: 'kant', name: '康德', en: 'Immanuel Kant',
-      tributary: 'europe', era: '启蒙 · 1724—1804',
-      primaryQuote: '有两种东西愈是思考愈觉神奇，那就是头顶的星空与心中的道德律。',
-      concepts: ['先天综合判断', '物自体', '绝对命令', '理性', '哥白尼式革命'],
-      timeAsked: '经验论与唯理论各执一端——知识如何可能？理性如何为自身立法？',
-      interpretations: [
-        { from: '罗素', stance: '逻辑原子主义', view: '康德的哥白尼式革命是西方哲学的分水岭，但物自体概念值得商榷。' },
-        { from: '文德尔班', stance: '新康德主义', view: '康德以先天综合判断为知识奠基，是哲学史上最伟大的综合之一。' }
-      ],
-      controversies: [
-        { topic: '物自体是否可知', sides: ['不可知（康德原意）', '可知（黑格尔等后继者）'], note: '康德的物自体概念引发费希特、谢林、黑格尔的接力批判。' }
-      ],
-      reception: [
-        { era: '19世纪', reading: '德国观念论接力发展，新康德主义回归。' },
-        { era: '当代', reading: '罗尔斯重释康德式道德哲学，影响政治哲学。' }
-      ],
-      disciplines: [
-        { d: 'science', kind: 'inspire', note: '为牛顿物理学寻求哲学基础，试图统一经验与理性' },
-        { d: 'religion', kind: 'reject', note: '《纯粹理性批判》为信仰划定理性界限' }
-      ],
-      relations: [
-        { to: 'stoicism', type: 'resonance', note: '道德自律与斯多葛理性同构' }
-      ]
-    },
-    hegel: {
-      id: 'hegel', name: '黑格尔', en: 'G.W.F. Hegel',
-      tributary: 'europe', era: '德国观念论 · 1770—1831',
-      primaryQuote: '凡是合理的都是现实的，凡是现实的都是合理的。',
-      concepts: ['辩证法', '正反合', '绝对精神', '历史理性'],
-      timeAsked: '康德留下主体与物自体的鸿沟——思想能否把握历史自身的运动？',
-      interpretations: [
-        { from: '罗素', stance: '逻辑原子主义', view: '黑格尔的辩证法是理性的迷宫，但历史哲学影响深远。' },
-        { from: '梯利', stance: '客观中立', view: '黑格尔以绝对精神统摄一切，是德国观念论的顶峰。' }
-      ],
-      controversies: [
-        { topic: '辩证法是否通向极权', sides: ['历史理性的完成（黑格尔）', '极权主义的先声（波普尔）'], note: '20世纪对黑格尔的两种极端评价。' }
-      ],
-      reception: [
-        { era: '19世纪', reading: '马克思、青年黑格尔派从辩证法出发走向革命。' },
-        { era: '当代', reading: '法兰克福学派、新黑格尔主义重释其历史哲学。' }
-      ],
-      disciplines: [
-        { d: 'science', kind: 'inspire', note: '辩证法影响恩格斯自然辩证法，也影响后世科学哲学' }
-      ],
-      relations: [
-        { to: 'kant', type: 'transcend', note: '批判并发展康德哲学' }
-      ]
-    },
+/* 年份格式化 */
+function fmtYear(y){
+  return y < 0 ? '前' + (-y) + '年' : y + '年';
+}
+function fmtYears(years){
+  const [a,b] = years;
+  const fa = fmtYear(a), fb = fmtYear(b);
+  return fa === fb ? fa : fa + ' — ' + fb;
+}
 
-    /* ── 西方 · 经院与近代 ── */
-    sophists: {
-      id: 'sophists', name: '智者派', en: 'Sophists',
-      tributary: 'greek', era: '古典 · 前490—前400',
-      primaryQuote: '人是万物的尺度。',
-      concepts: ['相对主义', '修辞', '人是万物的尺度'],
-      timeAsked: '城邦民主让演说决定政治——说服的力量是否高于真理，真理是否因人而异？',
-      interpretations: [
-        { from: '梯利', stance: '客观中立', view: '智者派以修辞与论辩术兴起，普罗泰戈拉"人是万物的尺度"是相对主义宣言。' },
-        { from: '罗素', stance: '逻辑原子主义', view: '智者派收费授艺被苏格拉底厌恶，但他们的怀疑精神推动了哲学反思。' }
-      ],
-      controversies: [
-        { topic: '智者是否诡辩', sides: ['相对主义先驱（近代重估）', '颠倒是非（柏拉图批评）'], note: '智者派长期被贬为"诡辩"，近代才被重新评价。' }
-      ],
-      reception: [
-        { era: '古典', reading: '被柏拉图、苏格拉底批判为相对主义。' },
-        { era: '当代', reading: '后现代主义重新肯定智者派的怀疑精神。' }
-      ],
-      disciplines: [
-        { d: 'literature', kind: 'inspire', note: '修辞术滋养演说与文学' }
-      ],
-      relations: [
-        { to: 'plato', type: 'reject', note: '柏拉图反其相对主义' }
-      ]
-    },
+/* ============================================================
+   渲染：时代节
+   ============================================================ */
+const erasBox = document.getElementById('eras');
+const navBox = document.getElementById('eraNav');
 
-    scholasticism: {
-      id: 'scholasticism', name: '经院哲学', en: 'Scholasticism',
-      tributary: 'europe', era: '中世纪 · 1100—1500',
-      primaryQuote: '哲学是神学的婢女——却也用理性为信仰奠基。',
-      concepts: ['理性与信仰', '共相之争', '上帝存在论证', '唯实论'],
-      timeAsked: '信仰与理性如何共存？——一个被信仰支配的时代，理性能否为自身赢得一席之地？',
-      interpretations: [
-        { from: '梯利', stance: '客观中立', view: '经院哲学以亚里士多德逻辑论证神学，是理性训练的重要环节。' },
-        { from: '罗素', stance: '逻辑原子主义', view: '阿奎那的精巧论证服务于既成信仰，但其逻辑训练为近代科学铺路。' }
-      ],
-      controversies: [
-        { topic: '共相之争', sides: ['唯实论（共相先于个别）', '唯名论（共相仅名）'], note: '中世纪最著名的哲学争论，贯穿唯实论与唯名论。' }
-      ],
-      reception: [
-        { era: '中世纪', reading: '经阿奎那、奥卡姆成为神学理性化。' },
-        { era: '近代', reading: '被笛卡尔、培根推翻，但其逻辑训练滋养了近代科学。' }
-      ],
-      disciplines: [
-        { d: 'religion', kind: 'blend', note: '与基督教神学深度交织，理性为信仰论证' }
-      ],
-      relations: [
-        { to: 'aristotle', type: 'inherit', note: '经阿拉伯翻译运动继承亚里士多德' },
-        { to: 'kant', type: 'reject', note: '康德理性批判终结独断形而上学' }
-      ]
-    },
-    descartes: {
-      id: 'descartes', name: '笛卡尔', en: 'René Descartes',
-      tributary: 'europe', era: '近代 · 1596—1650',
-      primaryQuote: '我思故我在。',
-      concepts: ['我思故我在', '心物二元', '天赋观念', '方法论怀疑'],
-      timeAsked: '一切都可怀疑的时代，还有什么是不容怀疑的根基？——如何为知识找到不可动摇的起点？',
-      interpretations: [
-        { from: '梯利', stance: '客观中立', view: '笛卡尔以"我思"为第一原则，开创近代主体性哲学，是近代哲学的起点。' },
-        { from: '文德尔班', stance: '新康德主义', view: '笛卡尔把哲学从神学解放，转向人的理性，是近代认识论的开端。' }
-      ],
-      controversies: [
-        { topic: '心物二元能否贯通', sides: ['二元论（笛卡尔）', '实体一元（斯宾诺莎）'], note: '心身如何交互成为近代哲学的头号难题。' }
-      ],
-      reception: [
-        { era: '17-18世纪', reading: '斯宾诺莎、莱布尼茨、洛克都从笛卡尔出发。' },
-        { era: '当代', reading: '心灵哲学重提心身问题。' }
-      ],
-      disciplines: [
-        { d: 'science', kind: 'blend', note: '解析几何的创立者，科学的奠基人' }
-      ],
-      relations: [
-        { to: 'scholasticism', type: 'reject', note: '以怀疑法推翻经院权威' },
-        { to: 'kant', type: 'source', note: '为康德认识论提供起点' }
-      ]
-    },
-    empiricism: {
-      id: 'empiricism', name: '英国经验论', en: 'British Empiricism',
-      tributary: 'europe', era: '近代 · 1632—1776',
-      primaryQuote: '人心如白板，一切知识来自经验。',
-      concepts: ['白板说', '观念联想', '因果怀疑', '经验主义'],
-      timeAsked: '天赋观念是否真存在？——若人心如白板，知识的根基还能是什么？',
-      interpretations: [
-        { from: '梯利', stance: '客观中立', view: '洛克、贝克莱、休谟以经验为知识唯一来源，休谟的因果怀疑最深。' },
-        { from: '罗素', stance: '逻辑原子主义', view: '经验论为科学方法辩护，但休谟把因果也怀疑掉了，惊醒了康德。' }
-      ],
-      controversies: [
-        { topic: '因果是否真实', sides: ['习惯性联想（休谟）', '先验范畴（康德）'], note: '休谟的因果怀疑引发康德的"哥白尼式革命"。' }
-      ],
-      reception: [
-        { era: '18世纪', reading: '休谟惊醒康德，经验论与唯理论综合。' },
-        { era: '20世纪', reading: '逻辑实证主义继承经验论传统。' }
-      ],
-      disciplines: [
-        { d: 'science', kind: 'blend', note: '为实验科学提供哲学辩护' }
-      ],
-      relations: [
-        { to: 'descartes', type: 'reject', note: '反天赋观念' },
-        { to: 'kant', type: 'source', note: '休谟惊醒康德' }
-      ]
-    },
-    utilitarianism: {
-      id: 'utilitarianism', name: '功利主义', en: 'Utilitarianism',
-      tributary: 'europe', era: '近代 · 1748—1832',
-      primaryQuote: '最大多数人的最大幸福。',
-      concepts: ['最大幸福', '快乐计算', '功利原则'],
-      timeAsked: '工业革命带来普遍的社会痛苦——道德是否该以实际后果为准绳，而不是抽象义务？',
-      interpretations: [
-        { from: '梯利', stance: '客观中立', view: '边沁、密尔以效用为道德标准，是近代最系统化的后果论伦理。' },
-        { from: '罗素', stance: '逻辑原子主义', view: '功利主义务实而清醒，但"快乐计算"低估了人的复杂性。' }
-      ],
-      controversies: [
-        { topic: '后果论vs义务论', sides: ['最大幸福（边沁/密尔）', '绝对命令（康德）'], note: '功利主义与康德义务论是近代伦理学的两大对立。' }
-      ],
-      reception: [
-        { era: '19世纪', reading: '影响英国政治改革（议会、刑法）。' },
-        { era: '当代', reading: '演化出规则功利主义、偏好功利主义。' }
-      ],
-      disciplines: [
-        { d: 'science', kind: 'inspire', note: '现代福利经济学、成本效益分析的思想源头' }
-      ],
-      relations: [
-        { to: 'empiricism', type: 'inherit', note: '经验论传统的伦理应用' },
-        { to: 'kant', type: 'reject', note: '与义务论对立' },
-        { to: 'moism', type: 'resonance', note: '兼爱"兴天下之利"与最大幸福惊人相似' }
-      ]
-    },
-    marxism: {
-      id: 'marxism', name: '马克思主义', en: 'Marxism',
-      tributary: 'europe', era: '近代 · 1818—1883',
-      primaryQuote: '哲学家们只是用不同的方式解释世界，而问题在于改变世界。',
-      concepts: ['历史唯物论', '剩余价值', '阶级斗争', '异化', '实践'],
-      timeAsked: '机器让工人一天干16小时、产出越富工人越穷——这个制度哪里错了，又该如何被超越？',
-      interpretations: [
-        { from: '罗素', stance: '逻辑原子主义', view: '马克思的历史唯物论是对黑格尔的颠倒，其社会分析敏锐而深刻。' },
-        { from: '梯利', stance: '客观中立', view: '马克思将哲学从解释世界转向改造世界，是实践哲学的巅峰。' }
-      ],
-      controversies: [
-        { topic: '历史必然性', sides: ['历史规律（正统）', '实践偶然（西方马克思主义）'], note: '决定论与主体性的张力贯穿马克思主义内部。' }
-      ],
-      reception: [
-        { era: '19-20世纪', reading: '成为20世纪影响最广的思想，深刻塑造政治版图。' },
-        { era: '当代', reading: '西方马克思主义（法兰克福学派）转向文化批判。' }
-      ],
-      disciplines: [
-        { d: 'science', kind: 'blend', note: '历史唯物论被视为社会科学的科学方法' }
-      ],
-      relations: [
-        { to: 'hegel', type: 'transcend', note: '颠倒黑格尔辩证法' },
-        { to: 'utilitarianism', type: 'reject', note: '批判资产阶级功利' }
-      ]
-    },
-    phenomenology: {
-      id: 'phenomenology', name: '现象学·存在主义', en: 'Phenomenology & Existentialism',
-      tributary: 'europe', era: '现代 · 1859—1976',
-      primaryQuote: '存在先于本质。',
-      concepts: ['现象学还原', '此在', '存在先于本质', '自由选择', '他者'],
-      timeAsked: '两次大战把"意义"炸成废墟——当传统价值崩塌，人还凭什么活下去、凭什么选择？',
-      interpretations: [
-        { from: '文德尔班', stance: '新康德主义', view: '现象学回归"事情本身"，是对抽象形而上学的反拨。' },
-        { from: '罗素', stance: '逻辑原子主义', view: '存在主义重情感体验轻逻辑分析，与分析哲学南辕北辙。' }
-      ],
-      controversies: [
-        { topic: '现象学vs分析哲学', sides: ['现象学（欧陆）', '分析哲学（英美）'], note: '20世纪哲学最大分裂：欧陆与英美的分道扬镳。' }
-      ],
-      reception: [
-        { era: '20世纪', reading: '海德格尔、萨特影响文学、艺术、心理学。' },
-        { era: '当代', reading: '现象学与认知科学对话。' }
-      ],
-      disciplines: [
-        { d: 'literature', kind: 'blend', note: '萨特、加缪的文学与哲学交织' },
-        { d: 'art', kind: 'inspire', note: '存在主义滋养存在主义艺术、荒诞派戏剧' }
-      ],
-      relations: [
-        { to: 'hegel', type: 'reject', note: '反体系，回到具体存在' },
-        { to: 'stoicism', type: 'resonance', note: '自由选择与斯多葛自我控制的张力' },
-        { to: 'daoism', type: 'resonance', note: '海德格尔与道家之"道"的呼应' }
-      ]
-    },
-    analytic: {
-      id: 'analytic', name: '分析哲学', en: 'Analytic Philosophy',
-      tributary: 'modern', era: '现代 · 1872—至今',
-      primaryQuote: '语言的界限就是世界的界限。',
-      concepts: ['语言转向', '逻辑分析', '意义理论', '哲学治疗'],
-      timeAsked: '形而上学空转千年——哲学能否像科学一样，通过精确分析语言与逻辑来解决问题？',
-      interpretations: [
-        { from: '罗素', stance: '逻辑原子主义', view: '分析哲学以逻辑为手术刀，是哲学的科学化，罗素、维特根斯坦是先锋。' },
-        { from: '梯利', stance: '客观中立', view: '从弗雷格、罗素到维特根斯坦，分析哲学以语言分析取代体系建构。' }
-      ],
-      controversies: [
-        { topic: '哲学是科学还是治疗', sides: ['逻辑分析（罗素/弗雷格）', '哲学治疗（维特根斯坦）'], note: '分析哲学内部：用逻辑建立科学哲学，还是消解哲学问题。' }
-      ],
-      reception: [
-        { era: '20世纪', reading: '英美哲学主流，深刻影响语言哲学、心灵哲学。' },
-        { era: '当代', reading: '与认知科学、AI 深度对话。' }
-      ],
-      disciplines: [
-        { d: 'science', kind: 'blend', note: '逻辑分析深刻影响人工智能、计算机科学' }
-      ],
-      relations: [
-        { to: 'empiricism', type: 'inherit', note: '经验论传统的现代延续' },
-        { to: 'phenomenology', type: 'reject', note: '与欧陆现象学分道扬镳' }
-      ]
-    },
-    pragmatism: {
-      id: 'pragmatism', name: '实用主义', en: 'Pragmatism',
-      tributary: 'modern', era: '现代 · 1839—1952',
-      primaryQuote: '真理是那个"有用"的东西——在实践中得到验证。',
-      concepts: ['实用原则', '真理即有用', '经验主义', '过程哲学'],
-      timeAsked: '欧洲形而上学的抽象思辨对美国人太遥远——思想能否落地为可操作的方法，解决实际生活？',
-      interpretations: [
-        { from: '梯利', stance: '客观中立', view: '皮尔士、詹姆斯、杜威以实践效果定义意义，是美国对哲学的原创贡献。' },
-        { from: '罗素', stance: '逻辑原子主义', view: '实用主义重实效轻真理，杜威的教育哲学影响深远。' }
-      ],
-      controversies: [
-        { topic: '真理是否只是有用', sides: ['真理即有用（詹姆斯）', '真理有独立标准（罗素等批评）'], note: '实用主义的真理观长期被批评为相对主义。' }
-      ],
-      reception: [
-        { era: '20世纪', reading: '杜威影响美国教育、民主理论。' },
-        { era: '当代', reading: '新实用主义（罗蒂）与后现代对话。' }
-      ],
-      disciplines: [
-        { d: 'science', kind: 'blend', note: '实用主义为科学方法辩护，杜威的探究理论' }
-      ],
-      relations: [
-        { to: 'empiricism', type: 'inherit', note: '经验主义美国化' },
-        { to: 'daoism', type: 'resonance', note: '重实效与道家"无用之用"的张力' }
-      ]
-    },
-    postmodern: {
-      id: 'postmodern', name: '后现代主义', en: 'Postmodernism',
-      tributary: 'modern', era: '现代 · 1926—至今',
-      primaryQuote: '宏大叙事已经终结。',
-      concepts: ['解构', '话语权力', '宏大叙事', '他者'],
-      timeAsked: '启蒙的宏大叙事屡屡失败——理性、进步、解放是否都是权力的话语游戏？',
-      interpretations: [
-        { from: '罗素', stance: '逻辑原子主义', view: '后现代的解构令人不安，但福柯对权力-知识的揭示深刻。' },
-        { from: '文德尔班', stance: '新康德主义', view: '德里达、福柯、利奥塔消解主体与中心，是理性传统的自我批判。' }
-      ],
-      controversies: [
-        { topic: '解构是否虚无主义', sides: ['解放他者（后现代）', '走向虚无（批评者）'], note: '后现代与启蒙理性的持续论战。' }
-      ],
-      reception: [
-        { era: '20世纪末', reading: '深刻影响文学批评、文化研究、社会科学。' },
-        { era: '当代', reading: '其遗产在新唯物主义、批判理论中延续。' }
-      ],
-      disciplines: [
-        { d: 'literature', kind: 'blend', note: '解构主义与文学批评深度交织' },
-        { d: 'art', kind: 'inspire', note: '后现代艺术消解中心与边界' }
-      ],
-      relations: [
-        { to: 'phenomenology', type: 'transcend', note: '从存在主义走向解构' },
-        { to: 'marxism', type: 'dialogue', note: '批判理论（福柯、法兰克福）' }
-      ]
-    },
-
-    /* ── 西方补完：尼采/维特根斯坦/罗尔斯/波普尔/洛克 ── */
-    nietzsche: {
-      id: 'nietzsche', name: '尼采', en: 'Friedrich Nietzsche',
-      tributary: 'europe', era: '近代 · 1844—1900',
-      primaryQuote: '上帝死了。',
-      concepts: ['权力意志', '超人', '永恒轮回', '重估一切价值'],
-      timeAsked: '启蒙的理性与基督教道德同时崩塌——当一切旧价值失效，人靠什么重估并创造新价值？',
-      interpretations: [
-        { from: '罗素', stance: '逻辑原子主义', view: '尼采反理性、反道德，其思想危险而迷人，但被纳粹滥用是最大悲剧。' },
-        { from: '文德尔班', stance: '新康德主义', view: '尼采以权力意志重估价值，是对近代主体哲学的激进反叛。' }
-      ],
-      controversies: [
-        { topic: '尼采与纳粹', sides: ['反犹反民族主义（尼采本义）', '被纳粹歪曲利用'], note: '尼采的妹妹伪造遗稿，使其被纳粹利用，是20世纪最著名的思想被篡改案。' }
-      ],
-      reception: [
-        { era: '20世纪初', reading: '影响存在主义、精神分析。' },
-        { era: '当代', reading: '福柯、德勒兹重读尼采。' }
-      ],
-      disciplines: [
-        { d: 'literature', kind: 'blend', note: '《查拉图斯特拉如是说》是哲学与诗的合一' }
-      ],
-      relations: [
-        { to: 'hegel', type: 'reject', note: '反黑格尔体系' },
-        { to: 'daoism', type: 'resonance', note: '超人逍遥与道家"至人"的张力' },
-        { to: 'postmodern', type: 'source', note: '福柯、德勒兹重读尼采' }
-      ]
-    },
-    wittgenstein: {
-      id: 'wittgenstein', name: '维特根斯坦', en: 'Ludwig Wittgenstein',
-      tributary: 'modern', era: '现代 · 1889—1951',
-      primaryQuote: '凡不可说的，应当沉默。',
-      concepts: ['语言游戏', '家族相似', '私人语言', '生活形式'],
-      timeAsked: '哲学争论千年无果——问题是否源于语言的误用？哲学能否成为治疗性的澄清活动？',
-      interpretations: [
-        { from: '罗素', stance: '逻辑原子主义', view: '早期维特根斯坦以逻辑原子论终结形而上学，是分析哲学的巅峰。' },
-        { from: '梯利', stance: '客观中立', view: '后期转向语言游戏，从图像论到语用论，是哲学史上最深刻的自我否定。' }
-      ],
-      controversies: [
-        { topic: '早期vs后期', sides: ['逻辑图像论（早期）', '语言游戏（后期）'], note: '维特根斯坦晚年推翻自己早期思想，是罕见的自我革命。' }
-      ],
-      reception: [
-        { era: '20世纪', reading: '《逻辑哲学论》与《哲学研究》双峰并立，影响深远。' },
-        { era: '当代', reading: '语言哲学、心灵哲学的常青源头。' }
-      ],
-      disciplines: [
-        { d: 'science', kind: 'blend', note: '对人工智能、认知科学有深刻影响' }
-      ],
-      relations: [
-        { to: 'analytic', type: 'transcend', note: '分析哲学的最高峰' },
-        { to: 'chan', type: 'resonance', note: '"不可说"与禅宗"不立文字"的呼应' }
-      ]
-    },
-    rawls: {
-      id: 'rawls', name: '罗尔斯', en: 'John Rawls',
-      tributary: 'modern', era: '现代 · 1921—2002',
-      primaryQuote: '正义即公平——在原初状态下无人知道自己的位置。',
-      concepts: ['无知之幕', '正义即公平', '差别原则'],
-      timeAsked: '贫富差距撕裂社会——什么样的社会制度才算公平？公平的起点该是什么？',
-      interpretations: [
-        { from: '梯利', stance: '客观中立', view: '罗尔斯以"无知之幕"重建契约论，是20世纪政治哲学的最重要著作。' },
-        { from: '罗素', stance: '逻辑原子主义', view: '罗尔斯为自由主义提供严谨论证，但也受功利主义与社群主义两面夹击。' }
-      ],
-      controversies: [
-        { topic: '契约论vs功利主义', sides: ['正义即公平（罗尔斯）', '最大幸福（功利主义）'], note: '罗尔斯以契约论挑战功利主义，是当代政治哲学主战场。' }
-      ],
-      reception: [
-        { era: '当代', reading: '《正义论》复兴政治哲学，影响宪法、福利制度设计。' }
-      ],
-      disciplines: [
-        { d: 'literature', kind: 'inspire', note: '公共理性的思想源头' }
-      ],
-      relations: [
-        { to: 'kant', type: 'inherit', note: '承康德自律伦理' },
-        { to: 'utilitarianism', type: 'reject', note: '以契约论对抗功利主义' }
-      ]
-    },
-    popper: {
-      id: 'popper', name: '波普尔', en: 'Karl Popper',
-      tributary: 'modern', era: '现代 · 1902—1994',
-      primaryQuote: '科学不是可证实，而是可证伪。',
-      concepts: ['证伪主义', '开放社会', '猜想与反驳'],
-      timeAsked: '科学与伪科学的界限在哪？——理性能否为科学划界，又能否守护开放社会？',
-      interpretations: [
-        { from: '罗素', stance: '逻辑原子主义', view: '波普尔以证伪主义为科学划界，是对逻辑实证主义的修正。' },
-        { from: '梯利', stance: '客观中立', view: '波普尔同时批判历史决定论，守护开放社会，是理性主义的当代代表。' }
-      ],
-      controversies: [
-        { topic: '证伪vs证实', sides: ['可证伪（波普尔）', '可证实（逻辑实证主义）'], note: '科学划界的经典争论，波普尔颠覆了维也纳学派。' }
-      ],
-      reception: [
-        { era: '20世纪', reading: '科学哲学主流，深刻影响知识论。' },
-        { era: '当代', reading: '证伪思想渗入所有讲证据的领域。' }
-      ],
-      disciplines: [
-        { d: 'science', kind: 'blend', note: '科学哲学的重心，为科学方法辩护' }
-      ],
-      relations: [
-        { to: 'analytic', type: 'dialogue', note: '科学哲学与维也纳学派论战' },
-        { to: 'marxism', type: 'reject', note: '批判历史决定论' }
-      ]
-    },
-    locke: {
-      id: 'locke', name: '洛克', en: 'John Locke',
-      tributary: 'europe', era: '近代 · 1632—1704',
-      primaryQuote: '人是自由的、平等的，自然状态中人人享有生命、自由与财产。',
-      concepts: ['白板说', '自然权利', '社会契约', '三权分立'],
-      timeAsked: '君主专制凭何统治？——若人心如白板、人人生而自由，政府的合法性来自哪里？',
-      interpretations: [
-        { from: '梯利', stance: '客观中立', view: '洛克以经验论奠基认识论，以契约论奠基自由主义，是启蒙的思想源头。' },
-        { from: '文德尔班', stance: '新康德主义', view: '洛克的"白板说"是经验论宣言，其政治哲学影响美国独立宣言。' }
-      ],
-      controversies: [
-        { topic: '天赋vs白板', sides: ['白板说（洛克）', '天赋观念（笛卡尔）'], note: '认识论的经验论与唯理论之争的焦点。' }
-      ],
-      reception: [
-        { era: '18世纪', reading: '直接滋养启蒙运动、美国独立宣言。' },
-        { era: '当代', reading: '自由主义政治哲学的奠基文本。' }
-      ],
-      disciplines: [
-        { d: 'science', kind: 'inspire', note: '经验论为实验科学辩护' }
-      ],
-      relations: [
-        { to: 'empiricism', type: 'source', note: '英国经验论创始人' },
-        { to: 'kant', type: 'source', note: '为康德认识论提供问题' }
-      ]
-    },
-
-    /* ── 东方补完：王阳明/黄老/董仲舒 ── */
-    wangyangming: {
-      id: 'wangyangming', name: '阳明心学', en: 'Wang Yangming',
-      tributary: 'china', era: '明 · 1472—1529',
-      primaryQuote: '知行合一，致良知。',
-      concepts: ['致良知', '知行合一', '心即理'],
-      timeAsked: '朱子之学日益僵化为教条——道德之理能否不假外求，直接从每个人的心中发明？',
-      interpretations: [
-        { from: '劳思光', stance: '主体性', view: '王阳明让儒家主体性完全觉醒，"心即理"是宋明理学最高峰。' },
-        { from: '冯友兰', stance: '以西解中', view: '阳明以"良知"为心之本体，是儒家心学的完成。' }
-      ],
-      controversies: [
-        { topic: '格物还是致良知', sides: ['格物穷理（朱熹）', '致良知（王阳明）'], note: '朱王之争是宋明理学最大内部分裂，直接影响东亚思想。' }
-      ],
-      reception: [
-        { era: '明末清初', reading: '心学流布，影响晚明思想解放。' },
-        { era: '日本', reading: '阳明学传入日本，影响明治维新志士。' },
-        { era: '当代', reading: '被重新发现为行动哲学。' }
-      ],
-      disciplines: [
-        { d: 'literature', kind: 'inspire', note: '"知行合一"成为汉语思想成语' }
-      ],
-      relations: [
-        { to: 'neoconfucianism', type: 'transcend', note: '从程朱走向陆王' },
-        { to: 'chan', type: 'source', note: '吸收禅宗"直指本心"' }
-      ]
-    },
-    huanglao: {
-      id: 'huanglao', name: '黄老道家', en: 'Huang-Lao Daoism',
-      tributary: 'china', era: '战国秦汉 · 前300—前100',
-      primaryQuote: '君无为而臣有为，刑名与道相表里。',
-      concepts: ['无为而治', '刑名', '道法'],
-      timeAsked: '道家之"无为"能否与治国之术结合？——乱世之后，如何以最小干预恢复秩序？',
-      interpretations: [
-        { from: '张岱年', stance: '以问题为中心', view: '黄老以道为体、以法为用，是道家与法家的综合，汉初"文景之治"的思想基础。' }
-      ],
-      controversies: [],
-      reception: [
-        { era: '汉初', reading: '文景之治以黄老治术休养生息。' },
-        { era: '汉武帝', reading: '独尊儒术后衰落，但道法思想潜入统治术。' }
-      ],
-      disciplines: [],
-      relations: [
-        { to: 'daoism', type: 'inherit', note: '道家政治化' },
-        { to: 'legalism', type: 'dialogue', note: '道法结合' }
-      ]
-    },
-    dongzhongshu: {
-      id: 'dongzhongshu', name: '董仲舒', en: 'Dong Zhongshu',
-      tributary: 'china', era: '西汉 · 前179—前104',
-      primaryQuote: '天人感应，君权神授。',
-      concepts: ['天人感应', '春秋大一统', '三纲五常'],
-      timeAsked: '汉帝国需要长治久安的思想根基——如何让儒学成为帝国的宪章？',
-      interpretations: [
-        { from: '冯友兰', stance: '以西解中', view: '董仲舒以天人感应构建宇宙论，使儒学成为帝国的意识形态。' },
-        { from: '劳思光', stance: '主体性', view: '天人感应偏离孔子的人文精神，是儒学的宇宙论化与政治化歧途。' }
-      ],
-      controversies: [
-        { topic: '独尊儒术的功过', sides: ['帝国思想统一（肯定）', '儒学意识形态化（批判）'], note: '对"罢黜百家"的评价至今争论。' }
-      ],
-      reception: [
-        { era: '汉代', reading: '确立儒家经学为官学。' },
-        { era: '后世', reading: '天人感应成为历代王朝合法性话语。' }
-      ],
-      disciplines: [
-        { d: 'religion', kind: 'blend', note: '谶纬神学使儒学宗教化' }
-      ],
-      relations: [
-        { to: 'confucianism', type: 'transcend', note: '儒学宇宙论化' },
-        { to: 'yinyangjia', type: 'inherit', note: '吸纳阴阳五行' }
-      ]
-    },
-
-    /* ── 过客支流：印度佛学 / 阿拉伯哲学 ── */
-    indian_buddhism: {
-      id: 'indian_buddhism', name: '印度佛学', en: 'Indian Buddhism',
-      tributary: 'indian', era: '印度 · 前500—500', passerby: true,
-      primaryQuote: '诸行无常，诸法无我，涅槃寂静。',
-      concepts: ['四圣谛', '缘起', '空', '涅槃'],
-      timeAsked: '生老病死之苦无可逃避——如何从轮回的枷锁中解脱？',
-      interpretations: [
-        { from: '冯友兰', stance: '以西解中', view: '佛学以"缘起"解构自性，是深刻的心性形而上学。' },
-        { from: '劳思光', stance: '主体性', view: '佛教以"静寂"为本的主体性，与儒家"健动"形成两极。' }
-      ],
-      controversies: [
-        { topic: '空是否虚无', sides: ['缘起性空（中观）', '虚无主义（误读）'], note: '佛教"空"常被误读为虚无，实为对"自性"的解构。' }
-      ],
-      reception: [
-        { era: '汉代', reading: '经丝绸之路传入中国，佛学东传开启。' },
-        { era: '唐宋', reading: '禅宗、天台、华严完成佛教中国化。' }
-      ],
-      disciplines: [
-        { d: 'religion', kind: 'blend', note: '佛教本身即宗教与哲学交织' }
-      ],
-      relations: [
-        { to: 'chan', type: 'source', note: '佛教中国化的源头' },
-        { to: 'xuanxue', type: 'dialogue', note: '与玄学般若合流' }
-      ]
-    },
-    arabic: {
-      id: 'arabic', name: '阿拉伯哲学', en: 'Arabic Philosophy',
-      tributary: 'islamic', era: '伊斯兰 · 800—1200', passerby: true,
-      primaryQuote: '哲学是真理的学问，宗教是真理的守护。',
-      concepts: ['百年翻译', '理性与启示', '亚里士多德注释'],
-      timeAsked: '一个横跨三大洲的帝国，如何保存并光大被欧洲遗忘的希腊智慧？',
-      interpretations: [
-        { from: '梯利', stance: '客观中立', view: '阿拉伯百年翻译保存希腊典籍，阿维森纳、阿威罗伊使亚里士多德重见天日。' },
-        { from: '罗素', stance: '逻辑原子主义', view: '若无阿拉伯保存，希腊哲学可能失传，欧洲经院哲学无从谈起。' }
-      ],
-      controversies: [],
-      reception: [
-        { era: '12世纪', reading: '经西班牙传回欧洲，开启经院哲学。' },
-        { era: '后世', reading: '伊本·赫勒敦的历史哲学被后世重新发现。' }
-      ],
-      disciplines: [
-        { d: 'science', kind: 'blend', note: '阿拉伯同时保存并发展数学、天文学、医学' }
-      ],
-      relations: [
-        { to: 'scholasticism', type: 'source', note: '经院哲学的思想源头' },
-        { to: 'aristotle', type: 'inherit', note: '保存并注释亚里士多德' }
-      ]
-    }
-  };
-
-  /* ─── 概念暗流（跨文明回响） ─── */
-  // conceptId -> 该概念在哪些学派以什么形态出现（暗流游走的路径）
-  var CONCEPT_FLOWS = {
-    '仁': [
-      { school: 'confucianism', note: '本义：己所不欲勿施于人，仁是德性总纲' },
-      { school: 'moism', note: '反题：墨子以"兼爱"挑战差等之爱' },
-      { school: 'stoicism', note: '呼应：西方之"仁"近于斯多葛的普世兄弟情谊' },
-      { school: 'kant', note: '共鸣：绝对命令"视人如目的"与仁同构' }
-    ],
-    '礼': [
-      { school: 'confucianism', note: '本义：克己复礼，礼是外在秩序' },
-      { school: 'legalism', note: '反题：法家以"法"代"礼"，一断于法' },
-      { school: 'plato', note: '呼应：理想国的等级秩序是"礼"的西方形态' }
-    ],
-    '道': [
-      { school: 'daoism', note: '本义：道法自然，万物之本源' },
-      { school: 'neoconfucianism', note: '转义：宋明理学以"理"接续道的形上之位' },
-      { school: 'presocratics', note: '呼应：前苏格拉底的"逻各斯"与道同构' },
-      { school: 'hegel', note: '共鸣：黑格尔的"绝对精神"是道的辩证形态' }
-    ],
-    '理性': [
-      { school: 'stoicism', note: '本义：顺应宇宙理性（逻各斯）' },
-      { school: 'kant', note: '转义：理性为自然立法，为自身立法' },
-      { school: 'hegel', note: '发展：理性即现实，辩证地展开' },
-      { school: 'confucianism', note: '呼应：儒家之"理"是伦常理性' }
-    ],
-    '中庸': [
-      { school: 'confucianism', note: '本义：不偏不倚，过犹不及' },
-      { school: 'aristotle', note: '呼应：亚里士多德"中道"（mesotes）' }
-    ],
-    '自然': [
-      { school: 'daoism', note: '本义：道法自然，顺其自然' },
-      { school: 'stoicism', note: '呼应：顺应自然即顺应理性' },
-      { school: 'presocratics', note: '共鸣：自然哲学的"本原"追问' }
-    ],
-    '理': [
-      { school: 'neoconfucianism', note: '本义：性即理/心即理' },
-      { school: 'confucianism', note: '源起：礼崩乐坏后的秩序之思' },
-      { school: 'plato', note: '呼应：理念（eidos）与理同构' },
-      { school: 'hegel', note: '共鸣：理性即现实' }
-    ],
-    '正义': [
-      { school: 'plato', note: '本义：理想国的基石' },
-      { school: 'confucianism', note: '呼应：义利之辨，义者宜也' },
-      { school: 'kant', note: '共鸣：法权与道德的正当性' }
-    ],
-    '兼爱': [
-      { school: 'moism', note: '本义：无差别的爱，兴天下之利' },
-      { school: 'confucianism', note: '反题：儒家主张爱有差等' },
-      { school: 'utilitarianism', note: '共鸣：最大幸福与兼爱同构' },
-      { school: 'stoicism', note: '呼应：普世兄弟情谊' }
-    ],
-    '无为': [
-      { school: 'daoism', note: '本义：无为而无不为' },
-      { school: 'legalism', note: '转义：法家以无为为君术' },
-      { school: 'stoicism', note: '呼应：顺应自然' }
-    ],
-    '理性': [
-      { school: 'stoicism', note: '本义：顺应宇宙理性（逻各斯）' },
-      { school: 'kant', note: '转义：理性为自然立法，为自身立法' },
-      { school: 'hegel', note: '发展：理性即现实，辩证地展开' },
-      { school: 'confucianism', note: '呼应：儒家之"理"是伦常理性' },
-      { school: 'descartes', note: '奠基：我思故我在，理性主体确立' }
-    ],
-    '辩证法': [
-      { school: 'hegel', note: '本义：正反合，历史理性的运动' },
-      { school: 'marxism', note: '转义：唯物辩证法，颠倒黑格尔' },
-      { school: 'daoism', note: '呼应：阴阳相生相胜' }
-    ],
-    '异化': [
-      { school: 'marxism', note: '本义：劳动异化，人与其产物分离' },
-      { school: 'hegel', note: '源起：绝对精神的外化' },
-      { school: 'phenomenology', note: '共鸣：萨特的自我欺骗与他者' },
-      { school: 'confucianism', note: '呼应：礼对人的宰制' }
-    ],
-    '自由': [
-      { school: 'phenomenology', note: '本义：存在先于本质，自由是宿命（萨特）' },
-      { school: 'stoicism', note: '呼应：内在自由，不可被剥夺' },
-      { school: 'daoism', note: '共鸣：逍遥游' },
-      { school: 'kant', note: '转义：自律即自由' }
-    ],
-    '此在': [
-      { school: 'phenomenology', note: '本义：此在（Dasein），存在论根基' },
-      { school: 'daoism', note: '呼应：海德格尔与道家之"道"' }
-    ],
-    '存在': [
-      { school: 'presocratics', note: '本义：巴门尼德的"存在者存在"' },
-      { school: 'phenomenology', note: '转义：存在主义的存在先于本质' },
-      { school: 'daoism', note: '呼应：道与存在' }
-    ],
-    '知行合一': [
-      { school: 'wangyangming', note: '本义：致良知，知行不可分' },
-      { school: 'pragmatism', note: '呼应：实用主义"观念即行动计划"' }
-    ],
-    '心即理': [
-      { school: 'wangyangming', note: '本义：理不在心外，致吾心之良知' },
-      { school: 'neoconfucianism', note: '反题：程朱主张性即理' },
-      { school: 'kant', note: '共鸣：理性为自身立法' },
-      { school: 'chan', note: '源起：禅宗明心见性' }
-    ],
-    '自然权利': [
-      { school: 'locke', note: '本义：生命、自由与财产' },
-      { school: 'rawls', note: '发展：正义即公平取代自然权利' },
-      { school: 'confucianism', note: '呼应：民本思想' }
-    ],
-    '社会契约': [
-      { school: 'locke', note: '本义：政府合法性来自人民同意' },
-      { school: 'rawls', note: '发展：无知之幕下的原初契约' },
-      { school: 'moism', note: '呼应：尚同与契约精神' }
-    ],
-    '权力意志': [
-      { school: 'nietzsche', note: '本义：生命的自我超越' },
-      { school: 'daoism', note: '呼应：以柔克刚的反题' }
-    ],
-    '正义即公平': [
-      { school: 'rawls', note: '本义：无知之幕下的正义' },
-      { school: 'plato', note: '源起：理想国的正义之问' },
-      { school: 'utilitarianism', note: '反题：罗尔斯对抗功利主义' }
-    ],
-    '无为而治': [
-      { school: 'huanglao', note: '本义：君无为而臣有为' },
-      { school: 'daoism', note: '源起：道家无为' },
-      { school: 'legalism', note: '转义：法家以无为为君术' }
-    ],
-    '证伪': [
-      { school: 'popper', note: '本义：科学须可证伪' },
-      { school: 'analytic', note: '对话：与维也纳学派论战' }
-    ]
-  };
-
-  // 从概念标签反向定位所属学派（用于暗流起始点）
-  function schoolForConcept(c) {
-    var hits = [];
-    Object.keys(SCHOOLS).forEach(function (id) {
-      if ((SCHOOLS[id].concepts || []).indexOf(c) >= 0) hits.push(id);
-    });
-    return hits;
-  }
-
-  /* ─── 河段章节（源头→下游） ─── */
-  var REACHES = [
-    { id: 'source', name: '源头', y0: -800, y1: -400, theme: '众文明同时觉醒：孔子、佛陀、苏格拉底各开河道' },
-    { id: 'classical', name: '古典', y0: -400, y1: 500, theme: '柏拉图与亚里士多德拓宽河面，百家争鸣后儒道定型' },
-    { id: 'medieval', name: '中古', y0: 500, y1: 1400, theme: '佛学东传、阿拉伯保存希腊、经院哲学、隋唐佛学' },
-    { id: 'early-modern', name: '近代转向', y0: 1400, y1: 1800, theme: '印刷术、文艺复兴、启蒙、宋明理学' },
-    { id: 'modern-break', name: '现代断裂', y0: 1800, y1: 1950, theme: '存在主义与分析的世纪，德国观念论与马克思' },
-    { id: 'contemporary', name: '当代', y0: 1950, y1: 1900, theme: '分析/欧陆并行，AI 是新支流' }
-  ];
-
-  /* ─── 时代能量流（事件上轨） ─── */
-  var EVENTS = [
-    { id: 'ev-axial', name: '轴心时代', year: -500, color: '#C9A063', category: 'thought', desc: '孔子、佛陀、苏格拉底同时觉醒', triggered: ['confucianism', 'daoism', 'presocratics', 'indian_buddhism'] },
-    { id: 'ev-warring', name: '战国争霸', year: -300, color: '#E05D5D', category: 'war', desc: '百家争鸣被战争与统一推向极致', triggered: ['legalism', 'mingjia', 'bingjia'] },
-    { id: 'ev-han', name: '汉武大一统', year: -130, color: '#C9A063', category: 'political', desc: '独尊儒术，经学制度化', triggered: ['hanjing', 'dongzhongshu'] },
-    { id: 'ev-buddhism', name: '佛教东传', year: 400, color: '#C05A4A', category: 'thought', desc: '印度佛学经丝路入华', triggered: ['xuanxue', 'chan'] },
-    { id: 'ev-translation', name: '阿拉伯翻译运动', year: 850, color: '#3E9E8A', category: 'thought', desc: '希腊典籍经阿拉伯保存传回欧洲', triggered: ['arabic', 'scholasticism'] },
-    { id: 'ev-printing', name: '印刷术', year: 1440, color: '#E8A33D', category: 'technology', desc: '知识可复制，打破教会垄断', triggered: ['descartes', 'scholasticism'] },
-    { id: 'ev-reformation', name: '宗教改革', year: 1517, color: '#B05A7A', category: 'religion', desc: '信仰个人化，理性解放', triggered: ['descartes', 'empiricism'] },
-    { id: 'ev-industrial', name: '工业革命', year: 1760, color: '#E8A33D', category: 'economy', desc: '资本与劳动关系改写', triggered: ['utilitarianism', 'marxism'] },
-    { id: 'ev-ww', name: '两次大战', year: 1914, color: '#E05D5D', category: 'war', desc: '意义崩塌，存在主义兴起', triggered: ['phenomenology'] },
-    { id: 'ev-ai', name: 'AI 时代', year: 2020, color: '#4FB3A8', category: 'technology', desc: '人机共生，新相变正在发生', triggered: ['analytic'] }
-  ];
-
-  /* ─── 序章（贝纳德相变五幕） ─── */
-  var PROLOGUE_STEPS = [
-    { title: '轴心时代', sub: '孔子、佛陀、苏格拉底同时觉醒', color: '#C9A063', turbulence: 0.3 },
-    { title: '哥白尼革命', sub: '天地翻转，科学破土', color: '#4FB3A8', turbulence: 0.5 },
-    { title: '启蒙', sub: '理性为自身立法', color: '#7FA8D9', turbulence: 0.7 },
-    { title: '现代性断裂', sub: '存在主义与分析的世纪', color: '#8B7EC8', turbulence: 0.9 },
-    { title: 'AI 时代', sub: '人机共生，新相变正在发生', color: '#E8A33D', turbulence: 1.0 }
-  ];
-
-  /* ─── 逆流寻源映射 ─── */
-  var READER_MAP = [
-    { kw: '痛苦', schools: ['stoicism', 'indian_buddhism', 'phenomenology'], mq: '人如何面对苦难？' },
-    { kw: '公平', schools: ['plato', 'rawls', 'moism'], mq: '什么是公平的分配？' },
-    { kw: '世界', schools: ['presocratics', 'kant', 'daoism'], mq: '世界究竟如何？' },
-    { kw: '真实', schools: ['plato', 'descartes', 'analytic'], mq: '什么是真实的？' },
-    { kw: '自由', schools: ['phenomenology', 'daoism', 'stoicism'], mq: '自由是什么？' },
-    { kw: '意义', schools: ['phenomenology', 'confucianism', 'nietzsche'], mq: '人生有何意义？' },
-    { kw: '我', schools: ['descartes', 'chan', 'wangyangming'], mq: '我是谁？' },
-    { kw: '道德', schools: ['kant', 'confucianism', 'utilitarianism'], mq: '该如何生活？' },
-    { kw: '国家', schools: ['plato', 'rawls', 'legalism', 'confucianism'], mq: '国家应当如何？' },
-    { kw: '知识', schools: ['empiricism', 'kant', 'analytic'], mq: '知识如何可能？' }
-  ];
-
-  /* ─── 全站搜索 ─── */
-  (function initSearch() {
-    var input = document.getElementById('searchInput');
-    var results = document.getElementById('searchResults');
-    function doSearch(q) {
-      if (!q.trim()) { results.classList.remove('open'); return; }
-      var hits = [];
-      Object.keys(SCHOOLS).forEach(function (id) {
-        var s = SCHOOLS[id];
-        var hay = s.name + s.en + (s.concepts || []).join('') + s.timeAsked;
-        if (hay.indexOf(q) >= 0) hits.push({ type: '学派', id: id, name: s.name, tributary: s.tributary });
-      });
-      Object.keys(CONCEPT_FLOWS).forEach(function (c) {
-        if (c.indexOf(q) >= 0) hits.push({ type: '概念', id: c, name: c, concept: true });
-      });
-      if (!hits.length) {
-        results.innerHTML = '<div class="sr-empty">未找到「' + q + '」相关思想</div>';
-      } else {
-        results.innerHTML = hits.slice(0, 8).map(function (h) {
-          var col = h.concept ? '#C9A063' : (TRIBUTARY_COLOR[h.tributary] || '#C9A063');
-          return '<div class="sr-item" data-school="' + h.id + '" data-concept="' + (h.concept ? '1' : '0') + '">'
-            + '<span class="sr-dot" style="background:' + col + '"></span>' + h.name
-            + '<span class="sr-type">' + h.type + '</span></div>';
-        }).join('');
-      }
-      results.classList.add('open');
-      // 点击结果
-      Array.prototype.forEach.call(results.querySelectorAll('.sr-item'), function (item) {
-        item.addEventListener('click', function () {
-          var isConcept = item.getAttribute('data-concept') === '1';
-          var id = item.getAttribute('data-school');
-          results.classList.remove('open');
-          input.value = '';
-          if (isConcept) {
-            // 概念：打开第一个拥有该概念的学派
-            var owners = schoolForConcept(id);
-            if (owners.length) openSchool(owners[0]);
-          } else {
-            openSchool(id);
-          }
-        });
-      });
-    }
-    input.addEventListener('input', function () { doSearch(input.value); });
-    input.addEventListener('focus', function () { if (input.value) doSearch(input.value); });
-    document.addEventListener('click', function (ev) {
-      if (!ev.target.closest('.search-box')) results.classList.remove('open');
-    });
-  })();
-
-  /* ─── 河流主干视图 ─── */
-  var TRIBUTARY_LABEL = {
-    china: '中国支流', greek: '古希腊支流', europe: '欧洲支流', modern: '现代欧美', indian: '印度', islamic: '伊斯兰'
-  };
-  // 各学派时间基准（用于河流 x 定位）
-  var SCHOOL_YEAR = {
-    confucianism: -500, moism: -450, daoism: -400, legalism: -250, mingjia: -320, bingjia: -450, yinyangjia: -300, zaja: -240,
-    hanjing: -50, dongzhongshu: -140, xuanxue: 300, chan: 700, neoconfucianism: 1100, wangyangming: 1500, shixue: 1600, huanglao: -250,
-    presocratics: -500, sophists: -450, plato: -380, aristotle: -350, stoicism: -200,
-    indian_buddhism: -400, arabic: 900,
-    scholasticism: 1250, descartes: 1640, locke: 1680, empiricism: 1700, kant: 1760, hegel: 1810,
-    utilitarianism: 1800, nietzsche: 1880, marxism: 1848, phenomenology: 1920, analytic: 1930, wittgenstein: 1930, pragmatism: 1900, popper: 1950, rawls: 1970, postmodern: 1960
-  };
-
-  // 相变点（瀑布）：范式革命
-  var WATERFALLS = [
-    { year: -600, name: '轴心时代', desc: '孔子、佛陀、苏格拉底同时觉醒' },
-    { year: 1543, name: '哥白尼革命', desc: '从地心到日心，科学破土' },
-    { year: 1781, name: '启蒙与康德', desc: '理性为自身立法' },
-    { year: 1900, name: '现代性断裂', desc: '存在主义与分析的世纪' },
-    { year: 2020, name: 'AI 时代', desc: '人机共生的新相变' }
-  ];
-  // 沉船学派（被遗忘又被打捞）
-  var SHIPWRECKS = [
-    { school: 'mingjia', sank: '秦汉后', salvaged: '近代', note: '名家逻辑绝而复兴' },
-    { school: 'moism', sank: '秦汉后', salvaged: '清代', note: '墨学绝而重振' },
-    { school: 'stoicism', sank: '中世纪', salvaged: '文艺复兴', note: '斯多葛沉没又被重拾' }
-  ];
-  var viewMode = 'river';  // river | overview | seabed
-
-  function renderRiver() {
-    var container = document.getElementById('riverCanvas');
-    var W = 1100, H = 380, pad = 40;
-    var yearMin = -800, yearMax = 1900;
-    function xFor(year) {
-      return pad + (year - yearMin) / (yearMax - yearMin) * (W - pad * 2);
-    }
-
-    // 按时间排序学派
-    var sorted = Object.keys(SCHOOLS).map(function (id) { return SCHOOLS[id]; })
-      .sort(function (a, b) { return (SCHOOL_YEAR[a.id] || 0) - (SCHOOL_YEAR[b.id] || 0); });
-
-    var svg = '<svg class="river-svg" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="思想之河">';
-    var cy = H / 2;
-
-    // 主干河带（人类哲学主河道）
-    svg += '<defs>'
-      + '<linearGradient id="riverMain" x1="0" y1="0" x2="1" y2="0">'
-      + '<stop offset="0" stop-color="#3a2f18"/><stop offset="0.5" stop-color="#C9A063" stop-opacity="0.35"/>'
-      + '<stop offset="1" stop-color="#2a3a52"/></linearGradient>'
-      + '<radialGradient id="boatGlow" cx="0.5" cy="0.5" r="0.5">'
-      + '<stop offset="0" stop-color="white" stop-opacity="0.4"/><stop offset="1" stop-color="white" stop-opacity="0"/></radialGradient>'
-      + '</defs>';
-
-    // 河带主体
-    svg += '<path d="M 0,' + cy + ' Q ' + W * 0.5 + ',' + (cy - 14) + ' ' + W + ',' + cy
-      + '" stroke="url(#riverMain)" stroke-width="46" fill="none" stroke-linecap="round" opacity="0.8"/>';
-
-    // 河岸线
-    svg += '<path d="M 0,' + (cy - 24) + ' Q ' + W * 0.5 + ',' + (cy - 38) + ' ' + W + ',' + (cy - 24)
-      + '" stroke="rgba(201,160,99,0.18)" stroke-width="1" fill="none"/>';
-    svg += '<path d="M 0,' + (cy + 24) + ' Q ' + W * 0.5 + ',' + (cy + 10) + ' ' + W + ',' + (cy + 24)
-      + '" stroke="rgba(127,168,217,0.18)" stroke-width="1" fill="none"/>';
-
-    // 时间刻度
-    [ -800, -400, 0, 500, 1000, 1500, 1900 ].forEach(function (yr) {
-      var x = xFor(yr);
-      svg += '<text x="' + x + '" y="' + (H - 8) + '" fill="rgba(138,133,122,0.6)" font-size="10" font-family="DM Mono, monospace" text-anchor="middle">'
-        + (yr < 0 ? (yr * -1) + ' BC' : (yr === 0 ? '0' : yr + ' AD')) + '</text>';
-      svg += '<line x1="' + x + '" y1="' + (cy - 24) + '" x2="' + x + '" y2="' + (cy + 24) + '" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>';
-    });
-
-    // 支流（从上方/下方汇入主干，按文明区分方向）
-    var sideDir = { china: -1, greek: 1, europe: -1, modern: 1 }; // -1=上支流入, 1=下支流入
-    var tributaryPaths = {};
-    sorted.forEach(function (s) {
-      var x = xFor(SCHOOL_YEAR[s.id] || 0);
-      var col = TRIBUTARY_COLOR[s.tributary] || '#C9A063';
-      var dir = sideDir[s.tributary] || -1;
-      var yIn = dir === -1 ? 8 : H - 18;
-      var yJoin = cy + dir * 18;
-      var pathId = 'trib-' + s.tributary;
-      // 同一支流共用一条汇入路径（只画一次）
-      if (!tributaryPaths[s.tributary]) {
-        svg += '<path id="' + pathId + '" d="M ' + x + ',' + yIn + ' C ' + (x - 40) + ',' + yJoin + ' ' + (x + 40) + ',' + yJoin + ' ' + x + ',' + yJoin
-          + '" fill="none" stroke="' + col + '" stroke-width="3" stroke-opacity="0.5" class="tributary-flow"/>';
-        tributaryPaths[s.tributary] = true;
-      }
-    });
-
-    // 主干河带 / 或三视角渲染
-    if (viewMode === 'overview') {
-      // ─── 俯瞰：全貌 + 支流密度 + 瀑布标记 ───
-      // 支流密度带（每支流用色带表示活跃范围）
-      var tribRanges = {};
-      sorted.forEach(function (s) {
-        if (s.passerby) return;
-        if (!tribRanges[s.tributary]) tribRanges[s.tributary] = { min: 9999, max: -9999, count: 0 };
-        var y = SCHOOL_YEAR[s.id] || 0;
-        tribRanges[s.tributary].min = Math.min(tribRanges[s.tributary].min, y);
-        tribRanges[s.tributary].max = Math.max(tribRanges[s.tributary].max, y);
-        tribRanges[s.tributary].count++;
-      });
-      Object.keys(tribRanges).forEach(function (t) {
-        var r = tribRanges[t];
-        var x1 = xFor(r.min), x2 = xFor(r.max);
-        var col = TRIBUTARY_COLOR[t] || '#C9A063';
-        var h = Math.min(30, 8 + r.count * 1.2);
-        svg += '<rect x="' + (x1 - 4) + '" y="' + (cy - h / 2) + '" width="' + (x2 - x1 + 8) + '" height="' + h
-          + '" fill="' + col + '" opacity="0.13" rx="6"/>'
-          + '<text x="' + ((x1 + x2) / 2) + '" y="' + (cy - h / 2 - 6) + '" fill="' + col + '" font-size="10.5" font-family="Noto Serif SC, serif" text-anchor="middle" opacity="0.85">'
-          + (TRIBUTARY_NAME[t] || t) + ' · ' + r.count + ' 支</text>';
-      });
-      // 瀑布标记（相变点）
-      WATERFALLS.forEach(function (wf) {
-        var x = xFor(wf.year);
-        svg += '<g class="waterfall-mark" data-wf="' + wf.name + '">'
-          + '<line x1="' + x + '" y1="' + (cy - 60) + '" x2="' + x + '" y2="' + (cy + 60) + '" stroke="#E8D8B8" stroke-width="2" stroke-opacity="0.4"/>'
-          + '<path d="M ' + x + ',' + (cy - 16) + ' Q ' + (x + 14) + ',' + (cy - 4) + ' ' + x + ',' + (cy + 14) + ' Q ' + (x - 14) + ',' + (cy + 4) + ' ' + x + ',' + (cy - 16)
-          + '" fill="rgba(201,160,99,0.25)" stroke="#C9A063" stroke-width="1.5"/>'
-          + '<text x="' + x + '" y="' + (cy + 30) + '" fill="#E8D8B8" font-size="10" font-family="Noto Serif SC, serif" text-anchor="middle">' + wf.name + '</text>'
-          + '</g>';
-      });
-    } else if (viewMode === 'seabed') {
-      // ─── 水底：河床（时代结构色带）+ 沉船学派 ───
-      var eraBands = [
-        { y0: -800, y1: -400, label: '轴心时代', col: '#5a4a2a' },
-        { y0: -400, y1: 500, label: '古典', col: '#3a3f52' },
-        { y0: 500, y1: 1400, label: '中古', col: '#3a2f3a' },
-        { y0: 1400, y1: 1800, label: '近代', col: '#2f4a3a' },
-        { y0: 1800, y1: 1900, label: '现代', col: '#2a3a4a' }
-      ];
-      eraBands.forEach(function (b) {
-        var x1 = xFor(b.y0), x2 = xFor(b.y1);
-        svg += '<rect x="' + x1 + '" y="' + (cy - 50) + '" width="' + (x2 - x1) + '" height="' + (100)
-          + '" fill="' + b.col + '" opacity="0.3" rx="8"/>';
-        svg += '<text x="' + ((x1 + x2) / 2) + '" y="' + (cy - 34) + '" fill="rgba(239,233,220,0.5)" font-size="10" font-family="Noto Serif SC, serif" text-anchor="middle">' + b.label + '</text>';
-      });
-      // 沉船学派
-      SHIPWRECKS.forEach(function (sw) {
-        var s = SCHOOLS[sw.school];
-        if (!s) return;
-        var x = xFor(SCHOOL_YEAR[sw.school] || 0);
-        var col = TRIBUTARY_COLOR[s.tributary] || '#C9A063';
-        svg += '<g class="shipwreck" data-school="' + sw.school + '">'
-          + '<text x="' + x + '" y="' + (cy + 28) + '" fill="' + col + '" font-size="12" text-anchor="middle" opacity="0.9" font-family="Noto Serif SC, serif">⚓ ' + s.name + '</text>'
-          + '<text x="' + x + '" y="' + (cy + 44) + '" fill="rgba(239,233,220,0.45)" font-size="9.5" text-anchor="middle">沉于' + sw.sank + ' · 捞于' + sw.salvaged + '</text>'
-          + '</g>';
-      });
-      // 说明
-      svg += '<text x="' + (W / 2) + '" y="' + (cy - 70) + '" fill="rgba(138,133,122,0.7)" font-size="11" text-anchor="middle" font-family="Noto Serif SC, serif">时代结构 · 思想的河床与沉没的学派</text>';
-    } else {
-      // ─── 河面：学派之舟（沿主干排布） ───
-      sorted.forEach(function (s) {
-        var x = xFor(SCHOOL_YEAR[s.id] || 0);
-        var col = TRIBUTARY_COLOR[s.tributary] || '#C9A063';
-        // 舟身（椭圆形，彩色）；过客用虚线
-        var dash = s.passerby ? ' stroke-dasharray="4 3"' : '';
-        svg += '<g class="river-boat" data-school="' + s.id + '">'
-          + '<ellipse cx="' + x + '" cy="' + cy + '" rx="' + (34 + s.concepts.length * 2) + '" ry="16" fill="' + col + '" fill-opacity="0.22" stroke="' + col + '" stroke-width="1.5"' + dash + '/>'
-          + '<ellipse cx="' + x + '" cy="' + cy + '" rx="' + (34 + s.concepts.length * 2) + '" ry="16" fill="url(#boatGlow)" opacity="0.4"/>'
-          + '<text x="' + x + '" y="' + (cy + 4) + '" class="boat-label">' + s.name + '</text>'
-          + '</g>';
-      });
-    }
-
-    svg += '</svg>';
-    container.innerHTML = svg;
-
-    // 点击交互（河面之舟 / 水底沉船）
-    container.querySelectorAll('.river-boat').forEach(function (boat) {
-      boat.addEventListener('click', function () {
-        openSchool(boat.getAttribute('data-school'));
-      });
-    });
-    container.querySelectorAll('.shipwreck').forEach(function (sw) {
-      sw.addEventListener('click', function () {
-        openSchool(sw.getAttribute('data-school'));
-      });
-    });
-
-    // 图例（随视角变化）
-    var legend = document.getElementById('riverLegend');
-    var lh = '';
-    if (viewMode === 'overview') {
-      var shown = {};
-      Object.keys(SCHOOLS).forEach(function (id) {
-        var s = SCHOOLS[id];
-        if (shown[s.tributary]) return;
-        shown[s.tributary] = true;
-        lh += '<span class="rl-item"><span class="rl-dot" style="background:' + (TRIBUTARY_COLOR[s.tributary] || '#C9A063') + '"></span>'
-          + (TRIBUTARY_NAME[s.tributary] || s.tributary) + '</span>';
-      });
-      lh += '<span class="rl-item"><span class="rl-line" style="background:#C9A063"></span>瀑布 = 范式革命</span>';
-    } else if (viewMode === 'seabed') {
-      lh = '<span class="rl-item">⚓ 沉船 = 被遗忘又被打捞的学派</span>'
-        + '<span class="rl-item">色带 = 时代结构（轴心/古典/中古/近代/现代）</span>';
-    } else {
-      var shown2 = {};
-      Object.keys(SCHOOLS).forEach(function (id) {
-        var s = SCHOOLS[id];
-        if (shown2[s.tributary]) return;
-        shown2[s.tributary] = true;
-        lh += '<span class="rl-item"><span class="rl-dot" style="background:' + (TRIBUTARY_COLOR[s.tributary] || '#C9A063') + '"></span>'
-          + (TRIBUTARY_NAME[s.tributary] || s.tributary) + '</span>';
-      });
-      lh += '<span class="rl-item"><span class="rl-line" style="background:#C9A063"></span>主干 · 人类哲学</span>';
-    }
-    legend.innerHTML = lh;
-  }
-
-  // 视角切换
-  document.getElementById('viewToggle').addEventListener('click', function (ev) {
-    var btn = ev.target.closest('.view-btn');
-    if (!btn) return;
-    var v = btn.getAttribute('data-view');
-    // 主视图映射到容器
-    var paneMap = {
-      tree: 'viewTree', tapestry: 'viewTapestry', gloss: 'viewGloss',
-      dialogue: 'viewDialogue', theater: 'viewTheater'
+function renderEraNav(){
+  ERAS.forEach((e,i) => {
+    const btn = document.createElement('button');
+    btn.textContent = e.name;
+    btn.dataset.idx = i;
+    btn.onclick = () => {
+      document.getElementById('era-' + e.id).scrollIntoView({behavior:'smooth', block:'start'});
     };
-    var isRiverSub = (v === 'river' || v === 'overview' || v === 'seabed');
-    // 隐藏所有附加视图
-    ['viewTree', 'viewTapestry', 'viewGloss', 'viewDialogue', 'viewTheater'].forEach(function (id) {
-      var el = document.getElementById(id);
-      if (el) el.style.display = 'none';
-    });
-    // 河流容器默认显示，但河流子视角才渲染河流
-    var riverSection = document.querySelector('.river-section');
-    if (riverSection) riverSection.style.display = 'block';
-    document.querySelectorAll('.view-btn').forEach(function (b) { b.classList.remove('active'); });
-    btn.classList.add('active');
+    navBox.appendChild(btn);
+  });
+}
 
-    if (isRiverSub) {
-      viewMode = v;
-      renderRiver();
-      renderEvents();
+function renderEra(e){
+  const sec = document.createElement('section');
+  sec.className = 'era-section';
+  sec.id = 'era-' + e.id;
+
+  /* 头部 */
+  const head = document.createElement('div');
+  head.className = 'era-head';
+  head.innerHTML = `
+    <div class="era-no">${e.no || ({axial:'古', hellenic:'枢', medieval:'中', modern:'近', modern20:'今'})[e.id] || '·'}</div>
+    <div class="era-title">
+      <div class="name">${e.name}<span class="range">${e.label}</span></div>
+      <div class="q">${e.question}</div>
+    </div>`;
+  sec.appendChild(head);
+
+  /* 时代背景层 */
+  const weather = document.createElement('div');
+  weather.className = 'era-weather';
+  e.background.forEach(bg => {
+    const ct = CONDTYPE[bg.t] || {label:bg.t, color:'var(--line2)'};
+    const item = document.createElement('div');
+    item.className = 'weather-item';
+    item.style.borderTopColor = ct.color;
+    item.innerHTML = `
+      <span class="wt" style="color:${ct.color}">${ct.label}</span>
+      <span class="wn">${bg.n}</span>
+      <div class="wd">${bg.d}</div>`;
+    weather.appendChild(item);
+  });
+  sec.appendChild(weather);
+
+  /* 学派演进层 */
+  const schoolsBox = document.createElement('div');
+  schoolsBox.className = 'era-schools';
+  const axis = document.createElement('div');
+  axis.className = 'axis';
+  schoolsBox.appendChild(axis);
+
+  const sorted = e.schools.map(id => SCHOOL_MAP[id]).sort((a,b) => a.years[0] - b.years[0]);
+  sorted.forEach(s => {
+    schoolsBox.appendChild(renderSchoolRow(s));
+  });
+  sec.appendChild(schoolsBox);
+
+  erasBox.appendChild(sec);
+}
+
+function renderSchoolRow(s){
+  const row = document.createElement('div');
+  row.className = 'school-row';
+  row.dataset.school = s.id;
+
+  const yr = document.createElement('div');
+  yr.className = 'school-year';
+  yr.innerHTML = `<span class="yr">${fmtYear(s.years[0])}</span>`;
+  row.appendChild(yr);
+
+  const card = document.createElement('div');
+  card.className = 'school-card ' + s.civ;
+  card.dataset.school = s.id;
+
+  /* 学说完备度徽章 */
+  const count = document.createElement('div');
+  count.className = 's-count';
+  count.innerHTML = `<b>${s.doctrine.length}</b> 说`;
+  card.appendChild(count);
+
+  /* 师承链（学派内部人名链） */
+  let linHtml = '';
+  s.lineage.forEach((ln, i) => {
+    const roleTxt = {founder:'开宗', inherit:'承', transcend:'越', reject:'叛'}[ln.role] || ln.role;
+    linHtml += `<span class="ln">
+      ${i > 0 ? '<span class="arrow">→</span>' : ''}
+      <span class="who">${ln.who}</span>
+      <span class="rol">${roleTxt}</span>
+    </span>`;
+  });
+
+  /* 学科双向徽章 */
+  let discHtml = '';
+  (s.withDisciplines || []).forEach(d => {
+    const dl = DISC[d.d] || {label:d.d};
+    discHtml += `<span class="di ${d.dir === 'absorbed' ? 'up' : 'dn'}" title="${d.desc}">
+      ${d.dir === 'absorbed' ? '⇣' : '⇡'} ${dl.label}
+    </span>`;
+  });
+
+  card.innerHTML = `
+    <div class="s-top">
+      <span class="s-name">${s.name}</span>
+      <span class="s-en">${s.en}</span>
+      <span class="s-kw">${s.keyword}</span>
+    </div>
+    <div class="s-q">${s.timeAsked}</div>
+    <div class="s-lineage">${linHtml}</div>
+    <div class="s-disc">${discHtml}</div>`;
+
+  row.appendChild(card);
+  return row;
+}
+
+/* ============================================================
+   关系连线（SVG）
+   ============================================================ */
+const linksSvg = document.getElementById('linksvg');
+const longscroll = document.getElementById('longscroll');
+
+function computePositions(){
+  const pos = {};
+  const lr = longscroll.getBoundingClientRect();
+  document.querySelectorAll('.school-card').forEach(card => {
+    const id = card.dataset.school;
+    const r = card.getBoundingClientRect();
+    pos[id] = {
+      top: r.top - lr.top,
+      bottom: r.bottom - lr.top,
+      centerY: (r.top + r.bottom)/2 - lr.top,
+      centerX: (r.left + r.right)/2 - lr.left
+    };
+  });
+  return pos;
+}
+
+function drawLinks(){
+  const pos = computePositions();
+  const lr = longscroll.getBoundingClientRect();
+  linksSvg.setAttribute('viewBox', `0 0 ${lr.width} ${lr.height}`);
+  linksSvg.setAttribute('width', lr.width);
+  linksSvg.setAttribute('height', lr.height);
+  linksSvg.innerHTML = '';
+
+  /* 已画的关系对，避免与师承链重复 */
+  const drawn = new Set();
+
+  /* 全部关系，跨时代也画（虚线延长） */
+  SCHOOLS.forEach(s => {
+    (s.relations || []).forEach(rel => {
+      const src = pos[s.id], dst = pos[rel.to];
+      if(!src || !dst) return;
+      drawLink(s.id, rel.to, src, dst, rel.type);
+      drawn.add(s.id + ':' + rel.to);
+      drawn.add(rel.to + ':' + s.id);
+    });
+  });
+
+  /* 师承链（era.lineages）—— 演化主线，金色粗实线
+     相邻元素连线，跨时代也画；叠加在关系线上作为强调，
+     因此不做去重（关系线是细线/虚线，师承主线在其上增亮） */
+  ERAS.forEach(era => {
+    (era.lineages || []).forEach(lg => {
+      lg.chain.forEach((fromId, i) => {
+        if(i === 0) return;
+        const toId = lg.chain[i-1];
+        const a = pos[toId], b = pos[fromId];
+        if(!a || !b) return;
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        const x1 = a.centerX, y1 = a.centerY, x2 = b.centerX, y2 = b.centerY;
+        const mx = (x1+x2)/2;
+        path.setAttribute('d', `M ${x1} ${y1} C ${mx} ${y1}, ${mx} ${y2}, ${x2} ${y2}`);
+        path.setAttribute('fill', 'none');
+        path.setAttribute('stroke', '#e8c66a');
+        path.setAttribute('stroke-width', 2);
+        path.setAttribute('opacity', 0.55);
+        path.dataset.from = toId;
+        path.dataset.to = fromId;
+        path.dataset.lineage = '1';
+        path.classList.add('rel-line', 'main-line');
+        path.classList.add('lineage-line');
+        linksSvg.appendChild(path);
+        drawn.add(fromId + ':' + toId);
+        drawn.add(toId + ':' + fromId);
+      });
+    });
+  });
+}
+
+function drawLink(fromId, toId, src, dst, type){
+  const color = getComputedStyle(document.documentElement).getPropertyValue(
+    '--r-' + type
+  ).trim() || '#666';
+  const x1 = src.centerX, x2 = dst.centerX;
+  const y1 = src.centerY, y2 = dst.centerY;
+  const mx = (x1+x2)/2;
+  const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  const d = `M ${x1} ${y1} C ${mx} ${y1}, ${mx} ${y2}, ${x2} ${y2}`;
+  path.setAttribute('d', d);
+  path.setAttribute('fill', 'none');
+  path.setAttribute('stroke', color);
+  path.setAttribute('stroke-width', type === 'transcend' ? 1.8 : 1.1);
+  path.setAttribute('stroke-dasharray', type === 'reject' ? '5 4' : (type === 'dialogue' ? '2 4' : (type === 'resonance' ? '1 5' : 'none')));
+  path.setAttribute('opacity', (type === 'inherit' || type === 'transcend') ? 0.5 : 0.08);
+  path.dataset.rel = fromId + ':' + toId;
+  path.dataset.from = fromId;
+  path.dataset.to = toId;
+  path.dataset.type = type;
+  path.classList.add('rel-line');
+  if(type === 'inherit' || type === 'transcend') path.classList.add('main-line');
+  linksSvg.appendChild(path);
+}
+
+/* ============================================================
+   悬停联动
+   ============================================================ */
+function highlight(schoolId){
+  document.querySelectorAll('.school-card').forEach(c => {
+    if(schoolId){
+      c.classList.toggle('dim', c.dataset.school !== schoolId);
     } else {
-      // 显示对应附加视图，渲染它
-      var pane = document.getElementById(paneMap[v]);
-      if (pane) pane.style.display = 'block';
-      viewMode = v;
-      if (v === 'tree') renderTree();
-      else if (v === 'tapestry') renderTapestry();
-      else if (v === 'gloss') renderGloss();
-      else if (v === 'dialogue') renderDialogue();
-      else if (v === 'theater') renderTheater();
+      c.classList.remove('dim');
+      c.classList.remove('active');
     }
   });
-
-  /* ─── 时代能量流（事件上轨） + 支流脉冲 ─── */
-  var activeEvent = null;
-  function renderEvents() {
-    var container = document.getElementById('riverCanvas');
-    var svgEl = container.querySelector('.river-svg');
-    if (!svgEl || viewMode !== 'river') return;
-    // 在 SVG 顶部叠加事件标记
-    var ns = 'http://www.w3.org/2000/svg';
-    var W = 1100, pad = 40;
-    var yearMin = -800, yearMax = 1900;
-    function xFor(year) { return pad + (year - yearMin) / (yearMax - yearMin) * (W - pad * 2); }
-    var cy = 190;
-    EVENTS.forEach(function (ev) {
-      var g = document.createElementNS(ns, 'g');
-      g.setAttribute('class', 'event-pin' + (activeEvent === ev.id ? ' active' : ''));
-      g.setAttribute('data-event', ev.id);
-      g.setAttribute('style', 'cursor:pointer');
-      var x = xFor(ev.year);
-      var line = document.createElementNS(ns, 'line');
-      line.setAttribute('x1', x); line.setAttribute('y1', cy - 90);
-      line.setAttribute('x2', x); line.setAttribute('y2', cy - 56);
-      line.setAttribute('stroke', ev.color); line.setAttribute('stroke-width', '1.5'); line.setAttribute('stroke-opacity', activeEvent === ev.id ? '0.9' : '0.4');
-      line.setAttribute('stroke-dasharray', '3 2');
-      var circle = document.createElementNS(ns, 'circle');
-      circle.setAttribute('cx', x); circle.setAttribute('cy', cy - 56);
-      circle.setAttribute('r', activeEvent === ev.id ? 5 : 3.5);
-      circle.setAttribute('fill', ev.color);
-      var txt = document.createElementNS(ns, 'text');
-      txt.setAttribute('x', x); txt.setAttribute('y', cy - 78);
-      txt.setAttribute('fill', ev.color); txt.setAttribute('font-size', '9.5'); txt.setAttribute('text-anchor', 'middle');
-      txt.setAttribute('font-family', 'Noto Serif SC, serif');
-      txt.textContent = ev.name;
-      g.appendChild(line); g.appendChild(circle); g.appendChild(txt);
-      g.addEventListener('click', function () { pulseEvent(ev.id); });
-      svgEl.appendChild(g);
-    });
-  }
-
-  function pulseEvent(evId) {
-    var ev = null;
-    EVENTS.forEach(function (e) { if (e.id === evId) ev = e; });
-    if (!ev) return;
-    activeEvent = activeEvent === evId ? null : evId;
-    renderRiver();
-    renderEvents();
-    if (!activeEvent) return;
-    // 点亮触发学派
-    ev.triggered.forEach(function (sid) {
-      var el = document.querySelector('.river-boat[data-school="' + sid + '"]');
-      if (el) {
-        el.style.opacity = '1';
-        var circle = el.querySelector('ellipse');
-        if (circle) circle.setAttribute('stroke-width', '3');
-      }
-    });
-    // 图例提示
-    var legend = document.getElementById('riverLegend');
-    legend.innerHTML = '<span class="rl-item" style="color:' + ev.color + '">⚡ ' + ev.name + ' · ' + ev.desc + '</span>'
-      + '<span class="rl-item">触发 ' + ev.triggered.length + ' 个学派</span>'
-      + '<span class="rl-item" style="cursor:pointer" onclick="document.getElementById(\'riverLegend\').innerHTML=\'\'">✕ 收起</span>';
-  }
-
-  /* ─── 逆流寻源（读者入口） ─── */
-  document.getElementById('readerBtn').addEventListener('click', function () { doReaderSearch(); });
-  document.getElementById('readerInput').addEventListener('keydown', function (ev) {
-    if (ev.key === 'Enter') doReaderSearch();
-  });
-  function doReaderSearch() {
-    var q = document.getElementById('readerInput').value.trim();
-    if (!q) return;
-    var matched = null;
-    READER_MAP.forEach(function (m) {
-      m.kw.split('|').forEach(function (k) { if (q.indexOf(k) >= 0) matched = m; });
-    });
-    if (matched) {
-      // 打开第一个学派思想卡，提示"你的困惑"对应的时代之问
-      openSchool(matched.schools[0]);
-      // 延迟在弹层顶部显示"逆流寻源"结果
-      setTimeout(function () {
-        var hero = document.querySelector('#detailContent .detail-hero');
-        if (hero) {
-          var badge = document.createElement('div');
-          badge.style.cssText = 'font-family:var(--font-mono);font-size:10.5px;color:var(--gold);margin-bottom:8px;letter-spacing:0.1em;';
-          badge.textContent = '◈ 逆流寻源 · 你的困惑「' + q + '」→ ' + matched.mq;
-          hero.insertBefore(badge, hero.firstChild);
-        }
-      }, 100);
+  document.querySelectorAll('.rel-line').forEach(p => {
+    if(schoolId){
+      const mine = (p.dataset.from === schoolId || p.dataset.to === schoolId);
+      p.style.opacity = mine ? 1 : 0.02;
     } else {
-      openSchool('confucianism');
-      setTimeout(function () {
-        var hero = document.querySelector('#detailContent .detail-hero');
-        if (hero) {
-          var badge = document.createElement('div');
-          badge.style.cssText = 'font-family:var(--font-mono);font-size:10.5px;color:var(--gold);margin-bottom:8px;letter-spacing:0.1em;';
-          badge.textContent = '◈ 「' + q + '」 是贯穿人类哲学的问题——从儒家看起';
-          hero.insertBefore(badge, hero.firstChild);
-        }
-      }, 100);
+      /* 复位：师承主线 0.5 / 普通线 0.08 */
+      p.style.opacity = p.classList.contains('main-line') ? 0.5 : 0.08;
     }
-  }
-
-  /* ─── 顺流而下自动航行 ─── */
-  var navRunning = false;
-  var navTimer = null;
-  var navIdx = 0;
-  document.getElementById('navBtn').addEventListener('click', function () { toggleNav(); });
-  function toggleNav() {
-    if (navRunning) { stopNav(); return; }
-    navRunning = true;
-    document.getElementById('navBtn').textContent = '⏸ 暂停';
-    document.getElementById('navBtn').classList.add('running');
-    navIdx = 0;
-    runNavStep();
-  }
-  function runNavStep() {
-    if (!navRunning) return;
-    if (navIdx >= REACHES.length) { stopNav(); return; }
-    var reach = REACHES[navIdx];
-    // 高亮当前河段
-    document.querySelectorAll('.reach-btn').forEach(function (b) {
-      b.classList.toggle('active', b.getAttribute('data-reach') === reach.id);
+  });
+  if(schoolId){
+    document.querySelectorAll('.school-card[data-school="'+schoolId+'"]').forEach(c=>{
+      c.classList.add('active');
     });
-    // 聚焦河流：滚动到河段中心
-    var container = document.getElementById('riverCanvas');
-    var firstBoat = container.querySelector('.river-boat');
-    // 显示河段主题
-    var legend = document.getElementById('riverLegend');
-    legend.innerHTML = '<span class="rl-item" style="color:var(--gold-bright)">▶ ' + reach.name + ' · ' + reach.theme + '</span>';
-    navTimer = setTimeout(function () {
-      navIdx++;
-      runNavStep();
-    }, 1800);
   }
-  function stopNav() {
-    navRunning = false;
-    document.getElementById('navBtn').textContent = '▶ 顺流';
-    document.getElementById('navBtn').classList.remove('running');
-    if (navTimer) clearTimeout(navTimer);
-    document.querySelectorAll('.reach-btn').forEach(function (b) { b.classList.remove('active'); });
-    var legend = document.getElementById('riverLegend');
-    renderRiver();
-    renderEvents();
-    legend.innerHTML = '<span class="rl-item"><span class="rl-line" style="background:#C9A063"></span>主干 · 人类哲学</span>';
-  }
+}
 
-  /* ─── 序章（贝纳德相变五幕） ─── */
-  var prologueShown = false;
-  function initPrologue() {
-    var stage = document.getElementById('prologueStage');
-    if (!stage) return;
-    var canvas = document.createElement('canvas');
-    canvas.width = 560; canvas.height = 420;
-    stage.appendChild(canvas);
-    var ctx = canvas.getContext('2d');
-    var caption = document.getElementById('prologueCaption');
-    var skipBtn = document.getElementById('prologueSkip');
-    var step = 0;
-    var phase = 0; // 0=湍流, 1=自组织
-    var t = 0;
-    var cells = [];
-    var rows = 12, cols = 16;
-    function buildCells() {
-      cells = [];
-      for (var r = 0; r < rows; r++) {
-        for (var c = 0; c < cols; c++) {
-          cells.push({
-            x: c / cols * 560, y: r / rows * 420,
-            w: 560 / cols, h: 420 / rows,
-            order: Math.random(),
-            turb: PROLOGUE_STEPS[step] ? PROLOGUE_STEPS[step].turbulence : 0.5
-          });
-        }
+/* ============================================================
+   深览弹层
+   ============================================================ */
+const schoolModal = document.getElementById('schoolModal');
+const schoolModalBox = document.getElementById('schoolModalBox');
+
+function openSchool(id){
+  const s = SCHOOL_MAP[id];
+  if(!s) return;
+  const civTxt = s.civ === 'east' ? '东方' : '西方';
+
+  const condHtml = (s.eraConditions || []).map(c => {
+    const ct = CONDTYPE[c.t] || {label:c.t, color:'var(--line2)'};
+    return `<div class="m-cond">
+      <span class="cond-ic" style="color:${ct.color};border-color:${ct.color}">${ct.label}</span>
+      <span class="cond-h">${c.n}</span>
+      <span class="cond-d">${c.how}</span>
+    </div>`;
+  }).join('');
+
+  const docHtml = (s.doctrine || []).map(d => `
+    <div class="m-doc">
+      <div class="dt">${d.title}</div>
+      <div class="dc">${d.core}</div>
+      <div class="da">${(d.args||[]).map(a=>`<span class="arg">${a}</span>`).join('')}</div>
+      <div class="di"><b>影响</b>　${d.influence}</div>
+    </div>`).join('');
+
+  const linHtml = (s.lineage || []).map((ln, i) => `
+    <span class="lin-item">
+      ${i>0?'<span class="lin-arrow">→</span>':''}
+      <span class="lin-who">${ln.who}</span>
+      <span class="lin-role">${({founder:'开宗',inherit:'承',transcend:'越',reject:'叛'})[ln.role]||ln.role}</span>
+      ${ln.note?`<span class="lin-note">${ln.note}</span>`:''}
+    </span>`).join('');
+
+  const absHtml = (s.withDisciplines || []).filter(d=>d.dir==='absorbed').map(d => {
+    const dl = DISC[d.d]||{label:d.d};
+    return `<div class="disc-item"><b>${dl.label}</b> — ${d.desc}</div>`;
+  }).join('') || '<div class="disc-item">此派以思想创造为主，吸收面较窄</div>';
+  const givHtml = (s.withDisciplines || []).filter(d=>d.dir==='given').map(d => {
+    const dl = DISC[d.d]||{label:d.d};
+    return `<div class="disc-item"><b>${dl.label}</b> — ${d.desc}</div>`;
+  }).join('') || '<div class="disc-item">其影响主要停留在哲学内部</div>';
+
+  const relHtml = (s.relations || []).map(r => {
+    const rt = RELTYPE[r.type] || {label:r.type, color:'var(--line2)'};
+    return `<div class="m-rel-item">
+      <span class="rel-t" style="color:${rt.color};border-color:${rt.color}">${rt.label}</span>
+      <span class="rel-note">${r.note} <span class="rel-to" data-to="${r.to}">〔${SCHOOL_MAP[r.to] ? SCHOOL_MAP[r.to].name : r.to}〕</span></span>
+    </div>`;
+  }).join('');
+
+  const intHtml = (s.interpretations || []).map(i => `
+    <div class="m-int-item">
+      <div class="from">${i.from}</div>
+      <div class="view">${i.view}</div>
+    </div>`).join('');
+
+  const quoteHtml = (s.quotes || []).map(q => `
+    <div class="m-quote-item">
+      <div class="qtext">「${q.text}」</div>
+      <div class="qsrc">— ${q.src}</div>
+    </div>`).join('');
+
+  schoolModalBox.innerHTML = `
+    <button class="m-close" onclick="closeSchool()">✕</button>
+    <div class="m-head">
+      <div class="m-civ">${civTxt} · ${s.era}</div>
+      <div class="m-name">${s.name}</div>
+      <div class="m-en">${s.en}</div>
+      <div class="m-meta">
+        <span class="mm"><b>年代</b>${fmtYears(s.years)}</span>
+        <span class="mm"><b>要义</b>${s.keyword}</span>
+      </div>
+      <div class="m-quote">“${s.timeAsked}”</div>
+    </div>
+    <div class="m-body">
+      <div class="m-sec">
+        <div class="m-sec-title">时代因果 — 它被什么逼出来</div>
+        ${condHtml}
+      </div>
+      <div class="m-sec">
+        <div class="m-sec-title">核心学说</div>
+        ${docHtml}
+      </div>
+      <div class="m-sec">
+        <div class="m-sec-title">师承与演化</div>
+        <div class="m-lin">${linHtml}</div>
+      </div>
+      <div class="m-sec">
+        <div class="m-sec-title">学科交织 — 吸收与贡献</div>
+        <div class="m-disc">
+          <div class="disc-col ab"><h4>⇣ 吸收自</h4>${absHtml}</div>
+          <div class="disc-col gi"><h4>⇡ 贡献给</h4>${givHtml}</div>
+        </div>
+      </div>
+      <div class="m-sec">
+        <div class="m-sec-title">跨学派关系</div>
+        <div class="m-rel">${relHtml}</div>
+      </div>
+      <div class="m-sec">
+        <div class="m-sec-title">多元解读</div>
+        <div class="m-int">${intHtml}</div>
+      </div>
+      <div class="m-sec">
+        <div class="m-sec-title">原典引文</div>
+        <div class="m-quotes">${quoteHtml}</div>
+      </div>
+      <div class="m-sec">
+        <div class="m-sec-title">接受史与沉船打捞</div>
+        <div class="m-rec"><div class="rh">接受史</div>${s.reception}</div>
+        <div class="m-ship">
+          <div class="sh">沉船 · 打捞</div>
+          <div class="sk"><b>沉没</b>　${s.shipwreck.sank}</div>
+          <div class="sa"><b>打捞</b>　${s.shipwreck.salvaged}</div>
+        </div>
+      </div>
+    </div>`;
+  schoolModal.classList.add('show');
+  document.body.style.overflow = 'hidden';
+  schoolModalBox.querySelectorAll('.rel-to').forEach(el => {
+    el.onclick = (ev) => {
+      ev.stopPropagation();
+      const to = el.dataset.to;
+      if(SCHOOL_MAP[to]){
+        closeSchool();
+        openSchool(to);
       }
-    }
-    buildCells();
-    function animate() {
-      var st = PROLOGUE_STEPS[step];
-      ctx.clearRect(0, 0, 560, 420);
-      var turbulence = st ? st.turbulence : 0.5;
-      // 贝纳德对流：细胞随湍流翻腾，相变时自组织成六角花纹
-      t += 0.03;
-      cells.forEach(function (cell) {
-        var phase2 = Math.min(1, t * 0.4);
-        var wob = Math.sin(t * 3 + cell.x * 0.05 + cell.y * 0.03);
-        var offsetX = wob * turbulence * (1 - phase2) * 8;
-        var offsetY = Math.cos(t * 2.6 + cell.y * 0.04) * turbulence * (1 - phase2) * 6;
-        var intensity = 0.25 + phase2 * (0.5 + 0.3 * Math.sin(cell.order * Math.PI * 6 + t * 2));
-        ctx.fillStyle = 'rgba(' + hexToRgb(st.color) + ',' + intensity.toFixed(3) + ')';
-        ctx.beginPath();
-        ctx.moveTo(cell.x + offsetX, cell.y + offsetY);
-        ctx.lineTo(cell.x + cell.w + offsetX, cell.y + offsetY);
-        ctx.lineTo(cell.x + cell.w + offsetX, cell.y + cell.h + offsetY);
-        ctx.lineTo(cell.x + offsetX, cell.y + cell.h + offsetY);
-        ctx.closePath();
-        ctx.fill();
-      });
-      // 相变完成 → 进入下一幕
-      if (t > 3.2) {
-        step++;
-        t = 0;
-        if (step >= PROLOGUE_STEPS.length) { finishPrologue(); return; }
-        buildCells();
-        caption.innerHTML = PROLOGUE_STEPS[step].title
-          + '<span class="sub">' + PROLOGUE_STEPS[step].sub + '</span>';
-      } else if (step === 0) {
-        caption.innerHTML = PROLOGUE_STEPS[0].title
-          + '<span class="sub">' + PROLOGUE_STEPS[0].sub + '</span>';
+    };
+  });
+}
+
+function closeSchool(){
+  schoolModal.classList.remove('show');
+  document.body.style.overflow = '';
+}
+schoolModal.addEventListener('click', e => {
+  if(e.target === schoolModal) closeSchool();
+});
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape'){ closeSchool(); closeConcept(); }
+});
+
+/* ============================================================
+   概念暗流
+   ============================================================ */
+const conceptModal = document.getElementById('conceptModal');
+const conceptModalBox = document.getElementById('conceptModalBox');
+
+function renderConcepts(){
+  const band = document.createElement('div');
+  band.className = 'concept-band';
+  band.innerHTML = `
+    <div class="cp-title">概念暗流</div>
+    <div class="cp-sub">几个母题像地下水一样贯穿两千五百年，点击钻探其演变轨迹</div>
+    <div class="concept-grid"></div>`;
+  const grid = band.querySelector('.concept-grid');
+  CONCEPTS.forEach(c => {
+    const card = document.createElement('div');
+    card.className = 'concept-card';
+    card.innerHTML = `
+      <div class="c-name">${c.name}</div>
+      <div class="c-en">${c.en}</div>
+      <div class="c-path">${c.path.slice(0,4).map(p=>{
+        const s = SCHOOL_MAP[p.s];
+        return s ? s.name : p.s;
+      }).join(' · ')} …</div>
+      <div class="c-more">钻探轨迹 ↓</div>`;
+    card.onclick = () => openConcept(c.id);
+    grid.appendChild(card);
+  });
+  erasBox.appendChild(band);
+}
+
+function openConcept(id){
+  const c = CONCEPTS.find(x => x.id === id);
+  if(!c) return;
+  const steps = c.path.map((p,i) => {
+    const s = SCHOOL_MAP[p.s];
+    const label = s ? s.name : p.s;
+    return `<div class="c-step">
+      <span class="cs-school" data-school="${p.s}">${i+1}. ${label}</span>
+      <span class="cs-text">${p.step}</span>
+    </div>`;
+  }).join('');
+  conceptModalBox.innerHTML = `
+    <button class="m-close" onclick="closeConcept()">✕</button>
+    <div class="m-head">
+      <div class="m-civ">概 念 暗 流</div>
+      <div class="m-name">${c.name}</div>
+      <div class="m-en">${c.en} · 跨学派演变轨迹</div>
+    </div>
+    <div class="m-body">
+      <div class="m-sec">
+        <div class="m-sec-title">两千年间的变形</div>
+        <div class="c-path-steps">${steps}</div>
+      </div>
+    </div>`;
+  conceptModal.classList.add('show');
+  document.body.style.overflow = 'hidden';
+  conceptModalBox.querySelectorAll('.cs-school').forEach(el => {
+    el.onclick = () => {
+      const to = el.dataset.school;
+      if(SCHOOL_MAP[to]){
+        closeConcept();
+        openSchool(to);
       }
-      requestAnimationFrame(animate);
-    }
-    function hexToRgb(h) { var x = h.replace('#',''); var r = parseInt(x.substr(0,2),16), g = parseInt(x.substr(2,2),16), b = parseInt(x.substr(4,2),16); return r + ',' + g + ',' + b; }
-    function finishPrologue() {
-      prologueShown = true;
-      document.getElementById('prologue').classList.add('hidden');
-      setTimeout(function () {
-        document.getElementById('prologue').style.display = 'none';
-      }, 900);
-    }
-    skipBtn.addEventListener('click', finishPrologue);
-    requestAnimationFrame(animate);
-  }
-
-  /* ─── 河段导航条 ─── */
-  (function initReachNav() {
-    var navEl = document.createElement('div');
-    navEl.className = 'reach-nav';
-    REACHES.forEach(function (r) {
-      var b = document.createElement('button');
-      b.className = 'reach-btn';
-      b.setAttribute('data-reach', r.id);
-      b.textContent = r.name;
-      b.addEventListener('click', function () {
-        document.querySelectorAll('.reach-btn').forEach(function (x) { x.classList.remove('active'); });
-        b.classList.add('active');
-        var legend = document.getElementById('riverLegend');
-        legend.innerHTML = '<span class="rl-item" style="color:var(--gold-bright)">『' + r.name + '』 ' + r.theme + '</span>';
-      });
-      navEl.appendChild(b);
-    });
-    var stage = document.querySelector('.river-stage');
-    if (stage) stage.appendChild(navEl);
-  })();
-
-  renderRiver();
-  renderEvents();
-  initPrologue();
-
-  /* ─── 视图：倒悬之树（元问题为根，学派为枝） ─── */
-  var META_QUESTIONS = [
-    { id: 'mq-reality', name: '真实', icon: '◉', color: '#7FA8D9' },
-    { id: 'mq-ethics', name: '善', icon: '❁', color: '#C9A063' },
-    { id: 'mq-knowledge', name: '知识', icon: '⌘', color: '#4FB3A8' },
-    { id: 'mq-justice', name: '正义', icon: '⚖', color: '#E8A33D' },
-    { id: 'mq-self', name: '自我', icon: '◎', color: '#8B7EC8' }
-  ];
-  // 学派→元问题映射（近似）
-  var SCHOOL_MQ = {
-    confucianism: 'mq-ethics', moism: 'mq-justice', daoism: 'mq-self', legalism: 'mq-justice',
-    mingjia: 'mq-knowledge', bingjia: 'mq-justice', yinyangjia: 'mq-reality', hanjing: 'mq-ethics',
-    xuanxue: 'mq-self', chan: 'mq-self', neoconfucianism: 'mq-ethics', wangyangming: 'mq-ethics',
-    shixue: 'mq-justice', huanglao: 'mq-self', dongzhongshu: 'mq-ethics',
-    presocratics: 'mq-reality', plato: 'mq-justice', aristotle: 'mq-knowledge', stoicism: 'mq-self',
-    sophists: 'mq-knowledge', indian_buddhism: 'mq-self', arabic: 'mq-knowledge',
-    scholasticism: 'mq-reality', descartes: 'mq-reality', locke: 'mq-knowledge', empiricism: 'mq-knowledge',
-    kant: 'mq-knowledge', hegel: 'mq-reality', utilitarianism: 'mq-ethics', nietzsche: 'mq-self',
-    marxism: 'mq-justice', phenomenology: 'mq-self', analytic: 'mq-knowledge', wittgenstein: 'mq-knowledge',
-    pragmatism: 'mq-knowledge', popper: 'mq-knowledge', rawls: 'mq-justice', postmodern: 'mq-self'
-  };
-  function renderTree() {
-    var container = document.getElementById('treeCanvas');
-    if (!container) return;
-    var W = 1100, H = 460;
-    var svg = '<svg class="river-svg" viewBox="0 0 ' + W + ' ' + H + '">';
-    // 背景光
-    svg += '<defs><radialGradient id="treeBg" cx="0.5" cy="0" r="0.8"><stop offset="0" stop-color="rgba(201,160,99,0.08)"/><stop offset="1" stop-color="transparent"/></radialGradient></defs>';
-    svg += '<rect width="' + W + '" height="' + H + '" fill="url(#treeBg)"/>';
-
-    // 五个元问题（根）在上方
-    var qw = W / META_QUESTIONS.length;
-    var rootY = 50;
-    META_QUESTIONS.forEach(function (q, i) {
-      var cx = qw * i + qw / 2;
-      svg += '<g class="tree-root">'
-        + '<circle cx="' + cx + '" cy="' + rootY + '" r="22" fill="' + q.color + '" fill-opacity="0.2" stroke="' + q.color + '" stroke-width="1.5"/>'
-        + '<text x="' + cx + '" y="' + (rootY + 5) + '" fill="' + q.color + '" font-size="16" text-anchor="middle">' + q.icon + '</text>'
-        + '<text x="' + cx + '" y="' + (rootY + 40) + '" fill="' + q.color + '" font-size="12" font-family="Noto Serif SC, serif" text-anchor="middle">' + q.name + '</text>'
-        + '</g>';
-    });
-
-    // 学派为枝，从根向下生长
-    var sorted = Object.keys(SCHOOLS).map(function (id) { return SCHOOLS[id]; });
-    var groups = {};
-    sorted.forEach(function (s) {
-      var mq = SCHOOL_MQ[s.id] || 'mq-reality';
-      if (!groups[mq]) groups[mq] = [];
-      groups[mq].push(s);
-    });
-    Object.keys(groups).forEach(function (mqId) {
-      var qi = META_QUESTIONS.findIndex(function (q) { return q.id === mqId; });
-      if (qi < 0) return;
-      var cx = qw * qi + qw / 2;
-      var members = groups[mqId];
-      var stepY = (H - 110) / (members.length + 1);
-      members.forEach(function (s, j) {
-        var y = 95 + stepY * (j + 1);
-        var col = TRIBUTARY_COLOR[s.tributary] || '#C9A063';
-        // 枝：从根垂落到该学派
-        svg += '<line x1="' + cx + '" y1="' + (rootY + 22) + '" x2="' + cx + '" y2="' + (y - 10) + '" stroke="' + col + '" stroke-width="1.5" stroke-opacity="0.35"/>';
-        // 节点（可点击）
-        svg += '<g class="river-boat tree-node" data-school="' + s.id + '">'
-          + '<circle cx="' + cx + '" cy="' + y + '" r="12" fill="' + col + '" fill-opacity="0.25" stroke="' + col + '" stroke-width="1.5"/>'
-          + '<text x="' + cx + '" y="' + (y + 3) + '" fill="' + col + '" font-size="9" font-family="Noto Serif SC, serif" text-anchor="middle">' + s.name + '</text>'
-          + '</g>';
-      });
-    });
-
-    // 气生根（resonance 跨枝相连，银丝）
-    sorted.forEach(function (s) {
-      (s.relations || []).forEach(function (r) {
-        if (r.type !== 'resonance') return;
-        var t = SCHOOLS[r.to];
-        if (!t) return;
-        var y1 = 95 + (groups[SCHOOL_MQ[s.id]].findIndex(function (x) { return x.id === s.id; }) + 1) * stepYFor(SCHOOL_MQ[s.id], groups, H);
-        var y2 = 95 + (groups[SCHOOL_MQ[t.id]].findIndex(function (x) { return x.id === t.id; }) + 1) * stepYFor(SCHOOL_MQ[t.id], groups, H);
-        var x1 = qw * META_QUESTIONS.findIndex(function (q) { return q.id === SCHOOL_MQ[s.id]; }) + qw / 2;
-        var x2 = qw * META_QUESTIONS.findIndex(function (q) { return q.id === SCHOOL_MQ[t.id]; }) + qw / 2;
-        svg += '<path d="M ' + x1 + ',' + y1 + ' C ' + ((x1 + x2) / 2) + ',' + Math.max(y1, y2) + ' ' + ((x1 + x2) / 2) + ',' + Math.min(y1, y2) + ' ' + x2 + ',' + y2
-          + '" fill="none" stroke="rgba(200,210,220,0.3)" stroke-width="1" stroke-dasharray="3 4"/>';
-      });
-    });
-    svg += '</svg>';
-    container.innerHTML = svg;
-    // 点击节点
-    container.querySelectorAll('.tree-node').forEach(function (n) {
-      n.addEventListener('click', function () { openSchool(n.getAttribute('data-school')); });
-    });
-    function stepYFor(mqId, groups, H) { return (H - 110) / (groups[mqId].length + 1); }
-  }
-
-  /* ─── 视图：思想织锦（时间×议题） ─── */
-  var ISSUES = [
-    { id: 'is-liberty', name: '自由', color: '#5B8DEF' },
-    { id: 'is-justice', name: '正义', color: '#E05D5D' },
-    { id: 'is-self', name: '自我', color: '#8B7EC8' },
-    { id: 'is-nature', name: '自然', color: '#4FB3A8' },
-    { id: 'is-knowledge', name: '知识', color: '#E8A33D' },
-    { id: 'is-good', name: '善', color: '#C9A063' }
-  ];
-  // 学派→议题关注（近似映射，用于填格）
-  var SCHOOL_ISSUE = {
-    confucianism: 'is-good', moism: 'is-justice', daoism: 'is-nature', legalism: 'is-justice',
-    plato: 'is-justice', aristotle: 'is-knowledge', stoicism: 'is-self',
-    kant: 'is-knowledge', utilitarianism: 'is-good', marxism: 'is-justice',
-    phenomenology: 'is-self', analytic: 'is-knowledge', daoism: 'is-nature'
-  };
-  function renderTapestry() {
-    var container = document.getElementById('tapestryCanvas');
-    if (!container) return;
-    var W = 1100, H = 380, pad = 40;
-    var yearMin = -800, yearMax = 1900;
-    function xFor(y) { return pad + (y - yearMin) / (yearMax - yearMin) * (W - pad * 2); }
-    var rowH = (H - 40) / ISSUES.length;
-    var svg = '<svg class="river-svg" viewBox="0 0 ' + W + ' ' + H + '">';
-    // 议题行标签
-    ISSUES.forEach(function (iss, i) {
-      var y = 20 + rowH * i + rowH / 2;
-      svg += '<text x="16" y="' + y + '" fill="' + iss.color + '" font-size="11" font-family="Noto Serif SC, serif" text-anchor="start">' + iss.name + '</text>';
-      // 横向时间线
-      svg += '<line x1="' + pad + '" y1="' + y + '" x2="' + (W - 20) + '" y2="' + y + '" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>';
-    });
-    // 学派格点
-    var sorted = Object.keys(SCHOOLS).map(function (id) { return SCHOOLS[id]; });
-    sorted.forEach(function (s) {
-      var iss = SCHOOL_ISSUE[s.id];
-      if (!iss) return;
-      var issIdx = ISSUES.findIndex(function (i) { return i.id === iss; });
-      if (issIdx < 0) return;
-      var y = 20 + rowH * issIdx + rowH / 2;
-      var x = xFor(SCHOOL_YEAR[s.id] || 0);
-      var col = TRIBUTARY_COLOR[s.tributary] || '#C9A063';
-      var r = 5 + (s.interpretations || []).length;
-      svg += '<g class="river-boat tapestry-node" data-school="' + s.id + '">'
-        + '<circle cx="' + x + '" cy="' + y + '" r="' + r + '" fill="' + col + '" fill-opacity="0.5" stroke="' + col + '" stroke-width="1.2"/>'
-        + '</g>';
-    });
-    // 时间刻度
-    [-800, -400, 0, 500, 1000, 1500, 1900].forEach(function (yr) {
-      var x = xFor(yr);
-      svg += '<text x="' + x + '" y="' + (H - 6) + '" fill="rgba(138,133,122,0.6)" font-size="9.5" font-family="DM Mono, monospace" text-anchor="middle">' + (yr < 0 ? (yr * -1) + 'BC' : yr + '') + '</text>';
-    });
-    svg += '</svg>';
-    container.innerHTML = svg;
-    container.querySelectorAll('.tapestry-node').forEach(function (n) {
-      n.addEventListener('click', function () { openSchool(n.getAttribute('data-school')); });
-    });
-  }
-
-  /* ─── 视图：注疏之书（羊皮纸长卷 + 批注地层） ─── */
-  function renderGloss() {
-    var container = document.getElementById('glossCanvas');
-    if (!container) return;
-    var W = 1100, H = 420;
-    var svg = '<svg class="river-svg" viewBox="0 0 ' + W + ' ' + H + '">';
-    // 羊皮纸底
-    svg += '<rect width="' + W + '" height="' + H + '" fill="#E8DCC8" opacity="0.05"/>';
-    // 卷轴：每个代表学派是一卷
-    var picks = ['confucianism', 'plato', 'daoism', 'kant', 'stoicism', 'marxism', 'chan', 'analytic'];
-    var pw = W / picks.length;
-    picks.forEach(function (id, i) {
-      var s = SCHOOLS[id];
-      if (!s) return;
-      var cx = pw * i + pw / 2;
-      var col = TRIBUTARY_COLOR[s.tributary] || '#C9A063';
-      // 卷身（矩形，羊皮纸质感）
-      svg += '<g class="gloss-roll" data-school="' + s.id + '">'
-        + '<rect x="' + (cx - pw * 0.3) + '" y="60" width="' + (pw * 0.6) + '" height="' + (H - 130)
-        + '" rx="8" fill="rgba(232,220,200,0.06)" stroke="' + col + '" stroke-width="1" stroke-opacity="0.4"/>'
-        // 中央命题
-        + '<text x="' + cx + '" y="95" fill="' + col + '" font-size="13" font-family="Noto Serif SC, serif" text-anchor="middle" font-weight="bold">' + s.name + '</text>'
-        + '<text x="' + cx + '" y="120" fill="rgba(239,233,220,0.7)" font-size="11" font-family="LXGW WenKai, KaiTi, serif" text-anchor="middle">「' + s.primaryQuote + '」</text>'
-        // 批注（接受史地层，按年代深浅）
-        + '</g>';
-      var recep = s.reception || [];
-      recep.forEach(function (r, j) {
-        var y = 150 + j * 60;
-        // 批注墨色（年代越近越亮）
-        var ink = j === 0 ? 'rgba(60,60,50,0.5)' : 'rgba(201,160,99,' + (0.4 + j * 0.15) + ')';
-        svg += '<g class="gloss-note" data-school="' + s.id + '">'
-          + '<text x="' + (cx - pw * 0.24) + '" y="' + y + '" fill="' + ink + '" font-size="9.5" font-family="LXGW WenKai, KaiTi, serif">' + r.era + ' · ' + r.reading + '</text>'
-          + '</g>';
-      });
-      // 反叛朱批（reject 关系）
-      (s.relations || []).forEach(function (rel, j) {
-        if (rel.type !== 'reject') return;
-        var t = SCHOOLS[rel.to];
-        if (!t) return;
-        svg += '<text x="' + (cx + pw * 0.24) + '" y="' + (150 + j * 40) + '" fill="rgba(224,93,93,0.8)" font-size="9.5" font-family="LXGW WenKai, KaiTi, serif" text-anchor="end">✗ 朱批：「' + t.name + '」' + rel.note + '</text>';
-      });
-    });
-    svg += '</svg>';
-    container.innerHTML = svg;
-    container.querySelectorAll('.gloss-roll, .gloss-note').forEach(function (n) {
-      n.addEventListener('click', function () { openSchool(n.getAttribute('data-school')); });
-    });
-  }
-
-  /* ─── 视图：对话台（中西同题异答） ─── */
-  var DIALOGUE_TOPICS = [
-    { topic: '何为善？', east: ['confucianism', 'moism'], west: ['utilitarianism', 'kant'] },
-    { topic: '何为自由？', east: ['daoism'], west: ['stoicism', 'phenomenology'] },
-    { topic: '何为正义？', east: ['legalism', 'confucianism'], west: ['plato', 'rawls'] },
-    { topic: '何为人？', east: ['chan', 'wangyangming'], west: ['descartes', 'phenomenology'] }
-  ];
-  var dialogueIdx = 0;
-  function renderDialogue() {
-    var container = document.getElementById('dialogueCanvas');
-    if (!container) return;
-    var W = 1100, H = 380;
-    var d = DIALOGUE_TOPICS[dialogueIdx];
-    var svg = '<svg class="river-svg" viewBox="0 0 ' + W + ' ' + H + '">';
-    // 中央题眼
-    svg += '<text x="' + (W / 2) + '" y="60" fill="#E8D8B8" font-size="26" font-family="Noto Serif SC, serif" text-anchor="middle">' + d.topic + '</text>';
-    // 天平横梁
-    svg += '<line x1="' + (W / 2 - 300) + '" y1="90" x2="' + (W / 2 + 300) + '" y2="90" stroke="rgba(232,216,184,0.3)" stroke-width="2"/>';
-    svg += '<line x1="' + (W / 2) + '" y1="90" x2="' + (W / 2) + '" y2="140" stroke="rgba(232,216,184,0.3)" stroke-width="2"/>';
-    // 左东（暖金）
-    svg += '<text x="' + (W / 2 - 300) + '" y="80" fill="#C9A063" font-size="12" font-family="Noto Serif SC, serif" text-anchor="middle">东方 · 暖金</text>';
-    svg += '<line x1="' + (W / 2 - 300) + '" y1="140" x2="' + (W / 2 - 300) + '" y2="330" stroke="#C9A063" stroke-width="1" stroke-opacity="0.3"/>';
-    d.east.forEach(function (sid, i) {
-      var s = SCHOOLS[sid];
-      if (!s) return;
-      var y = 155 + i * 60;
-      svg += '<g class="river-boat dialogue-side" data-school="' + sid + '">'
-        + '<circle cx="' + (W / 2 - 300) + '" cy="' + y + '" r="10" fill="#C9A063" fill-opacity="0.3" stroke="#C9A063" stroke-width="1.5"/>'
-        + '<text x="' + (W / 2 - 300 + 18) + '" y="' + (y + 4) + '" fill="rgba(239,233,220,0.85)" font-size="12" font-family="Noto Serif SC, serif">' + s.name + '</text>'
-        + '<text x="' + (W / 2 - 300 + 18) + '" y="' + (y + 20) + '" fill="rgba(138,133,122,0.7)" font-size="10" font-family="LXGW WenKai, KaiTi, serif">' + (s.primaryQuote.length > 18 ? s.primaryQuote.slice(0, 18) + '…' : s.primaryQuote) + '</text>'
-        + '</g>';
-    });
-    // 右西（冷银）
-    svg += '<text x="' + (W / 2 + 300) + '" y="80" fill="#7FA8D9" font-size="12" font-family="Noto Serif SC, serif" text-anchor="middle">西方 · 冷银</text>';
-    svg += '<line x1="' + (W / 2 + 300) + '" y1="140" x2="' + (W / 2 + 300) + '" y2="330" stroke="#7FA8D9" stroke-width="1" stroke-opacity="0.3"/>';
-    d.west.forEach(function (sid, i) {
-      var s = SCHOOLS[sid];
-      if (!s) return;
-      var y = 155 + i * 60;
-      svg += '<g class="river-boat dialogue-side" data-school="' + sid + '">'
-        + '<circle cx="' + (W / 2 + 300) + '" cy="' + y + '" r="10" fill="#7FA8D9" fill-opacity="0.3" stroke="#7FA8D9" stroke-width="1.5"/>'
-        + '<text x="' + (W / 2 + 300 - 18) + '" y="' + (y + 4) + '" fill="rgba(239,233,220,0.85)" font-size="12" font-family="Noto Serif SC, serif" text-anchor="end">' + s.name + '</text>'
-        + '<text x="' + (W / 2 + 300 - 18) + '" y="' + (y + 20) + '" fill="rgba(138,133,122,0.7)" font-size="10" font-family="LXGW WenKai, KaiTi, serif" text-anchor="end">' + (s.primaryQuote.length > 18 ? s.primaryQuote.slice(0, 18) + '…' : s.primaryQuote) + '</text>'
-        + '</g>';
-    });
-    // 底部切换提示
-    svg += '<text x="' + (W / 2) + '" y="368" fill="rgba(138,133,122,0.6)" font-size="10" font-family="DM Mono, monospace" text-anchor="middle">◀ 切换议题 ▶  点击学派打开思想卡</text>';
-    svg += '</svg>';
-    container.innerHTML = svg;
-    container.querySelectorAll('.dialogue-side').forEach(function (n) {
-      n.addEventListener('click', function () { openSchool(n.getAttribute('data-school')); });
-    });
-  }
-  // 对话台议题切换
-  document.addEventListener('keydown', function (ev) {
-    if (viewMode !== 'dialogue') return;
-    if (ev.key === 'ArrowLeft') { dialogueIdx = (dialogueIdx + DIALOGUE_TOPICS.length - 1) % DIALOGUE_TOPICS.length; renderDialogue(); }
-    if (ev.key === 'ArrowRight') { dialogueIdx = (dialogueIdx + 1) % DIALOGUE_TOPICS.length; renderDialogue(); }
+    };
   });
-  // 点击对话台切换议题
-  document.addEventListener('click', function (ev) {
-    if (viewMode !== 'dialogue') return;
-    var canvas = document.getElementById('dialogueCanvas');
-    if (!canvas || !canvas.contains(ev.target)) return;
-    if (ev.target.closest('.dialogue-side')) return;
-    dialogueIdx = (dialogueIdx + 1) % DIALOGUE_TOPICS.length;
-    renderDialogue();
+}
+function closeConcept(){
+  conceptModal.classList.remove('show');
+  document.body.style.overflow = '';
+}
+conceptModal.addEventListener('click', e => {
+  if(e.target === conceptModal) closeConcept();
+});
+
+/* ============================================================
+   交互绑定
+   ============================================================ */
+function bindInteractions(){
+  document.querySelectorAll('.school-card').forEach(card => {
+    const id = card.dataset.school;
+    card.addEventListener('click', () => openSchool(id));
+    card.addEventListener('mouseenter', () => highlight(id));
+    card.addEventListener('mouseleave', () => highlight(null));
   });
+}
 
-  /* ─── 视图：相变剧场（贝纳德对流完整版） ─── */
-  var theaterRunning = false;
-  var theaterRaf = null;
-  function renderTheater() {
-    var container = document.getElementById('theaterCanvas');
-    if (!container) return;
-    var W = 1100, H = 380;
-    var svg = '<svg class="river-svg" viewBox="0 0 ' + W + ' ' + H + '">';
-    // 相变点列表
-    var steps = PROLOGUE_STEPS;
-    var bw = W / steps.length;
-    steps.forEach(function (st, i) {
-      var cx = bw * i + bw / 2;
-      svg += '<g class="theater-phase" data-phase="' + i + '">'
-        + '<circle cx="' + cx + '" cy="100" r="26" fill="' + st.color + '" fill-opacity="0.2" stroke="' + st.color + '" stroke-width="1.5"/>'
-        + '<text x="' + cx + '" y="105" fill="' + st.color + '" font-size="11" font-family="Noto Serif SC, serif" text-anchor="middle">' + st.title + '</text>'
-        + '<text x="' + cx + '" y="145" fill="rgba(138,133,122,0.7)" font-size="9.5" text-anchor="middle">' + st.sub + '</text>'
-        + '</g>';
-    });
-    // 说明
-    svg += '<text x="' + (W / 2) + '" y="220" fill="rgba(138,133,122,0.7)" font-size="12" font-family="Noto Serif SC, serif" text-anchor="middle">范式革命 = 时代能量推动的相变（贝纳德对流）</text>'
-      + '<text x="' + (W / 2) + '" y="245" fill="rgba(138,133,122,0.5)" font-size="10" text-anchor="middle">点击相变点播放 · 能量→僵化→涨落→临界→相变</text>';
-    svg += '</svg>';
-    container.innerHTML = svg;
-    container.querySelectorAll('.theater-phase').forEach(function (n) {
-      n.addEventListener('click', function () { playTheater(n.getAttribute('data-phase')); });
-    });
-  }
-  function playTheater(phaseIdx) {
-    // 简化：用序章动画在相变点舞台重放
-    var stage = document.getElementById('theaterCanvas');
-    if (!stage) return;
-    // 在容器内叠加画布
-    var existing = stage.querySelector('.theater-anim');
-    if (existing) existing.remove();
-    var canvas = document.createElement('canvas');
-    canvas.className = 'theater-anim';
-    canvas.width = 1100; canvas.height = 380;
-    canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;';
-    stage.style.position = 'relative';
-    stage.appendChild(canvas);
-    var ctx = canvas.getContext('2d');
-    var step = parseInt(phaseIdx, 10);
-    var t = 0;
-    var cells = [];
-    for (var r = 0; r < 8; r++) for (var c = 0; c < 14; c++) {
-      cells.push({ x: c / 14 * 1100, y: r / 8 * 380, w: 1100 / 14, h: 380 / 8, order: Math.random() });
-    }
-    function anim() {
-      var st = PROLOGUE_STEPS[step];
-      ctx.clearRect(0, 0, 1100, 380);
-      t += 0.03;
-      var phase2 = Math.min(1, t * 0.4);
-      var rgb = st.color.replace('#', '');
-      var R = parseInt(rgb.substr(0, 2), 16), G = parseInt(rgb.substr(2, 2), 16), B = parseInt(rgb.substr(4, 2), 16);
-      cells.forEach(function (cell) {
-        var wob = Math.sin(t * 3 + cell.x * 0.05);
-        var ox = wob * st.turbulence * (1 - phase2) * 10;
-        var intensity = 0.2 + phase2 * (0.5 + 0.3 * Math.sin(cell.order * Math.PI * 6 + t * 2));
-        ctx.fillStyle = 'rgba(' + R + ',' + G + ',' + B + ',' + intensity.toFixed(3) + ')';
-        ctx.fillRect(cell.x + ox, cell.y, cell.w, cell.h + 1);
-      });
-      if (t < 3.2) requestAnimationFrame(anim);
-      else { setTimeout(function () { if (canvas.parentNode) canvas.parentNode.removeChild(canvas); }, 500); }
-    }
-    anim();
-  }
-
-  renderRiver();
-  renderEvents();
-  initPrologue();
-
-  /* ─── 卡片渲染 ─── */
-  var grid = document.getElementById('schoolGrid');
-  var html = '';
-  Object.keys(SCHOOLS).forEach(function (id) {
-    var s = SCHOOLS[id];
-    var col = TRIBUTARY_COLOR[s.tributary] || '#C9A063';
-    var concepts = (s.concepts || []).slice(0, 5).map(function (c) {
-      return '<span class="sc-c">' + c + '</span>';
-    }).join('');
-    html += '<div class="school-card" data-school="' + s.id + '" style="--sc:' + col + '">'
-      + '<div class="sc-tag"><span class="dot"></span>' + TRIBUTARY_NAME[s.tributary] + ' · ' + s.era + '</div>'
-      + '<h3>' + s.name + '</h3>'
-      + '<div class="sc-era">' + s.en + '</div>'
-      + '<div class="sc-quote">「' + s.primaryQuote + '」</div>'
-      + (concepts ? '<div class="sc-concepts">' + concepts + '</div>' : '')
-      + '</div>';
+/* ============================================================
+   初始化
+   ============================================================ */
+function init(){
+  renderEraNav();
+  ERAS.forEach(renderEra);
+  renderConcepts();
+  bindInteractions();
+  requestAnimationFrame(() => {
+    drawLinks();
   });
-  grid.innerHTML = html;
-
-  /* ─── 弹层 ─── */
-  var overlay = document.getElementById('detailOverlay');
-  var panel = document.getElementById('detailPanel');
-  var contentEl = document.getElementById('detailContent');
-
-  function openOverlay() {
-    overlay.classList.add('open');
-    document.body.classList.add('modal-open');
-    panel.scrollTop = 0;
-  }
-  function closeOverlay() {
-    overlay.classList.remove('open');
-    document.body.classList.remove('modal-open');
-  }
-
-  function esc(str) {
-    return String(str).replace(/[&<>"']/g, function (c) {
-      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
-    });
-  }
-
-  function openSchool(id) {
-    var s = SCHOOLS[id];
-    if (!s) return;
-    var col = TRIBUTARY_COLOR[s.tributary] || '#C9A063';
-
-    // 多元阐释
-    var interps = (s.interpretations || []).map(function (it) {
-      return '<div class="interp-item">'
-        + '<div class="ip-from">' + esc(it.from) + '<span class="ip-stance">' + esc(it.stance) + '</span></div>'
-        + '<div class="ip-view">' + esc(it.view) + '</div></div>';
-    }).join('');
-
-    // 争议
-    var controvs = (s.controversies || []).map(function (c) {
-      var sides = (c.sides || []).map(function (sd) { return '<span class="ct-side">' + esc(sd) + '</span>'; }).join('');
-      return '<div class="controversy-item"><div class="ct-topic">' + esc(c.topic) + '</div>'
-        + '<div class="ct-sides">' + sides + '</div>'
-        + (c.note ? '<div class="ct-note">' + esc(c.note) + '</div>' : '')
-        + '</div>';
-    }).join('');
-
-    // 接受史
-    var reception = (s.reception || []).map(function (r) {
-      return '<div class="reception-item"><div class="rc-era">' + esc(r.era) + '</div>'
-        + '<div class="rc-reading">' + esc(r.reading) + '</div></div>';
-    }).join('');
-
-    // 关系
-    var rels = (s.relations || []).map(function (r) {
-      var t = SCHOOLS[r.to];
-      return '<span class="relation-chip" data-rel="' + r.to + '">'
-        + '<span class="rc-name">' + (t ? esc(t.name) : esc(r.to)) + '</span>'
-        + '<span class="rc-type t-' + r.type + '">' + (RELATION_LABEL[r.type] || r.type) + '</span>'
-        + '</span>';
-    }).join('');
-
-    // 学科交织
-    var discs = (s.disciplines || []).map(function (d) {
-      var dn = DISCIPLINE_NAME[d.d] || d.d;
-      var kl = KIND_LABEL[d.kind] || d.kind;
-      return '<span class="discipline-tag">' + dn + ' · ' + kl + (d.note ? ' — ' + esc(d.note) : '') + '</span>';
-    }).join('');
-
-    // 概念暗流：该学派的概念中，哪些有跨文明回响
-    var flows = (s.concepts || []).filter(function (c) { return CONCEPT_FLOWS[c]; });
-    var flowChips = flows.map(function (c) {
-      var col = TRIBUTARY_COLOR[s.tributary] || '#C9A063';
-      return '<button class="concept-flow-chip" data-concept="' + esc(c) + '" style="--c:' + col + '"><span class="cf-dot"></span>' + esc(c) + '</button>';
-    }).join('');
-
-    contentEl.innerHTML =
-      '<div class="detail-hero" style="--sc:' + col + '">'
-      + '<div class="detail-hero-top">'
-      + '<div class="avatar-block" style="--sc:' + col + '">' + s.name.charAt(0) + '</div>'
-      + '<div class="detail-name"><h2>' + esc(s.name) + '</h2>'
-      + '<div class="en">' + esc(s.en) + '</div></div>'
-      + '</div>'
-      + '<div class="detail-meta">'
-      + '<span class="meta-item">🌊 <b>' + (TRIBUTARY_NAME[s.tributary] || '') + '</b></span>'
-      + '<span class="meta-item">⌛ ' + esc(s.era) + '</span>'
-      + '</div>'
-      + '</div>'
-      + (s.timeAsked ? '<div class="time-asked"><span class="ta-label">时代之问</span>' + esc(s.timeAsked) + '</div>' : '')
-      + '<div class="detail-body">'
-      + (interps ? '<div class="d-block"><div class="d-block-title">多元阐释 · 不设唯一正确</div><div class="interp-list">' + interps + '</div></div>' : '')
-      + (controvs ? '<div class="d-block"><div class="d-block-title">分歧与争议 · 活的张力</div>' + controvs + '</div>' : '')
-      + (reception ? '<div class="d-block"><div class="d-block-title">接受史 · 后世如何重读</div><div class="reception-track">' + reception + '</div></div>' : '')
-      + (rels ? '<div class="d-block"><div class="d-block-title">四轴发散 · 从它出发</div><div class="relation-chips">' + rels + '</div></div>' : '')
-      + (flowChips ? '<div class="d-block"><div class="d-block-title">概念暗流 · 跨文明回响</div><div class="concept-flows">' + flowChips + '</div><div class="flow-path" id="flowPath"></div></div>' : '')
-      + (discs ? '<div class="d-block"><div class="d-block-title">学科交织</div><div class="discipline-tags">' + discs + '</div></div>' : '')
-      + '</div>';
-
-    // 关系跳转
-    contentEl.querySelectorAll('.relation-chip').forEach(function (chip) {
-      chip.addEventListener('click', function () {
-        var tid = chip.getAttribute('data-rel');
-        if (SCHOOLS[tid]) openSchool(tid);
-      });
-    });
-
-    // 概念暗流交互
-    contentEl.querySelectorAll('.concept-flow-chip').forEach(function (chip) {
-      chip.addEventListener('click', function () {
-        var concept = chip.getAttribute('data-concept');
-        var pathEl = document.getElementById('flowPath');
-        contentEl.querySelectorAll('.concept-flow-chip').forEach(function (c) { c.classList.remove('active'); });
-        chip.classList.add('active');
-
-        if (!pathEl) return;
-        var flow = CONCEPT_FLOWS[concept];
-        if (!flow) { pathEl.classList.remove('open'); return; }
-
-        // 起始点：当前学派
-        var nodes = [{ school: s.id, note: '起点 · 本义' }].concat(flow);
-        // 去重（去掉与当前学派相同的）
-        nodes = nodes.filter(function (n, i) { return i === 0 || n.school !== s.id; });
-
-        var trail = nodes.map(function (n) {
-          var t = SCHOOLS[n.school];
-          if (!t) return '';
-          var nc = TRIBUTARY_COLOR[t.tributary] || '#C9A063';
-          return '<div class="fp-node" data-school="' + n.school + '" style="--c:' + nc + '">'
-            + '<div class="fp-school">' + esc(t.name) + ' <span style="font-size:10.5px;color:var(--text-mute)">· ' + esc(TRIBUTARY_NAME[t.tributary] || '') + '</span></div>'
-            + (n.note ? '<div class="fp-note">' + esc(n.note) + '</div>' : '')
-            + '</div>';
-        }).join('');
-
-        pathEl.innerHTML = '<div class="fp-head"><div><b>「' + esc(concept) + '」</b> 的跨文明回响</div><button class="fp-close" aria-label="收起">&times;</button></div>'
-          + '<div class="fp-trail">' + trail + '</div>';
-        pathEl.classList.add('open');
-
-        // 点击轨迹节点 → 跳转学派
-        pathEl.querySelectorAll('.fp-node').forEach(function (node) {
-          node.addEventListener('click', function () {
-            var tid = node.getAttribute('data-school');
-            if (SCHOOLS[tid]) openSchool(tid);
-          });
-        });
-        // 收起
-        pathEl.querySelector('.fp-close').addEventListener('click', function () {
-          pathEl.classList.remove('open');
-          chip.classList.remove('active');
-        });
-      });
-    });
-
-    openOverlay();
-  }
-
-  /* ─── 卡片点击 ─── */
-  grid.addEventListener('click', function (ev) {
-    var card = ev.target.closest('.school-card');
-    if (card) openSchool(card.getAttribute('data-school'));
+  let t;
+  window.addEventListener('scroll', () => {
+    clearTimeout(t);
+    t = setTimeout(drawLinks, 120);
+  }, {passive:true});
+  window.addEventListener('resize', () => {
+    clearTimeout(t);
+    t = setTimeout(drawLinks, 120);
   });
-
-  /* ─── 关闭 ─── */
-  document.getElementById('detailClose').addEventListener('click', closeOverlay);
-  overlay.addEventListener('click', function (ev) {
-    if (ev.target === overlay) closeOverlay();
-  });
-  document.addEventListener('keydown', function (ev) {
-    if (ev.key === 'Escape') closeOverlay();
-  });
-})();
+}
+init();
 </script>
 </body>
 </html>

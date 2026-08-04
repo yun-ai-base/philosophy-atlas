@@ -1,0 +1,5 @@
+.gstack/
+_gstack-*
+*_qa*
+_chain.json
+_main_check.js
